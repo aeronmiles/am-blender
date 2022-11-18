@@ -1,0 +1,3 @@
+[submodule "HEAVYPOLY_Blender"]
+	path = HEAVYPOLY_Blender
+	url = git@github.com:aeronmiles/HEAVYPOLY_Blender.git
