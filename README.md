@@ -1,6 +1,6 @@
 # AMBlender
 
-Scripts and Pie Menus designed to make Blender more streamlined.
+Blender tools and scripts.
 
 ## Installation
 
