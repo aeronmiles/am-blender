@@ -1,3 +1,9 @@
-[submodule "HEAVYPOLY_Blender"]
-	path = HEAVYPOLY_Blender
+[submodule "3rd-party/addons/HEAVYPOLY_Blender"]
+	path = 3rd-party/addons/HEAVYPOLY_Blender
 	url = git@github.com:aeronmiles/HEAVYPOLY_Blender.git
+[submodule "3rd-party/addons/BlenderUSDZ"]
+	path = 3rd-party/addons/BlenderUSDZ
+	url = https://github.com/robmcrosby/BlenderUSDZ.git
+[submodule "3rd-party/addons/addon_bake_groups"]
+	path = 3rd-party/addons/addon_bake_groups
+	url = git@github.com:aeronmiles/addon_bake_groups.git

@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:/Users/Aeron-R9/AppData/Roaming/Blender Foundation/Blender/3.4"
+		},
+		{
+			"path": "C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+		},
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			"C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+		],
+		"python.analysis.extraPaths": [
+			"C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+		],
+	}
+}

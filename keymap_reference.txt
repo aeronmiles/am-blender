@@ -1,0 +1,141 @@
+KEYMAP REFERENCE
+----------------
+
+GLOBAL
+======
+ctrl + alt + x - Origins Pie
+alt + w - selection mode
+q - quick favourites
+shift + o - proportional modelling
+ctrl + shift + tab - snap Settings
+shift + tab - snap toggle
+shift + s - snap pie
+, - orientation (coordinate spaces)
+
+Selection
+---------
+Shift + g - select grouped
+Shift + l - select linked
+ctrl + l (3d view) - link data
+ctrl + l (uv view) - select linked
+
+
+NAV / VIEW
+==========
+ctrl + alt + s - Editor switch pie
+alt + q - nav menu
+shift + z (OBJECT MODE) - toggle wireframe
+ctrl + shift + alt + space - areas pie
+shift + alt + z - toggle overlays
+
+LIGHTING
+==========
+ctrl + shift + q - viewport shading pie
+b
+MESH
+====
+w - modelling pie
+
+AM-Blender
+----------------
+ctrl + alt + shift + c - convert pie
+ctrl + alt + shift + p - custom properties pie
+ctrl + alt + shift + x - properties pie
+
+
+----------------
+
++++ 'H E A V Y P O L Y   H O T K E Y S' +++
+
+++ N A V I G A T I O N ++
+'Middle Mouse' Rotate View
+'Ctrl Middle Mouse' Zoom View
+'Shift Middle Mouse' Pan View
+'Ctrl Shift Middle Mouse' Zoom t    o Selected
+
+++ T R A N S F O R M S ++
+'Space'  Move 
+	While in Move Mode:
+    'Z' Z axis lock
+    'X' X axis lock
+    'Space' Y axis lock
+    'Drag Middle Mouse' interactive axis lock
+'R'  Rotate
+    'Double R' Rotate Trackball
+'S'  Scale
+	Axis locks are same as Move Mode
+
+++ P I E   M E N U S++
+'V'  Views Pie
+'Ctrl Space'  Selection Pie
+'Shift A' Add Primitives Pie
+'Ctrl Shift V' Properties Popup
+'Z' Shading Pie
+'Ctrl B' Boolean Pie
+'Shift X' Mirror Pie
+'Shift V' Materials Popup
+'Ctrl Alt Space'  Rotate 90 and Flatten Pie
+'Ctrl Shift D' Specials Pie
+'Ctrl Alt Shift Space'  Areas Pie
+'Ctrl Shift Space' Pivots Pie
+'D' Last Tool Settings
+
+
+++ S E L E C T I O N ++
+'Drag' Select 'Drag on empty space' Deselect
+'Shift Drag' Add to Selection
+'Alt Z' Grow Selection
+'Ctrl Drag'  Subtract from Selection
+'Ctrl Click'  Invert Selection
+'Doubleclick'  Select Linked
+'Alt Click' Select Loop
+'Alt DoubleClick' Select Ring
+'A'  Select All or 'AA' Deselect All
+'Ctrl I' Invert Selection
+'Ctrl Shift Click'  Select Between
+'3' Select Next in Pattern
+
+++ M E S H ++
+'Shift Space'  Extrude (if nothing is selected, place vert at cursor)
+'Alt Space'  Inset
+'Alt Drag' Add Cube
+'Shift D' Duplicate
+'B'  Bevel, Select Border and Bevel(faces mode)
+'Shift B'  Bridge
+'Ctrl Shift B'  Bridge Smooth
+'Ctrl R' S Cut
+'Shift G' Slide / Push
+'E'  Extrude to Cursor
+'X'  Delete
+'Ctrl X' Dissolve / Erase
+'K'  Knife
+'F'  Create Face
+'J'  Connect Verts
+'Ctrl J'  Join Verts
+'Ctrl N' Reset Normals
+'Ctrl Shift N' Flip Normals
+'Tab' Subdivision Modifier
+'H'  Hide
+'Shift H'  Hide Unselected
+'Alt H'  Unhide
+'Y' Split
+'P' Split into new object
+'W' Options Menu
+
+++ O B J E C T ++
+'Shift D' Duplicate
+'Alt D' Duplicate Linked
+'Ctrl J' Join
+'Ctrl P' Parent to
+'M' Move to Collection
+g
+++ C E N T E R S ++
+'Ctrl Shift Right Mouse' Snap Center to Selected (if no selection, snap Center to 0,0,0)
+'Ctrl Right Mouse' Snap 3D Cursor to Selected (if no selection, snap 3D Cursor to 0,0,0)
+'Shift Right Mouse' Place 3D Cursor
+
+++ M I S C ++
+'D' Tool Settings Popup
+'5' Search Menu
+'Shift R' Repeat Last Action
+'Ctrl Shift D' Specials Pie
