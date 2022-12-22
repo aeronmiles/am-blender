@@ -6,7 +6,7 @@ import os
 modules = ("jsonpickle",)
 for m in modules:
     sys.path.insert(0, os.path.join(os.path.dirname(
-        os.path.realpath(__file__)), f"lib/{m}"))
+        os.path.realpath(__file__)), f"3rd-party/{m}"))
 
 
 def install_modules():

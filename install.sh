@@ -60,8 +60,6 @@ CYGWIN* | MINGW* | MINGW32* | MSYS*)
     fi
     cp -r ./3rd-party/addons/BlenderUSDZ/io_scene_usdz "$DIR/scripts/startup"
     
-    ### HEAVYPOLY
-    cp -r ./3rd-party/addons/HEAVYPOLY_Blender/scripts "$DIR"
 
     ### am-blender
     if [ -d "$DIR/scripts/addons/am-blender" ]; then

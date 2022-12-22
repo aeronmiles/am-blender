@@ -1,6 +1,3 @@
-[submodule "3rd-party/addons/HEAVYPOLY_Blender"]
-	path = 3rd-party/addons/HEAVYPOLY_Blender
-	url = git@github.com:aeronmiles/HEAVYPOLY_Blender.git
 [submodule "3rd-party/addons/BlenderUSDZ"]
 	path = 3rd-party/addons/BlenderUSDZ
 	url = https://github.com/robmcrosby/BlenderUSDZ.git
