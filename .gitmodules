@@ -1,6 +1,3 @@
 [submodule "3rd-party/addons/BlenderUSDZ"]
 	path = 3rd-party/addons/BlenderUSDZ
 	url = https://github.com/robmcrosby/BlenderUSDZ.git
-[submodule "3rd-party/addons/addon_bake_groups"]
-	path = 3rd-party/addons/addon_bake_groups
-	url = git@github.com:aeronmiles/addon_bake_groups.git

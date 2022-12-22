@@ -48,12 +48,6 @@ CYGWIN* | MINGW* | MINGW32* | MSYS*)
     ### HEAVYPOLY as addon
     echo '@TODO: io scene & heavypoly move to addons'
 
-    ### Bake Groups
-    if [ -d "$DIR/scripts/addons/addon_bake_groups" ]; then
-        rm -r "$DIR/scripts/addons/addon_bake_groups"
-    fi
-    cp -r ./3rd-party/addons/addon_bake_groups "$DIR/scripts/addons"
-
     ### USDZ
     if [ -d "$DIR/scripts/startup/io_scene_usdz" ]; then
         rm -r "$DIR/scripts/startup/io_scene_usdz"
