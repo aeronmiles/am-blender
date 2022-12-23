@@ -2,7 +2,7 @@
 
 read -p "Enter Blender version e.g. 3.3 > " VER
 
-# Determine the user's addons directory based on the operating system
+# Determine the user's directory based on the operating system
 case "$(uname -sr)" in
 Darwin*)
     # macOS
