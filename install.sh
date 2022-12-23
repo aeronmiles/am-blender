@@ -45,15 +45,17 @@ CYGWIN* | MINGW* | MINGW32* | MSYS*)
     # *) ;;
     # esac
 
-    ### HEAVYPOLY as addon
-    echo '@TODO: io scene & heavypoly move to addons'
-
     ### USDZ
-    if [ -d "$DIR/scripts/startup/io_scene_usdz" ]; then
-        rm -r "$DIR/scripts/startup/io_scene_usdz"
+    if [ -d "$DIR/scripts/addons/io_scene_usdz" ]; then
+        rm -r "$DIR/scripts/addons/io_scene_usdz"
     fi
-    cp -r ./3rd-party/addons/BlenderUSDZ/io_scene_usdz "$DIR/scripts/startup"
-    
+    cp -r ./extern/addons/BlenderUSDZ/io_scene_usdz "$DIR/scripts/addons"
+
+    ### reload_addons
+    if [ -f "$DIR/scripts/addons/reload_addons.py" ]; then
+        rm -f "$DIR/scripts/addons/reload_addons.py"
+    fi
+    cp ./extern/addons/john-kanji/reload_addons.py "$DIR/scripts/addons"
 
     ### am-blender
     if [ -d "$DIR/scripts/addons/am-blender" ]; then
