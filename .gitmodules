@@ -1,3 +1,3 @@
-[submodule "3rd-party/addons/BlenderUSDZ"]
+[submodule "extern/addons/BlenderUSDZ"]
 	path = extern/addons/BlenderUSDZ
 	url = https://github.com/robmcrosby/BlenderUSDZ.git
