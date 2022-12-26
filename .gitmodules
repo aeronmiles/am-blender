@@ -1,1 +1,6 @@
-
+[submodule "addons-extern/BlenderUSDZ"]
+	path = addons-extern/BlenderUSDZ
+	url = https://github.com/robmcrosby/BlenderUSDZ.git
+[submodule "cpp/extern/pybind11"]
+	path = cpp/extern/pybind11
+	url = git@github.com:pybind/pybind11.git
