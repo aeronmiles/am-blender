@@ -37,16 +37,18 @@ fi
 if [ -d "$USER_PATH/scripts/addons/io_scene_usdz" ]; then
     rm -r "$USER_PATH/scripts/addons/io_scene_usdz"
 fi
-cp -r ./extern/addons/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
+cp -r ./addons-extern/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
 
-# reload_addons
-if [ -f "$USER_PATH/scripts/addons/reload_addons.py" ]; then
-    rm -f "$USER_PATH/scripts/addons/reload_addons.py"
+# remove previous heavypoly
+if [ -d "$USER_PATH/scripts/addons/heavypoly" ]; then
+    rm -r "$USER_PATH/scripts/addons/heavypoly"
 fi
-cp ./extern/addons/john-kanji/reload_addons.py "$USER_PATH/scripts/addons"
-
-### am-blender
+# remove previous reload-addons
+if [ -d "$USER_PATH/scripts/addons/reload-addons" ]; then
+    rm -r "$USER_PATH/scripts/addons/reload-addons"
+fi
+### remove previous am-blender
 if [ -d "$USER_PATH/scripts/addons/am-blender" ]; then
     rm -r "$USER_PATH/scripts/addons/am-blender"
 fi
-cp -r ./scripts "$USER_PATH"
+cp -r ./addons "$USER_PATH/scripts"

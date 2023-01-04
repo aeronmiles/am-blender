@@ -7,15 +7,91 @@
 			"path": "C:/Users/Aeron-R9/AppData/Roaming/Blender Foundation/Blender/3.4"
 		},
 		{
-			"path": "C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+			"path": "C:/Program Files/Blender Foundation/Blender 3.4/"
+		},
+		{
+			"path": "C:/Dev/blender/.reference/fake_bpy"
+		},
+		{
+			"path": "C:/Dev/blender/blender"
 		},
 	],
 	"settings": {
 		"python.autoComplete.extraPaths": [
-			"C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+			"C:/Dev/Blender/.reference/fake_bpy",
+			"C:/Dev/blender/blender/release/scripts/addons",
+			"C:/Dev/blender/blender/release/scripts/modules",
+			"C:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
+			// User packages
+			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
+
 		],
 		"python.analysis.extraPaths": [
-			"C:/Dev/Blender/.reference/fake_bpy_modules_3.3-20221006"
+			"C:/Dev/Blender/.reference/fake_bpy",
+			"C:/Dev/blender/blender/release/scripts/addons",
+			"C:/Dev/blender/blender/release/scripts/modules",
+			"C:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
+			// User packages
+			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
 		],
+		"files.associations": {
+			"*.html": "html",
+			"*.njk": "nunjucks",
+			"*.mat": "glsl",
+			"*.cl": "cpp",
+			"xiosbase": "cpp",
+			"algorithm": "cpp",
+			"array": "cpp",
+			"cmath": "cpp",
+			"cstddef": "cpp",
+			"cstdint": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"cstring": "cpp",
+			"cwchar": "cpp",
+			"exception": "cpp",
+			"forward_list": "cpp",
+			"functional": "cpp",
+			"initializer_list": "cpp",
+			"ios": "cpp",
+			"iosfwd": "cpp",
+			"iostream": "cpp",
+			"istream": "cpp",
+			"iterator": "cpp",
+			"limits": "cpp",
+			"list": "cpp",
+			"memory": "cpp",
+			"new": "cpp",
+			"optional": "cpp",
+			"ostream": "cpp",
+			"stdexcept": "cpp",
+			"streambuf": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"system_error": "cpp",
+			"tuple": "cpp",
+			"type_traits": "cpp",
+			"typeindex": "cpp",
+			"typeinfo": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp",
+			"utility": "cpp",
+			"vector": "cpp",
+			"xfacet": "cpp",
+			"xhash": "cpp",
+			"xlocale": "cpp",
+			"xlocinfo": "cpp",
+			"xlocnum": "cpp",
+			"xmemory": "cpp",
+			"xmemory0": "cpp",
+			"xstddef": "cpp",
+			"xstring": "cpp",
+			"xtr1common": "cpp",
+			"xutility": "cpp",
+			"bmesh.h": "c",
+			"bmesh_py_types_select.h": "c",
+			"bmesh_class.h": "c",
+			"bmesh_py_ops.h": "c"
+		}
 	}
 }

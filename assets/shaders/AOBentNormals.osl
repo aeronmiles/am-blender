@@ -1,0 +1,125 @@
+/*
+ * Ambient Occlusion and Direction.
+ * 
+ * Calculates AO and the average direction where the ambient light came from.
+ *
+ * Original AO code from https://github.com/sambler/osl-shaders/blob/master/ramps/BaAmbientOcclusion/BaAmbientOcclusion.osl
+ *
+ */
+
+void rng_seed(output int rng, int seed)
+{
+  int chash = seed;
+  if (chash == 0) chash = 1;
+  rng = chash * 891694213;
+}
+
+float rng_uniform(output int rng)
+{
+  float res = rng / float(2137483647) * 0.5 + 0.5;
+  rng *= 891694213;
+  return res;
+}
+
+void to_unit_disk(float x, float y, output float x_out, output float y_out)
+{
+  float r, phi;
+  float a = 2.0 * x - 1.0;
+  float b = 2.0 * y - 1.0;
+
+  if(a > -b) {
+    if(a > b) {
+      r = a;
+      phi = M_PI_4 *(b/a);
+    }
+    else {
+      r = b;
+      phi = M_PI_4 *(2.0 - a/b);
+    }
+  }
+  else {
+    if(a < b) {
+      r = -a;
+      phi = M_PI_4 *(4.0 + b/a);
+    }
+    else {
+      r = -b;
+      if(b != 0.0) phi = M_PI_4 *(6.0 - a/b);
+      else phi = 0.0;
+    }
+  }
+  x_out = r * cos(phi);
+  y_out = r * sin(phi);
+}
+
+void make_orthonormals(vector N, output vector a, output vector b)
+{
+  if(N[0] != N[1] || N[0] != N[2]) a = cross(vector(1, 1, 1), N);
+  else a = cross(vector(-1, 1, 1), N);
+
+  a = normalize(a);
+  b = cross(N, a);
+}
+
+vector sample_cos_hemisphere(vector N, float randu, float randv)
+{
+  vector T, B;
+
+  make_orthonormals(N, T, B);
+  to_unit_disk(randu, randv, randu, randv);
+  float costheta = sqrt(max(1.0 - randu * randu - randv * randv, 0.0));
+
+  return randu * T + randv * B + costheta * N;
+}
+
+shader AmbientOcclusionAndDirection(
+  normal Normal = N,
+  float Distance = 1,
+  int Samples = 8,
+  output float AmbientAmount = 1,
+  output normal NonOccludedDirection = Normal )
+{
+  int i, rng, hits = 0;
+  float f, randu, randv, ray_t;
+  vector ray_P, ray_R;
+
+  f = fmod(cellnoise(P*123456.0), 1.0);
+  rng_seed(rng, int(f * 2137483647));
+
+  vector accumulatedNonOccludedNormals = vector(0,0,0);
+
+  for(i = 0; i < Samples; i++) {
+    randu = rng_uniform(rng);
+    randv = rng_uniform(rng);
+
+    ray_R = sample_cos_hemisphere(Normal, randu, randv);
+
+    if(trace(P, ray_R, "maxdist", Distance))
+    {
+      hits++;
+    }
+    else
+    {
+      accumulatedNonOccludedNormals += ray_R;
+    }
+  }
+
+  if(Samples - hits > 0)
+  {
+    // ambient light rays found.
+    // calculate the amount of ambient light and the direction where most of it came from
+
+    AmbientAmount = 1.0 - (((float)hits)/Samples);
+
+    NonOccludedDirection = normalize(accumulatedNonOccludedNormals);
+  }
+  else
+  {
+    // every ray has hit some geometry. no ambient light detected.
+
+    AmbientAmount = 0.0;
+
+    // should the resulting direction be equal to Normal, or zero???
+    // NonOccludedDirection = vector(0,0,0);
+  }
+}

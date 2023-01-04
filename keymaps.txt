@@ -3,44 +3,44 @@ KEYMAP REFERENCE
 
 GLOBAL
 ======
-ctrl + alt + x - Origins Pie
-alt + w - selection mode
-q - quick favourites
-shift + o - proportional modelling
-ctrl + shift + tab - snap Settings
-shift + tab - snap toggle
-shift + s - snap pie
-, - orientation (coordinate spaces)
+'ctrl + alt + x' - Origins Pie
+'alt + w' - selection mode
+'q' - quick favourites
+'shift + o' - proportional modelling
+'ctrl + shift + tab' - snap Settings
+'shift + tab' - snap toggle
+'shift + s' - snap pie
+',' - orientation (coordinate spaces)
 
 Selection
 ---------
-Shift + g - select grouped
-Shift + l - select linked
-ctrl + l (3d view) - link data
-ctrl + l (uv view) - select linked
+'Shift + g' - select grouped
+'Shift + l' - select linked
+'ctrl + l (3d view)' - link data
+'ctrl + l (uv view)' - select linked
 
 
 NAV / VIEW
 ==========
-ctrl + alt + s - Editor switch pie
-alt + q - nav menu
-shift + z (OBJECT MODE) - toggle wireframe
-ctrl + shift + alt + space - areas pie
-shift + alt + z - toggle overlays
+'ctrl + alt + s' - Editor switch pie
+'alt + q' - nav menu
+'shift + z (OBJECT MODE)' - toggle wireframe
+'ctrl + shift + alt + space' - areas pie
+'shift + alt + z' - toggle overlays
 
 LIGHTING
 ==========
-ctrl + shift + q - viewport shading pie
+'ctrl + shift + q' - viewport shading pie
 b
 MESH
 ====
-w - modelling pie
+'w' - modelling pie
 
 AM-Blender
 ----------------
-ctrl + alt + shift + c - convert pie
-ctrl + alt + shift + p - custom properties pie
-ctrl + alt + shift + x - properties pie
+'ctrl + alt + shift + c' - convert pie
+'ctrl + alt + shift + p' - custom properties pie
+'ctrl + alt + shift + x' - properties pie
 
 
 ----------------
