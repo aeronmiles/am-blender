@@ -65,6 +65,22 @@ class AM_DU_Set_Image_Scale_512(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_DU_Set_Image_Scale_256(bpy.types.Operator):
+    bl_idname = 'amblender.data_util_set_image_scale_256'
+    bl_label = 'Scale Image Maps to 256'
+    bl_description = 'Scale Image Maps to 256'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object
+
+    def execute(self, context):
+        ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_256)
+
+        return {'FINISHED'}
+
+
 class AM_DU_Reset_Scaled_Images(bpy.types.Operator):
     bl_idname = 'amblender.data_util_reset_scaled_images'
     bl_label = 'Reset Map Scales'

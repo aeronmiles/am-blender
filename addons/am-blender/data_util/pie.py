@@ -33,6 +33,7 @@ class AM_MT_DataUtilPie(Menu):
         box.operator("amblender.data_util_set_image_scale_2048")
         box.operator("amblender.data_util_set_image_scale_1024")
         box.operator("amblender.data_util_set_image_scale_512")
+        box.operator("amblender.data_util_set_image_scale_256")
 
 
 def register():

@@ -49,14 +49,11 @@ class Data:
             if not img:
                 continue
 
-            scale = Size.from_image(img)
-            filename_suffixes = ""
-            if scale:
-                filename_suffixes = scale.compat.filename_suffixes()
-
-            filepath = replace(img.filepath, filename_suffixes, ".")
-
-            ops.shader.load_image(node, filepath)
+            scaled = Size.from_image(img)
+            if scaled:
+                filepath = replace(
+                    img.filepath, scaled.compat.filename_suffixes(), ".")
+                ops.shader.load_image(node, filepath)
 
     @staticmethod
     @log.catch
@@ -72,39 +69,31 @@ class Data:
                 continue
 
             scaled = Size.from_image(img)
-            filepath = img.filepath
-
+            filepath = img.filepath_raw
             if scaled:
-                for filename_suffix in scaled.compat.filename_suffixes():
-                    filepath = filepath.replace(filename_suffix, ".")
+                filepath = replace(
+                    img.filepath_raw, scaled.compat.filename_suffixes(), ".")
 
-            print(f"filepath: {filepath}")
+            filepath = os.path.splitext(filepath)[0]
 
             # check for exisiting scaled image
-            imgPath = os.path.join(os.path.dirname(
-                bpy.data.filepath), meta.cfg.unpack_tex_dir, os.path.splitext(
-                filepath)[0] + scale.filename_suffix() + f"{img.file_format}".lower())
+            img_path = os.path.join(os.path.dirname(bpy.data.filepath),
+                                    meta.cfg.unpack_tex_dir,
+                                    filepath + scale.filename_suffix() + f"{img.file_format}".lower())
 
-            # scale current image
-            maxD = max(img.size[0], img.size[1])
-            if not maxD > scale.value:
-                ops.shader.load_image(node, imgPath)
-                continue
-            elif ops.shader.load_image(node, imgPath):
+            if ops.shader.load_image(node, img_path):
                 continue
 
             # rescale existing texture
-            f = scale.value / maxD
+            f = scale.value / max(img.size[0], img.size[1])
 
             img.scale(int(img.size[0] * f), int(img.size[1] * f))
 
-            img.filepath = os.path.splitext(img.filepath)[0] + \
-                f"{scale.filename_suffix()}" + img.file_format.lower()
-            img.name = os.path.splitext(
-                img.name)[0] + scale.filename_suffix() + f"{img.file_format}".lower()
+            img.filepath_raw = img_path
+            img.name = os.path.splitext(img_path)[0]
 
             img.save()
-            ops.shader.load_image(node, img.filepath)
+            ops.shader.load_image(node, img.filepath_raw)
 
 
 data = Data()
