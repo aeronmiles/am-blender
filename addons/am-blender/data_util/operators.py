@@ -101,7 +101,8 @@ classes = (AM_DU_UnpackImages,
            AM_DU_Reset_Scaled_Images,
            AM_DU_Set_Image_Scale_2048,
            AM_DU_Set_Image_Scale_1024,
-           AM_DU_Set_Image_Scale_512)
+           AM_DU_Set_Image_Scale_512,
+           AM_DU_Set_Image_Scale_256)
 
 
 def register():

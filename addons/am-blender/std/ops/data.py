@@ -73,24 +73,22 @@ class Data:
             if scaled:
                 filepath = replace(
                     img.filepath_raw, scaled.compat.filename_suffixes(), ".")
-
+                img = bpy.data.images.load(filepath, check_existing=True)
+                
             filepath = os.path.splitext(filepath)[0]
 
-            # check for exisiting scaled image
-            img_path = os.path.join(os.path.dirname(bpy.data.filepath),
-                                    meta.cfg.unpack_tex_dir,
-                                    filepath + scale.filename_suffix() + f"{img.file_format}".lower())
+            img_path = filepath + scale.filename_suffix() + f"{img.file_format}".lower()
 
             if ops.shader.load_image(node, img_path):
                 continue
-
+            
             # rescale existing texture
             f = scale.value / max(img.size[0], img.size[1])
 
             img.scale(int(img.size[0] * f), int(img.size[1] * f))
 
             img.filepath_raw = img_path
-            img.name = os.path.splitext(img_path)[0]
+            img.name = os.path.basename(bpy.path.abspath(img_path))
 
             img.save()
             ops.shader.load_image(node, img.filepath_raw)
