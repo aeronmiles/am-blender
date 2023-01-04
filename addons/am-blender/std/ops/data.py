@@ -54,9 +54,7 @@ class Data:
             if scale:
                 filename_suffixes = scale.compat.filename_suffixes()
 
-            filepath = img.filepath
-            for filename_suffix in filename_suffixes:
-                filepath = filepath.replace(filename_suffix, ".")
+            filepath = replace(img.filepath, filename_suffixes, ".")
 
             ops.shader.load_image(node, filepath)
 
