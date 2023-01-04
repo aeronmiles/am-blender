@@ -35,6 +35,39 @@ class AM_CP_Remove_GL_SeaparateCullingPass(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_CP_Add_GL_DepthPrePass(bpy.types.Operator):
+    bl_idname = 'amblender.cp_add_gl_separate_culling_pass'
+    bl_label = 'Add ::  gl_separate_culling_pass'
+    bl_description = 'Add Custom Property ::  gl_separate_culling_pass'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object
+
+    def execute(self, context):
+        ops.data.set_custom_property(
+            context.selected_objects, 'gl_separate_culling_pass', 1.0)
+
+        return {'FINISHED'}
+
+
+class AM_CP_Remove_GL_DepthPrePass(bpy.types.Operator):
+    bl_idname = 'amblender.cp_remove_gl_separate_culling_pass'
+    bl_label = 'Remove ::  gl_separate_culling_pass'
+    bl_description = 'Remove Custom Property ::  gl_separate_culling_pass'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object
+
+    def execute(self, context):
+        ops.data.remove_custom_property(
+            context.selected_objects, 'separate_culling_pass')
+
+        return {'FINISHED'}
+
 class AM_CP_Add_GL_Translucency(bpy.types.Operator):
     bl_idname = 'amblender.cp_add_gl_translucency'
     bl_label = 'Add ::  gl_translucency'
