@@ -9,7 +9,7 @@ class AM_Convert_To_Empty_Mesh(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -37,7 +37,7 @@ class AM_Deselect_Non_Mesh_Objects(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects

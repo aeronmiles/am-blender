@@ -9,7 +9,7 @@ class AM_CP_Add_GL_SeaparateCullingPass(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and not ops.data.has_custom_property(context.selected_objects, 'gl_separate_culling_pass')
 
     def execute(self, context):
         ops.data.set_custom_property(
@@ -26,45 +26,45 @@ class AM_CP_Remove_GL_SeaparateCullingPass(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_separate_culling_pass')
 
     def execute(self, context):
         ops.data.remove_custom_property(
-            context.selected_objects, 'separate_culling_pass')
+            context.selected_objects, 'gl_separate_culling_pass')
 
         return {'FINISHED'}
 
 
 class AM_CP_Add_GL_DepthPrePass(bpy.types.Operator):
-    bl_idname = 'amblender.cp_add_gl_separate_culling_pass'
-    bl_label = 'Add ::  gl_separate_culling_pass'
-    bl_description = 'Add Custom Property ::  gl_separate_culling_pass'
+    bl_idname = 'amblender.cp_add_gl_depth_pre_pass'
+    bl_label = 'Add ::  gl_depth_pre_pass'
+    bl_description = 'Add Custom Property ::  gl_depth_pre_pass'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and not ops.data.has_custom_property(context.selected_objects, 'gl_depth_pre_pass')
 
     def execute(self, context):
         ops.data.set_custom_property(
-            context.selected_objects, 'gl_separate_culling_pass', 1.0)
+            context.selected_objects, 'gl_depth_pre_pass', 1.0)
 
         return {'FINISHED'}
 
 
 class AM_CP_Remove_GL_DepthPrePass(bpy.types.Operator):
-    bl_idname = 'amblender.cp_remove_gl_separate_culling_pass'
-    bl_label = 'Remove ::  gl_separate_culling_pass'
-    bl_description = 'Remove Custom Property ::  gl_separate_culling_pass'
+    bl_idname = 'amblender.cp_remove_gl_depth_pre_pass'
+    bl_label = 'Remove ::  gl_depth_pre_pass'
+    bl_description = 'Remove Custom Property ::  gl_depth_pre_pass'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_depth_pre_pass')
 
     def execute(self, context):
         ops.data.remove_custom_property(
-            context.selected_objects, 'separate_culling_pass')
+            context.selected_objects, 'gl_depth_pre_pass')
 
         return {'FINISHED'}
 
@@ -76,7 +76,7 @@ class AM_CP_Add_GL_Translucency(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and not ops.data.has_custom_property(context.selected_objects, 'gl_translucency')
 
     def execute(self, context):
         ops.data.set_custom_property(
@@ -93,7 +93,7 @@ class AM_CP_Remove_GL_Translucency(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_translucency')
 
     def execute(self, context):
         ops.data.remove_custom_property(
@@ -110,7 +110,7 @@ class AM_CP_Add_GL_BlendMultiply(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and not ops.data.has_custom_property(context.selected_objects, 'gl_blend_multiply')
 
     def execute(self, context):
         ops.data.set_custom_property(
@@ -127,7 +127,7 @@ class AM_CP_Remove_GL_BlendMultiply(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_blend_multiply')
 
     def execute(self, context):
         ops.data.remove_custom_property(
@@ -145,7 +145,7 @@ class AM_CP_Add_GL_VertexColorMetallicRougness(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and not ops.data.has_custom_property(context.selected_objects, 'gl_vertex_color') and not ops.data.has_custom_property(context.selected_objects, 'gl_metallic_roughness') 
 
     def execute(self, context):
         objs = context.selected_objects
@@ -184,7 +184,7 @@ class AM_CP_Remove_GL_VertexColorMetallicRougness(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_vertex_metallic_roughness') and ops.data.has_custom_property(context.selected_objects, 'gl_vertex_color')
 
     def execute(self, context):
         objs = context.selected_objects
@@ -209,11 +209,12 @@ class AM_CP_Add_GL_Lightmap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
-        ops.data.set_custom_property(
-            context.selected_objects, 'gl_lightmap', obj.name + "_lightmap")
+        raise Exception("Not implemented yet")
+        # ops.data.set_custom_property(
+        #     context.selected_objects, 'gl_lightmap', obj.name + "_lightmap")
 
         return {'FINISHED'}
 
@@ -226,7 +227,7 @@ class AM_CP_Remove_GL_Lightmap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.data.has_custom_property(context.selected_objects, 'gl_lightmap')
 
     def execute(self, context):
         ops.data.remove_custom_property(

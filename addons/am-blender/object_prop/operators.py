@@ -9,7 +9,8 @@ class AM_OP_VisibleCamera_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_camera for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -28,7 +29,8 @@ class AM_OP_VisibleCamera_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_camera for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -47,7 +49,8 @@ class AM_OP_VisibleDiffuse_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_diffuse for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -66,7 +69,8 @@ class AM_OP_VisibleDiffuse_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_diffuse for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -85,7 +89,8 @@ class AM_OP_VisibleGlossy_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_glossy for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -104,7 +109,8 @@ class AM_OP_VisibleGlossy_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_glossy for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -123,7 +129,8 @@ class AM_OP_VisibleTransmission_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_transmission for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -142,7 +149,8 @@ class AM_OP_VisibleTransmission_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_transmission for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -161,7 +169,8 @@ class AM_OP_VisibleVolumeScatter_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_volume_scatter for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -180,7 +189,8 @@ class AM_OP_VisibleVolumeScatter_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_volume_scatter for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -199,7 +209,8 @@ class AM_OP_VisibleShadow_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(not obj.visible_shadow for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -218,7 +229,8 @@ class AM_OP_VisibleShadow_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        sel = context.selected_objects
+        return sel and any(obj.visible_shadow for obj in sel)
 
     def execute(self, context):
         objs = context.selected_objects
@@ -237,7 +249,7 @@ class AM_OP_VisibleRaysAll_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -261,7 +273,7 @@ class AM_OP_VisibleRaysAll_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -305,7 +317,7 @@ class AM_OP_VisibleViewport_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -324,7 +336,7 @@ class AM_OP_VisibleRender_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -343,7 +355,7 @@ class AM_OP_VisibleRender_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -362,7 +374,7 @@ class AM_OP_Selectable_True(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects
@@ -382,7 +394,7 @@ class AM_OP_Selectable_False(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         objs = context.selected_objects

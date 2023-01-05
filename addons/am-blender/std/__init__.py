@@ -11,6 +11,7 @@ from bpy.types import (Menu,)
 # std modules last
 from .fn import *
 from .decorators import *
+from .ui import ui
 from .meta import meta
 from .dtypes import *
 from .ops import ops

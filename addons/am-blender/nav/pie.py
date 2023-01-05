@@ -14,7 +14,7 @@ bl_info = {
 }
 
 
-class AM_Nav_Workspace_Pie(Menu):
+class AM_MT_Nav_Workspace_Pie(Menu):
     bl_label = "Workspace"
 
     def draw(self, context):
@@ -26,17 +26,18 @@ class AM_Nav_Workspace_Pie(Menu):
         pie.operator("amblender.nav_workspace_shading")
         pie.operator("amblender.nav_workspace_texture_paint")
         pie.operator("amblender.nav_workspace_sculpting")
-        pie.operator("amblender.nav_workspace_rendering")
+        # pie.operator("amblender.nav_workspace_rendering")
+        pie.operator("amblender.nav_workspace_assets")
         pie.operator("amblender.nav_workspace_geometry_nodes")
         pie.operator("amblender.nav_workspace_scripting")
 
 
 def register():
-    bpy.utils.register_class(AM_Nav_Workspace_Pie)
+    bpy.utils.register_class(AM_MT_Nav_Workspace_Pie)
 
 
 def unregister():
-    bpy.utils.unregister_class(AM_Nav_Workspace_Pie)
+    bpy.utils.unregister_class(AM_MT_Nav_Workspace_Pie)
 
 
 if __name__ == "__main__":

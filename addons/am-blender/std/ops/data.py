@@ -1,6 +1,7 @@
 from ...std import *
 from ...std import ops
 
+
 class Data:
     @staticmethod
     @log.catch
@@ -13,6 +14,14 @@ class Data:
     def set_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str, value):
         for obj in as_iterable(objs):
             obj[name] = value
+
+    @staticmethod
+    @log.catch
+    def has_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str) -> bool:
+        for obj in as_iterable(objs):
+            if name in obj:
+                return True
+        return False
 
     @staticmethod
     @log.catch
@@ -41,7 +50,7 @@ class Data:
     @log.catch
     def reset_scaled_images(objs: Union[Iterable['Object'], 'Object']):
         bpy.ops.object.mode_set(mode='OBJECT')
-        nodes: List['ShaderNodeTexImage'] = ops.shader.nodes_of_type(
+        nodes: set['ShaderNodeTexImage'] = ops.shader.node.of_type(
             objs, bpy.types.ShaderNodeTexImage)
 
         for node in nodes:
@@ -53,14 +62,14 @@ class Data:
             if scaled:
                 filepath = replace(
                     img.filepath, scaled.compat.filename_suffixes(), ".")
-                ops.shader.load_image(node, filepath)
+                ops.shader.node.load_image(node, filepath)
 
     @staticmethod
     @log.catch
     def scale_images_to_maxsize(objs: Union[Iterable['Object'], 'Object'], scale: 'Size'):
         bpy.ops.object.mode_set(mode='OBJECT')
 
-        nodes: List['ShaderNodeTexImage'] = ops.shader.nodes_of_type(
+        nodes: set['ShaderNodeTexImage'] = ops.shader.node.of_type(
             objs, bpy.types.ShaderNodeTexImage)
 
         for node in nodes:
@@ -74,14 +83,15 @@ class Data:
                 filepath = replace(
                     img.filepath_raw, scaled.compat.filename_suffixes(), ".")
                 img = bpy.data.images.load(filepath, check_existing=True)
-                
+
             filepath = os.path.splitext(filepath)[0]
 
-            img_path = filepath + scale.filename_suffix() + f"{img.file_format}".lower()
+            img_path = filepath + scale.filename_suffix() + \
+                f"{img.file_format}".lower()
 
-            if ops.shader.load_image(node, img_path):
+            if ops.shader.node.load_image(node, img_path):
                 continue
-            
+
             # rescale existing texture
             f = scale.value / max(img.size[0], img.size[1])
 
@@ -91,7 +101,7 @@ class Data:
             img.name = os.path.basename(bpy.path.abspath(img_path))
 
             img.save()
-            ops.shader.load_image(node, img.filepath_raw)
+            ops.shader.node.load_image(node, img.filepath_raw)
 
 
 data = Data()

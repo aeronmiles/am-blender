@@ -9,7 +9,7 @@ class AM_DU_UnpackImages(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return True
 
     def execute(self, context):
         ops.data.unpack_images()
@@ -25,7 +25,7 @@ class AM_DU_Set_Image_Scale_2048(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_2048)
@@ -41,7 +41,7 @@ class AM_DU_Set_Image_Scale_1024(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_1024)
@@ -57,7 +57,7 @@ class AM_DU_Set_Image_Scale_512(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_512)
@@ -73,7 +73,7 @@ class AM_DU_Set_Image_Scale_256(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_256)
@@ -89,7 +89,7 @@ class AM_DU_Reset_Scaled_Images(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
         ops.data.reset_scaled_images(context.selected_objects)

@@ -25,14 +25,16 @@ class AM_MT_ShaderUtilPie(Menu):
         row = box.row(align=True)
         row.scale_y = 1.5
         box.operator("amblender.shader_util_enabled_backface_culling")
-        box.operator("amblender.shader_util_disable_backface_culling")
         box.operator("amblender.shader_util_set_opaque")
         box.operator("amblender.shader_util_set_alpha_blend")
+        box.operator("amblender.shader_util_set_material_lod0")
+        box.operator("amblender.shader_util_set_material_lod1")
 
         # R
         box = pie.split().column()
         row = box.row(align=True)
         row.scale_y = 1.5
+        box.operator("amblender.shader_util_disable_backface_culling")
         box.operator("amblender.shader_util_disconnect_normal_map")
         box.operator("amblender.shader_util_disconnect_gltf_occlusion_map")
 

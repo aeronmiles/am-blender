@@ -55,6 +55,7 @@ class WorkSpaceId(Enum):
     Compositing = "Compositing"
     GeometryNodes = "Geometry Nodes"
     Scripting = "Scripting"
+    Assets = "Assets"
 
 
 class Size(Enum):
@@ -86,13 +87,13 @@ class Size(Enum):
     def from_image(image: 'Image') -> Union['Size', None]:
         # check multiple strings for backwards compatibility
         fp = image.filepath_raw.lower()
-        if any([s in fp for s in Compat.Size(4096).filename_suffixes()]):
+        if any(s in fp for s in Compat.Size(4096).filename_suffixes()):
             return Size.P2_4096
-        if any([s in fp for s in Compat.Size(2048).filename_suffixes()]):
+        if any(s in fp for s in Compat.Size(2048).filename_suffixes()):
             return Size.P2_2048
-        if any([s in fp for s in Compat.Size(1024).filename_suffixes()]):
+        if any(s in fp for s in Compat.Size(1024).filename_suffixes()):
             return Size.P2_1024
-        if any([s in fp for s in Compat.Size(512).filename_suffixes()]):
+        if any(s in fp for s in Compat.Size(512).filename_suffixes()):
             return Size.P2_512
         if "_256." in fp:
             return Size.P2_256

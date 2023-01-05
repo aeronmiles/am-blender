@@ -11,6 +11,11 @@ GLOBAL
 'shift + tab' - snap toggle
 'shift + s' - snap pie
 ',' - orientation (coordinate spaces)
+'F11' - fullscreen
+'ctrl + alt + space' - maximize area
+'shift + a' - create item
+'ctrl + c' - copy data
+'ctrl + l' - link / transfer data
 
 Selection
 ---------
@@ -32,16 +37,21 @@ LIGHTING
 ==========
 'ctrl + shift + q' - viewport shading pie
 b
-MESH
-====
+
+MESH EDIT
+=========
 'w' - modelling pie
 
 AM-Blender
 ----------------
-'ctrl + alt + shift + c' - convert pie
-'ctrl + alt + shift + p' - custom properties pie
-'ctrl + alt + shift + x' - properties pie
-
+'ctrl + alt + shift + w' - workspace
+'ctrl + alt + shift + p' - custom properties
+'ctrl + alt + shift + x' - properties
+'ctrl + alt + shift + c' - convert
+'ctrl + alt + shift + z' - shader util
+'ctrl + alt + shift + x' - object properties
+'ctrl + alt + shift + d' - data util
+'ctrl + alt + shift + s' - import / export
 
 ----------------
 

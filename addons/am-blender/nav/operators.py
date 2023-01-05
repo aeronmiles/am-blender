@@ -78,6 +78,17 @@ class AM_Nav_Workspace_Rendering(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_Nav_Workspace_Assets(bpy.types.Operator):
+    bl_idname = 'amblender.nav_workspace_assets'
+    bl_label = 'Assets'
+    bl_description = 'Load Assets Workspace'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.workspace(WorkSpaceId.Assets)
+        return {'FINISHED'}
+
+
 class AM_Nav_Workspace_Geometry_Nodes(bpy.types.Operator):
     bl_idname = 'amblender.nav_workspace_geometry_nodes'
     bl_label = 'Geometry Nodes'
@@ -100,7 +111,8 @@ class AM_Nav_Workspace_Scripting(bpy.types.Operator):
         return {'FINISHED'}
 
 
-classes = (AM_Nav_Workspace_Modeling, AM_Nav_Workspace_UV_Editing, AM_Nav_Workspace_Layout, AM_Nav_Workspace_Sculpting, AM_Nav_Workspace_Texture_Paint, AM_Nav_Workspace_Shading, AM_Nav_Workspace_Rendering, AM_Nav_Workspace_Geometry_Nodes, AM_Nav_Workspace_Scripting)
+classes = (AM_Nav_Workspace_Modeling, AM_Nav_Workspace_UV_Editing, AM_Nav_Workspace_Layout, AM_Nav_Workspace_Sculpting, AM_Nav_Workspace_Texture_Paint, AM_Nav_Workspace_Shading, AM_Nav_Workspace_Rendering, AM_Nav_Workspace_Geometry_Nodes, AM_Nav_Workspace_Scripting,
+           AM_Nav_Workspace_Assets)
 
 
 def register():

@@ -25,7 +25,7 @@ def keymaps():
         "wm.call_menu_pie", "S", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_ImportExportPie"
 
     km.keymap_items.new(
-        "wm.call_menu_pie", "W", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_Nav_Workspace_Pie"
+        "wm.call_menu_pie", "W", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_Nav_Workspace_Pie"
 
 
 def register():

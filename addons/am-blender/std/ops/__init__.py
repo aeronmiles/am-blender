@@ -1,7 +1,7 @@
 from .build import build
 from .bcopy import copy
 from .data import data
-from .export import export
+from .import_export import io
 from .find import find
 from .nav import nav
 from .shader import shader
@@ -12,7 +12,7 @@ class Ops:
     copy = copy
     data = data
     find = find
-    export = export
+    io = io
     nav = nav
     shader = shader
     transform = transform

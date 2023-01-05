@@ -9,10 +9,10 @@ class AM_Export_Batch_GLTF_EMBEDDED(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
-        ops.export.batch_gltf_embedded(context)
+        ops.io.exp.batch_gltf_embedded(context)
 
         return {'FINISHED'}
 
@@ -25,10 +25,10 @@ class AM_Export_Batch_GLTF_SEPARATE(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
-        ops.export.batch_gltf_separate(context)
+        ops.io.exp.batch_gltf_separate(context)
 
         return {'FINISHED'}
         
@@ -41,10 +41,10 @@ class AM_Export_Batch_GLB(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
-        ops.export.batch_glb(context)
+        ops.io.exp.batch_glb(context)
 
         return {'FINISHED'}
         
@@ -57,10 +57,10 @@ class AM_Export_Batch_USDZ(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects
 
     def execute(self, context):
-        ops.export.batch_usdz(context)
+        ops.io.exp.batch_usdz(context)
 
         return {'FINISHED'}
 

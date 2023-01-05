@@ -47,7 +47,7 @@ class AM_MT_ObjectPropertiesPie(Menu):
         row.scale_y = 1.5
 
         box.operator("amblender.op_selectable_false")
-        box.operator("amblender.op_visible_viewport_false")
+        # box.operator("amblender.op_visible_viewport_false")
         box.operator("amblender.op_visible_render_false")
         box.separator()
         box.label(text="Ray Visibility")

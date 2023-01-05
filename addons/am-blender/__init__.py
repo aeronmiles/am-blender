@@ -1,6 +1,6 @@
 from . import packages
 from . import (convert, custom_prop, data_util, nav, import_export,
-               shader_util, object_prop, keymap, util)
+               shader_util, object_prop, properties, keymap, util)
 from bpy.app.handlers import persistent
 import bpy
 from .std.meta import meta
@@ -21,7 +21,7 @@ bl_info = {
 
 
 modules = (convert, custom_prop, data_util, import_export, shader_util, object_prop,
-           util, nav,
+           util, nav, properties,
            # ensure keymap is last
            keymap)
 

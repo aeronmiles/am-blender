@@ -1,6 +1,10 @@
 from ...std import *
 
 
+class Import:
+    pass
+
+
 class Export:
     @staticmethod
     @log.catch
@@ -51,4 +55,9 @@ class Export:
         Export._batch(FileFormat.USDZ, context)
 
 
-export = Export()
+class Io:
+    imp = Import()
+    exp = Export()
+
+
+io = Io()

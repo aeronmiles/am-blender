@@ -9,10 +9,11 @@ class AM_SU_Disconnect_NormalMap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.shader.node.inputs(
+            context.selected_objects, bpy.types.ShaderNodeBsdfPrincipled, "Normal")
 
     def execute(self, context):
-        ops.shader.disconnect_inputs(
+        ops.shader.node.disconnect_inputs(
             context.selected_objects, bpy.types.ShaderNodeBsdfPrincipled, "Normal")
 
         return {'FINISHED'}
@@ -26,10 +27,11 @@ class AM_SU_Disconnect_GLTF_OcclusionMap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        return context.selected_objects and ops.shader.node.inputs(
+            context.selected_objects, bpy.types.ShaderNodeGroup, "Occlusion")
 
     def execute(self, context):
-        ops.shader.disconnect_inputs(
+        ops.shader.node.disconnect_inputs(
             context.selected_objects, bpy.types.ShaderNodeGroup, "Occlusion")
 
         return {'FINISHED'}
@@ -43,7 +45,8 @@ class AM_SU_Enable_Backface_Culling(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(not m.use_backface_culling for m in mats)
 
     def execute(self, context):
         ops.shader.backface_culling(context.selectable_objects, True)
@@ -59,7 +62,8 @@ class AM_SU_Disable_Backface_Culling(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(m.use_backface_culling for m in mats)
 
     def execute(self, context):
         ops.shader.backface_culling(context.selectable_objects, False)
@@ -75,7 +79,8 @@ class AM_SU_Set_Blend_Mode_Opaque(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(m.blend_method != BlendMode.OPAQUE.value for m in mats)
 
     def execute(self, context):
         ops.shader.blend_mode(context.selectable_objects, BlendMode.OPAQUE)
@@ -91,10 +96,44 @@ class AM_SU_Set_Blend_Mode_AlphaBlend(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(m.blend_method != BlendMode.BLEND.value for m in mats)
 
     def execute(self, context):
         ops.shader.blend_mode(context.selectable_objects, BlendMode.BLEND)
+
+        return {'FINISHED'}
+
+
+class AM_SU_Set_Material_LOD0(bpy.types.Operator):
+    bl_idname = 'amblender.shader_util_set_material_lod0'
+    bl_label = 'Material :: LOD_0'
+    bl_description = 'Material :: LOD_0'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(m.amb_mat.lod != 0 for m in mats)
+
+    def execute(self, context):
+        ops.shader.set_material_lod(context.selected_objects, 0)
+        return {'FINISHED'}
+
+
+class AM_SU_Set_Material_LOD1(bpy.types.Operator):
+    bl_idname = 'amblender.shader_util_set_material_lod1'
+    bl_label = 'Material :: LOD_1'
+    bl_description = 'Material :: LOD_1'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and any(m.amb_mat.lod != 1 for m in mats)
+
+    def execute(self, context):
+        ops.shader.set_material_lod(context.selected_objects, 1)
 
         return {'FINISHED'}
 
@@ -104,7 +143,9 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Enable_Backface_Culling,
            AM_SU_Disable_Backface_Culling,
            AM_SU_Set_Blend_Mode_Opaque,
-           AM_SU_Set_Blend_Mode_AlphaBlend
+           AM_SU_Set_Blend_Mode_AlphaBlend,
+           AM_SU_Set_Material_LOD0,
+           AM_SU_Set_Material_LOD1
            )
 
 
