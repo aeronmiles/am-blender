@@ -1,7 +1,7 @@
 from ..std import *
 
 
-class AM_ConvertTo_Empty_Mesh(bpy.types.Operator):
+class AM_Convert_To_Empty_Mesh(bpy.types.Operator):
     bl_idname = 'amblender.convert_to_empty_mesh'
     bl_label = 'Convert To Empty Mesh'
     bl_description = 'Convert selected item to an empty mesh'
@@ -29,7 +29,7 @@ class AM_ConvertTo_Empty_Mesh(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class AM_DeselectNonMeshObjects(bpy.types.Operator):
+class AM_Deselect_Non_Mesh_Objects(bpy.types.Operator):
     bl_idname = 'amblender.deselect_non_mesh_objects'
     bl_label = 'Deselect Non-Mesh Objects'
     bl_description = 'Deselect non-mesh objects'
@@ -49,7 +49,7 @@ class AM_DeselectNonMeshObjects(bpy.types.Operator):
         return {'FINISHED'}
 
 
-classes = (AM_ConvertTo_Empty_Mesh, AM_DeselectNonMeshObjects)
+classes = (AM_Convert_To_Empty_Mesh, AM_Deselect_Non_Mesh_Objects)
 
 
 def register():

@@ -24,6 +24,10 @@ class AM_MT_ShaderUtilPie(Menu):
         box = pie.split().column()
         row = box.row(align=True)
         row.scale_y = 1.5
+        box.operator("amblender.shader_util_enabled_backface_culling")
+        box.operator("amblender.shader_util_disable_backface_culling")
+        box.operator("amblender.shader_util_set_opaque")
+        box.operator("amblender.shader_util_set_alpha_blend")
 
         # R
         box = pie.split().column()

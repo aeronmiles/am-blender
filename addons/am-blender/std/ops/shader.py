@@ -4,6 +4,20 @@ from ...std import *
 class Shader:
     @staticmethod
     @log.catch
+    def blend_mode(objs: Union[Iterable['Object'], 'Object'], mode: BlendMode):
+        for obj in as_iterable(objs):
+            for ms in obj.material_slots:
+                ms.blend_method = mode.value
+
+    @staticmethod
+    @log.catch
+    def backface_culling(objs: Union[Iterable['Object'], 'Object'], culling: bool):
+        for obj in as_iterable(objs):
+            for ms in obj.material_slots:
+                ms.material.use_backface_culling = culling
+
+    @staticmethod
+    @log.catch
     def disconnect_inputs(objs: Union[Iterable['Object'], 'Object'], node_type: type, input: str):
         for obj in as_iterable(objs):
             for ms in obj.material_slots:

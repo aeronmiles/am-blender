@@ -1,7 +1,6 @@
 from ...std import *
 from ...std import ops
 
-
 class Data:
     @staticmethod
     @log.catch
@@ -30,6 +29,7 @@ class Data:
         bpy.ops.object.mode_set(mode='OBJECT')
         packed = [(img, img.packed_files)
                   for img in bpy.data.images if img.packed_file]
+
         for img, pfs in packed:
             for pf in pfs:
                 pf.filepath = os.path.join(os.path.dirname(

@@ -37,6 +37,26 @@ class FileFormat(Enum):
     USDZ = "USDZ"
 
 
+class BlendMode(Enum):
+    OPAQUE = "OPAQUE"
+    CLIP = "CLIP"
+    HASHED = "HASHED"
+    BLEND = "BLEND"
+
+
+class WorkSpaceId(Enum):
+    Modeling = "Modeling"
+    UVEditing = "UV Editing"
+    Layout = "Layout"
+    Sculpting = "Sculpting"
+    TexturePaint = "Texture Paint"
+    Shading = "Shading"
+    Rendering = "Rendering"
+    Compositing = "Compositing"
+    GeometryNodes = "Geometry Nodes"
+    Scripting = "Scripting"
+
+
 class Size(Enum):
     P2_4096 = 4096
     P2_2048 = 2048
