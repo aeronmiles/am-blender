@@ -6,4 +6,4 @@ Blender tools and scripts for technical artists.
 
 * Windows - bash shell run ```./install.sh```, then follow prompts. 
 * Other OS
-    * copy ./config & ./scripts to the relevant user blender folder.
+    * needs testing, but should be similar to Windows
