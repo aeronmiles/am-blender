@@ -4,7 +4,7 @@ from bpy.props import *
 
 
 class AMBlenderMaterialProps(PropertyGroup):
-    lod: IntProperty(name="LOD", default=0)
+    lod: IntProperty(name="LOD", default=-1)
     # auto_vp_color: BoolProperty(name="Automatic Viewport Color", default=True,
     #                             update=update_auto_vp_color,
     #                             description="Automatically choose a viewport color "
