@@ -5,7 +5,7 @@ import uuid
 from bpy.app.handlers import persistent
 from ..std import log
 
-
+# @ TODO: find an ellegant way to hangle ids in blender
 class AMBlenderIDProps(PropertyGroup):
     id: StringProperty(name="ID", default="")
 
@@ -68,3 +68,5 @@ def update_ids(self, context):
 # handlers
 # bpy.app.handlers.load_post.append(set_ids)
 # bpy.app.handlers.depsgraph_update_post.append(update_ids)
+
+

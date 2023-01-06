@@ -76,6 +76,7 @@ class AM_DU_Set_Image_Scale_256(bpy.types.Operator):
         return context.selected_objects
 
     def execute(self, context):
+        ops(context.selected_objects).shader.
         ops.data.scale_images_to_maxsize(context.selected_objects, Size.P2_256)
 
         return {'FINISHED'}
@@ -94,6 +95,21 @@ class AM_DU_Reset_Scaled_Images(bpy.types.Operator):
     def execute(self, context):
         ops.data.reset_scaled_images(context.selected_objects)
 
+        return {'FINISHED'}
+
+
+class AM_DU_Clear_CustomSplitNormals(bpy.types.Operator):
+    bl_idname = 'amblender.data_util_clear_custom_split_normals'
+    bl_label = 'Clear Custom Split Normals'
+    bl_description = 'Clear Custom Split Normals'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and any([o.data for o in context.selected_objects if o.type == 'MESH'])
+
+    def execute(self, context):
+        
         return {'FINISHED'}
 
 

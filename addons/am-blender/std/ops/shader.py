@@ -147,19 +147,19 @@ class Shader:
         mats_to_replace = []
         new_mats = []
         for mat in mats:
-            if '_LOD_' not in mat.name:
-                mat.name += f'_LOD_{mat.amb_mat.lod}'
+            if '_LOD' not in mat.name:
+                mat.name += f'_LOD{mat.amb_mat.lod}'
 
             if mat.amb_mat.lod == lod:
                 continue
 
             mats_to_replace.append(mat)
 
-            basename = mat.name.replace(f'_LOD_{mat.amb_mat.lod}', '')
-            new_mat = bpy.data.materials.get(basename + f'_LOD_{lod}')
+            basename = mat.name.replace(f'_LOD{mat.amb_mat.lod}', '')
+            new_mat = bpy.data.materials.get(basename + f'_LOD{lod}')
             if not new_mat:
                 new_mat = mat.copy()
-                new_mat.name = basename + f'_LOD_{lod}'
+                new_mat.name = basename + f'_LOD{lod}'
                 new_mat.amb_mat.lod = lod
 
             new_mats.append(new_mat)
@@ -171,7 +171,7 @@ class Shader:
     def get_material_lod(objs: Union[Iterable['Object'], 'Object']) -> int:
         mats = Shader.materials(objs)
         for mat in mats:
-            if '_LOD_' in mat.name:
+            if '_LOD' in mat.name:
                 return mat.amb_mat.lod
 
         return 0

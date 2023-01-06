@@ -1,5 +1,4 @@
 from typing import Iterable
-from multipledispatch import dispatch
 
 
 def as_iterable(obj) -> 'Iterable':
@@ -16,12 +15,6 @@ def ensure_dir(path: str):
         os.makedirs(path)
 
 
-# @dispatch(str, str, str)
-# def replace(haystack: str, needle: str, replacement: str) -> str:
-#     return haystack.replace(needle, replacement)
-
-
-# @dispatch(str, Iterable[str], str)
 def replace(haystack: str, needle: Iterable[str], replacement: str) -> str:
     for n in needle:
         haystack = haystack.replace(n, replacement)
