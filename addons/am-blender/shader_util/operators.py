@@ -113,8 +113,7 @@ class AM_SU_Set_Material_LOD0(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        mats = ops.shader.materials(context.selected_objects)
-        return context.selected_objects and any(m.amb_mat.lod != 0 for m in mats)
+        return context.selected_objects
 
     def execute(self, context):
         ops.shader.set_material_lod(context.selected_objects, 0)
