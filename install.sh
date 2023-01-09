@@ -32,23 +32,24 @@ if [ ! -d "$USER_PATH" ]; then
     exit 1
 fi
 
-# Install the addons
+# Install Extern addons
 # USDZ
 if [ -d "$USER_PATH/scripts/addons/io_scene_usdz" ]; then
     rm -r "$USER_PATH/scripts/addons/io_scene_usdz"
 fi
 cp -r ./addons-extern/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
 
+# Install Intern addons
 # remove previous heavypoly
 if [ -d "$USER_PATH/scripts/addons/heavypoly" ]; then
     rm -r "$USER_PATH/scripts/addons/heavypoly"
 fi
-# remove previous reload-addons
-if [ -d "$USER_PATH/scripts/addons/reload-addons" ]; then
-    rm -r "$USER_PATH/scripts/addons/reload-addons"
+# remove previous reload_addons
+if [ -d "$USER_PATH/scripts/addons/reload_addons" ]; then
+    rm -r "$USER_PATH/scripts/addons/reload_addons"
 fi
-### remove previous am-blender
-if [ -d "$USER_PATH/scripts/addons/am-blender" ]; then
-    rm -r "$USER_PATH/scripts/addons/am-blender"
+### remove previous am_blender
+if [ -d "$USER_PATH/scripts/addons/am_blender" ]; then
+    rm -r "$USER_PATH/scripts/addons/am_blender"
 fi
 cp -r ./addons "$USER_PATH/scripts"
