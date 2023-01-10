@@ -8,11 +8,13 @@ class Recall:
             obj_active = view_layer.objects.active
             sel = bpy.context.selected_objects
 
-            func(*args, **kwargs)
+            out = func(*args, **kwargs)
 
             view_layer.objects.active = obj_active
             for obj in sel:
                 obj.select_set(True)
+
+            return out
 
         return inner
 
@@ -25,7 +27,7 @@ class Check:
         def _saved(func: Callable):
             def inner(*args, **kwargs):
                 if bpy.data.filepath:
-                    func(*args, **kwargs)
+                    return func(*args, **kwargs)
                 else:
                     log.warning(
                         f'@dec.check.saved(caller={caller}) :: Aborting, Blend file is not saved.')

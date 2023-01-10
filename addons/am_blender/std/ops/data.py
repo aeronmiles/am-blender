@@ -70,7 +70,7 @@ class Data:
             scaled = Size.from_filepath(img.filepath_raw)
             if scaled:
                 filepath = replace(
-                    img.filepath, scaled.compat.filename_suffixes(), ".")
+                    img.filepath, scaled.compat.filename_suffixes(), "")
                 ops.shader.node.load_image(node, filepath)
 
     @staticmethod
@@ -91,13 +91,13 @@ class Data:
             filepath = img.filepath_raw
             if scaled:
                 filepath = replace(
-                    img.filepath_raw, scaled.compat.filename_suffixes(), ".")
+                    img.filepath_raw, scaled.compat.filename_suffixes(), "")
                 img = bpy.data.images.load(filepath, check_existing=True)
 
             filepath = os.path.splitext(filepath)[0]
 
             img_path = filepath + scale.filename_suffix() + \
-                f"{img.file_format}".lower()
+                f".{img.file_format}".lower()
 
             if ops.shader.node.load_image(node, img_path):
                 continue
@@ -108,6 +108,7 @@ class Data:
             img.scale(int(img.size[0] * f), int(img.size[1] * f))
 
             img.filepath_raw = img_path
+            # TODO: name length checks
             img.name = os.path.basename(bpy.path.abspath(img_path))
 
             img.save()

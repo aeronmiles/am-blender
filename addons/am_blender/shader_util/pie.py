@@ -29,6 +29,7 @@ class AM_MT_ShaderUtilPie(Menu):
         box.operator("amblender.su_set_alpha_blend")
         box.operator("amblender.su_set_material_lod0")
         box.operator("amblender.su_set_material_lod1")
+        box.operator("amblender.su_rename_textures")
 
         # R
         box = pie.split().column()

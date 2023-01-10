@@ -1,5 +1,6 @@
 from ..std import *
 
+
 class AM_DU_UnpackImages(bpy.types.Operator):
     bl_idname = 'amblender.du_unpack_images'
     bl_label = 'Unpack Images'
@@ -100,7 +101,6 @@ class AM_DU_Set_Diffuse_Image_Scale_256(bpy.types.Operator):
         ops.data.scale_images_to_maxsize(nodes, Size.P2_256)
 
         return {'FINISHED'}
-
 
 
 class AM_DU_Set_Normal_Image_Scale_2048(bpy.types. Operator):

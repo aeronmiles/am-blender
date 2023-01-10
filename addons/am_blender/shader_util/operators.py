@@ -9,12 +9,15 @@ class AM_SU_Disconnect_NormalMap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.selected_objects and ops.shader.node.inputs(
-            context.selected_objects, bpy.types.ShaderNodeBsdfPrincipled, "Normal")
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        return context.selected_objects and \
+            ops.shader.node.connected_to_input(
+                nodes, "Normal", bpy.types.ShaderNodeBsdfPrincipled)
 
     def execute(self, context):
         ops.shader.node.disconnect_inputs(
-            context.selected_objects, bpy.types.ShaderNodeBsdfPrincipled, "Normal")
+            context.selected_objects, "Normal", bpy.types.ShaderNodeBsdfPrincipled)
 
         return {'FINISHED'}
 
@@ -27,12 +30,15 @@ class AM_SU_Disconnect_GLTF_OcclusionMap(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.selected_objects and ops.shader.node.inputs(
-            context.selected_objects, bpy.types.ShaderNodeGroup, "Occlusion")
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        return context.selected_objects and \
+            ops.shader.node.connected_to_input(
+                nodes, "Occlusion", bpy.types.ShaderNodeGroup)
 
     def execute(self, context):
         ops.shader.node.disconnect_inputs(
-            context.selected_objects, bpy.types.ShaderNodeGroup, "Occlusion")
+            context.selected_objects, "Occlusion", bpy.types.ShaderNodeGroup)
 
         return {'FINISHED'}
 
@@ -138,6 +144,23 @@ class AM_SU_Set_Material_LOD1(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_SU_Rename_Textures(bpy.types.Operator):
+    bl_idname = 'amblender.su_rename_textures'
+    bl_label = 'Rename Textures After Mat Names'
+    bl_description = 'Rename Textures After Mat Names'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        mats = ops.shader.materials(context.selected_objects)
+        return context.selected_objects and mats
+
+    def execute(self, context):
+        ops.shader.rename_material_textures(context.selected_objects)
+
+        return {'FINISHED'}
+
+
 classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Disconnect_GLTF_OcclusionMap,
            AM_SU_Enable_Backface_Culling,
@@ -145,7 +168,8 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Blend_Mode_Opaque,
            AM_SU_Set_Blend_Mode_AlphaBlend,
            AM_SU_Set_Material_LOD0,
-           AM_SU_Set_Material_LOD1
+           AM_SU_Set_Material_LOD1,
+           AM_SU_Rename_Textures
            )
 
 

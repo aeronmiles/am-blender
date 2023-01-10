@@ -24,6 +24,7 @@ class AM_MT_ImportExportPie(Menu):
         pie.operator("amblender.export_batch_gltf_separate")
         pie.operator("amblender.export_batch_glb")
         pie.operator("amblender.export_batch_usdz")
+        pie.operator("amblender.export_google_model_viewer")
 
 
 def register():

@@ -26,21 +26,21 @@ class Size(Enum):
     def filename_suffix(self) -> str:
         # return multiple strings for backwards compatibility
         if self.value == 4096:
-            return "_4096."
+            return "_4096"
         if self.value == 2048:
-            return "_2048."
+            return "_2048"
         if self.value == 1024:
-            return "_1024."
+            return "_1024"
         if self.value == 512:
-            return "_512."
+            return "_512"
         if self.value == 256:
-            return "_256."
+            return "_256"
         if self.value == 128:
-            return "_128."
+            return "_128"
         if self.value == 64:
-            return "_64."
+            return "_64"
         if self.value == 32:
-            return "_32."
+            return "_32"
 
         return ""
 
@@ -56,13 +56,13 @@ class Size(Enum):
             return Size.P2_1024
         if any(s in fp for s in Compat.Size(512).filename_suffixes()):
             return Size.P2_512
-        if "_256." in fp:
+        if "_256" in fp:
             return Size.P2_256
-        if "_128." in fp:
+        if "_128" in fp:
             return Size.P2_128
-        if "_64." in fp:
+        if "_64" in fp:
             return Size.P2_64
-        if "_32." in fp:
+        if "_32" in fp:
             return Size.P2_32
 
         return None
@@ -101,20 +101,20 @@ class Compat:
         def filename_suffixes(self) -> List[str]:
             # return multiple strings for backwards compatibility
             if self.value == 4096:
-                return ["_4096.", "_4k."]
+                return ["_4096", "_4k"]
             if self.value == 2048:
-                return ["_2048.", "_2k."]
+                return ["_2048", "_2k"]
             if self.value == 1024:
-                return ["_1024.", "_1k."]
+                return ["_1024", "_1k"]
             if self.value == 512:
-                return ["_512.", "_0.5k."]
+                return ["_512", "_0.5k"]
             if self.value == 256:
-                return ["_256."]
+                return ["_256"]
             if self.value == 128:
-                return ["_128."]
+                return ["_128"]
             if self.value == 64:
-                return ["_64."]
+                return ["_64"]
             if self.value == 32:
-                return ["_32."]
+                return ["_32"]
 
             return []

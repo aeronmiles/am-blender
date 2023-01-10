@@ -3,7 +3,8 @@ import sys
 from typing import (Union, Iterable, List, Dict, Tuple, Callable, Any, Optional, TypeVar, Type, Generic)
 from enum import Enum
 import functools as ft
-from loguru import logger as log
+import itertools as it
+from .log import log
 import bpy
 from bpy.types import *
 from bpy.types import (Menu,)

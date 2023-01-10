@@ -1,3 +1,4 @@
+import os
 import bpy
 
 
@@ -12,7 +13,7 @@ class Cfg(object):
     @property
     def use_internal_ids(self) -> bool:
         return self._use_internal_ids
-    
+
     @use_internal_ids.setter
     def use_internal_ids(self, value: bool):
         self._use_internal_ids = value
@@ -21,9 +22,15 @@ class Cfg(object):
         else:
             bpy.context.scene.use_fake_user = False
 
+
 class MetaData(object):
     def __init__(self) -> None:
         self.cfg = Cfg()
+
+    @property
+    def datafile_dir(self) -> str:
+        return os.path.join(os.path.dirname(
+            os.path.realpath(__file__)),  '..', 'datafiles')
 
     def load(self) -> bool:
         index = bpy.data.texts.find("amblender-metadata")
@@ -37,6 +44,9 @@ class MetaData(object):
 
     def save(self):
         meta = bpy.data.texts.new("amblender-metadata")
+        if 'startup.blend' in bpy.context.blend_data.filepath:
+            meta.user_clear()
+
         import jsonpickle as jp
         meta.write(jp.encode(self, indent=2))
 

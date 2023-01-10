@@ -1,3 +1,4 @@
+import re
 from ...std import *
 
 
@@ -25,6 +26,7 @@ class Node:
         except Exception as e:
             log.error(
                 f'ops.shader.node.load_image(node={node}, img_filepath={img_filepath}) :: Failed to load image into node :: Exception: {e}')
+            return False
 
     @staticmethod
     @log.catch
@@ -45,8 +47,9 @@ class Node:
             try:
                 mat.use_nodes = True
             except Exception as e:
-                log.error(
-                    f'ops.shader.node.of_type(objs={objs}, _type={_type}) :: Failed to set material.use_nodes = True "{mat.name}" to use nodes Exception: {e}')
+                pass
+                # log.error(
+                #     f'ops.shader.node.of_type(objs={objs}, _type={_type}) :: Failed to set material.use_nodes = True "{mat.name}" to use nodes Exception: {e}')
             nodes.extend((n for n in mat.node_tree.nodes if isinstance(
                 n, _type)))
 
@@ -93,14 +96,15 @@ class Node:
                 for o in n.outputs:
                     for l in o.links:
                         if l.to_socket.name in _inputs:
-                            if node_type is None or isinstance(l.to_node, node_type):
+                            if not node_type or isinstance(l.to_node, node_type):
+                                # log.info(f'Found socket: {l.to_socket.name}')
                                 connected_nodes.append(node)
 
         return set(connected_nodes)
 
     @staticmethod
     @log.catch
-    def disconnect_inputs(objs: Union[Iterable['Object'], 'Object'], node_type: type, input: str):
+    def disconnect_inputs(objs: Union[Iterable['Object'], 'Object'], input: str, node_type: type):
         mats = Shader.materials(objs)
         for mat in mats:
             nodes = Node.of_type(mat, node_type)
@@ -167,6 +171,7 @@ class Shader:
         new_mats = []
         for mat in old_mats:
             new_mat = mat.copy()
+            # TODO: name length checks
             new_mat.name = mat.name + suffix
             new_mats.append(new_mat)
 
@@ -179,11 +184,12 @@ class Shader:
         mats_to_replace = []
         new_mats = []
         for mat in mats:
-            if '_LOD' not in mat.name:
-                mat.name += f'_LOD{mat.amb_mat.lod}'
-
             if mat.amb_mat.lod == lod:
                 continue
+
+            if '_LOD' not in mat.name:
+                mat.amb_mat.lod = 0
+                mat.name += f'_LOD0'
 
             mats_to_replace.append(mat)
 
@@ -191,6 +197,7 @@ class Shader:
             new_mat = bpy.data.materials.get(basename + f'_LOD{lod}')
             if not new_mat:
                 new_mat = mat.copy()
+                # TODO: name length checks
                 new_mat.name = basename + f'_LOD{lod}'
                 new_mat.amb_mat.lod = lod
 
@@ -207,6 +214,50 @@ class Shader:
                 return mat.amb_mat.lod
 
         return 0
+
+    @staticmethod
+    @log.catch
+    def rename_material_textures(objs: Union[Iterable['Object'], 'Object']):
+        Shader._rename_material_textures(
+            objs, 'Base Color', 'BaseColor', bpy.types.ShaderNodeBsdfPrincipled)
+        Shader._rename_material_textures(
+            objs, 'Normal', 'Normal', bpy.types.ShaderNodeBsdfPrincipled)
+        Shader._rename_material_textures(
+            objs, 'Metallic', 'RoughMetalAO', bpy.types.ShaderNodeBsdfPrincipled)
+        Shader._rename_material_textures(
+            objs, 'Occlusion', 'RoughMetalAO', bpy.types.ShaderNodeGroup)
+
+    @staticmethod
+    @log.catch
+    def _rename_material_textures(objs: Union[Iterable['Object'], 'Object'], input: str, input_name: str, node_type: type):
+        strip_strs = ['base', 'color', 'normal',
+                      'roughness', 'rough', 'metallic', 'occlusion']
+        res = [re.compile(re.escape(s), re.IGNORECASE) for s in strip_strs]
+
+        mats = Shader.materials(objs)
+        for mat in mats:
+            nodes = Node.of_type(mat, bpy.types.ShaderNodeTexImage)
+            nodes = [n for n in nodes if n.image]
+            connected_nodes = Node.connected_to_input(nodes, input, node_type)
+            for node in connected_nodes:
+                fp_old = bpy.path.abspath(node.image.filepath_raw)
+                if input_name in fp_old and mat.name.replace(" ", "") in fp_old:
+                    continue
+
+                img_name = node.image.name
+                for r in res:
+                    img_name = r.sub('', img_name)
+
+                ext = os.path.splitext(os.path.basename(fp_old))[1]
+                fp_new = os.path.join(os.path.dirname(
+                    fp_old), f'{mat.name}_{img_name}_{input_name}{ext}'.replace(" ", ""))
+
+                if not os.path.exists(fp_new):
+                    os.rename(fp_old, fp_new)
+
+                node.image.filepath_raw = bpy.path.relpath(fp_new)
+                node.image.name = os.path.basename(fp_new)
+                Node.load_image(node, node.image.filepath_raw)
 
 
 shader = Shader()

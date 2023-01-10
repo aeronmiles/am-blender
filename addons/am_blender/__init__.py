@@ -29,7 +29,7 @@ modules = (convert, custom_prop, data_util, import_export, shader_util, object_p
 @persistent
 def load_post_handler(arg):
     meta.load()
-    bpy.ops.wm.console_toggle()
+    # bpy.ops.wm.console_toggle()
 
 
 def register():
