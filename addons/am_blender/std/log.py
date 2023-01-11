@@ -1,6 +1,7 @@
 from enum import Enum
 from loguru._logger import (Logger, Core)
 from loguru import logger
+from ..std.ui import ui
 
 
 class LogLevel(Enum):
@@ -145,14 +146,17 @@ class LogHandler(Logger):
     def _handle_log(self, level: LogLevel):
         def handler(message: str, *args, **kwargs):
             rf"""Log ``message.format(*args, **kwargs)`` with severity ``'{level}'``."""
-            self.__handle_pre_log(level)
+            self.__handle_pre_log(level, message)
             options = (True,) + super()._options[1:]
             super()._log(level.value, None, False, options, message, args, kwargs)
 
         return handler
 
-    def __handle_pre_log(self, level: LogLevel):
-        print(f'__handle: {level}')
+    def __handle_pre_log(self, level: LogLevel, message: str):
+        pass
+        # TODO: fix
+        # if level.value > 25:
+        #     ui.MessagePopup(message, level.name)
 
     def __handle_pre_catch(self):
         print('__handle_pre_catch')

@@ -55,6 +55,7 @@ class Data:
                 pf.save()
             img.unpack()
 
+    # TODO: sort out texture referencing and naming system
     @staticmethod
     @log.catch
     def reset_scaled_images(objs: Union[Iterable['Object'], 'Object']):
@@ -67,12 +68,13 @@ class Data:
             if not img:
                 continue
 
-            scaled = Size.from_filepath(img.filepath_raw)
+            scaled = Size.from_name(img.filepath_raw)
             if scaled:
                 filepath = replace(
                     img.filepath, scaled.compat.filename_suffixes(), "")
                 ops.shader.node.load_image(node, filepath)
 
+    # TODO: sort out texture referencing and naming system
     @staticmethod
     @log.catch
     def scale_images_to_maxsize(nodes: Union[Iterable['ShaderNodeTexImage'], 'ShaderNodeTexImage'], scale: 'Size'):
@@ -87,7 +89,7 @@ class Data:
                 continue
 
             # try load image
-            scaled = Size.from_filepath(img.filepath_raw)
+            scaled = Size.from_name(img.filepath_raw)
             filepath = img.filepath_raw
             if scaled:
                 filepath = replace(
@@ -108,7 +110,7 @@ class Data:
             img.scale(int(img.size[0] * f), int(img.size[1] * f))
 
             img.filepath_raw = img_path
-            # TODO: name length checks
+            # TODO: add name length checks
             img.name = os.path.basename(bpy.path.abspath(img_path))
 
             img.save()

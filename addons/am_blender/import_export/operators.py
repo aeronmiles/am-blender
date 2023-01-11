@@ -59,6 +59,7 @@ class AM_Export_Batch_USDZ(bpy.types.Operator):
         return context.selected_objects
 
     def execute(self, context):
+        log.error('USDZ export is not supported yet')
         ops.io.exp.batch_export(context, FileFormat.USDZ)
 
         return {'FINISHED'}

@@ -45,9 +45,9 @@ class Size(Enum):
         return ""
 
     @staticmethod
-    def from_filepath(filepath: str) -> Union['Size', None]:
+    def from_name(name: str) -> Union['Size', None]:
         # check multiple strings for backwards compatibility
-        fp = filepath.lower()
+        fp = name.lower()
         if any(s in fp for s in Compat.Size(4096).filename_suffixes()):
             return Size.P2_4096
         if any(s in fp for s in Compat.Size(2048).filename_suffixes()):

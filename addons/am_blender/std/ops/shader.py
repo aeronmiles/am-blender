@@ -12,6 +12,8 @@ class Node:
             proj = node.projection
             extension = node.extension
 
+            log.warning(f"TODO: test this throws an exception if the image is not found, otherwise returning True is not correct")
+            # TODO: test this throws an exception if the image is not found, otherwise returning True is not correct
             image = bpy.data.images.load(img_filepath, check_existing=True)
             image.colorspace_settings.name = node.image.colorspace_settings.name
             image.alpha_mode = node.image.alpha_mode
@@ -44,6 +46,7 @@ class Node:
         nodes = []
         for mat in mats:
             # allow for calling when context does not all data to be accessed
+            # TODO: add context checking
             try:
                 mat.use_nodes = True
             except Exception as e:
@@ -177,6 +180,7 @@ class Shader:
 
         Shader.replace_materials(objs, zip(old_mats, new_mats))
 
+    # TODO: sort out material referencing and naming system
     @staticmethod
     @log.catch
     def set_material_lod(objs: Union[Iterable['Object'], 'Object'], lod: int):
@@ -205,6 +209,7 @@ class Shader:
 
         Shader.replace_materials(objs, zip(mats_to_replace, new_mats))
 
+    # TODO: sort out material referencing and naming system
     @staticmethod
     @log.catch
     def get_material_lod(objs: Union[Iterable['Object'], 'Object']) -> int:
@@ -227,6 +232,7 @@ class Shader:
         Shader._rename_material_textures(
             objs, 'Occlusion', 'RoughMetalAO', bpy.types.ShaderNodeGroup)
 
+    # TODO: sort out texture referencing and naming system
     @staticmethod
     @log.catch
     def _rename_material_textures(objs: Union[Iterable['Object'], 'Object'], input: str, input_name: str, node_type: type):
@@ -235,6 +241,7 @@ class Shader:
         res = [re.compile(re.escape(s), re.IGNORECASE) for s in strip_strs]
 
         mats = Shader.materials(objs)
+        # TODO: refactor
         for mat in mats:
             nodes = Node.of_type(mat, bpy.types.ShaderNodeTexImage)
             nodes = [n for n in nodes if n.image]

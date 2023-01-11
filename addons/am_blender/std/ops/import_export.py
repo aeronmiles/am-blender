@@ -55,16 +55,18 @@ class Export:
 
         match format:
             case FileFormat.GLB | FileFormat.GLTF_SEPARATE | FileFormat.GLTF_EMBEDDED:
-                bpy.ops.export_scene.gltf(filepath=fn +
-                                          f".{format.value.lower()}", export_format=format.value, use_selection=True)
+                gltf = bpy.ops.export_scene.gltf
+                gltf(filepath=fn +
+                     f".{format.value.lower()}", export_format=format.value, use_selection=True)
             case FileFormat.USDZ:
                 from io_scene_usdz import export_usdz
-                export_usdz.export_usdz(context, filepath=fn +
-                                        f".{format.value.lower()}", exportMaterials=True,
-                                        bakeTextures=False, bakeTextureSize=1024, bakeAO=False,
-                                        bakeAOSamples=64, exportAnimations=False,
-                                        globalScale=1.0, useConverter=False,
-                                        )
+                usdz = export_usdz.export_usdz
+                usdz(context, filepath=fn +
+                     f".{format.value.lower()}", exportMaterials=True,
+                     bakeTextures=False, bakeTextureSize=1024, bakeAO=False,
+                     bakeAOSamples=64, exportAnimations=False,
+                     globalScale=1.0, useConverter=False,
+                     )
 
     @staticmethod
     @log.catch
@@ -90,9 +92,9 @@ class Export:
             if not filename:
                 return
 
-            dir = os.path.join(os.path.dirname(
-                bpy.data.filepath), 'google_model_viewer', filename)
-            ensure_dir(dir)
+            dir = ensure_dir(os.path.join(os.path.dirname(
+                bpy.data.filepath), 'google_model_viewer', filename))
+
             Export.export(context, FileFormat.GLB, dir)
             Export.export(context, FileFormat.USDZ, dir)
 

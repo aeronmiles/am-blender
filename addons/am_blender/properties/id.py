@@ -34,7 +34,6 @@ def _check_ids(objs):
             obj.amb_id.id = obj.name
 
 
-# @TODO: improve id performance
 @persistent
 def _update_ids(self, context):
     start = time.time()
@@ -45,5 +44,5 @@ def _update_ids(self, context):
 
 
 
-# handlers
+# @TODO: this is way too slow, look into implementing persistent UUID in Blender Source: https://developer.blender.org/T83019
 bpy.app.handlers.depsgraph_update_post.append(_update_ids)
