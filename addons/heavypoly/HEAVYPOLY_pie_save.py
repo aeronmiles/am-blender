@@ -27,7 +27,8 @@ class HP_MT_pie_save(Menu):
 		# pie.operator("wm.save_mainfile", text="Revert", icon='FILE_TICK')
 		pie.operator("wm.save_as_mainfile", text="Save As...", icon='NONE')
 		pie.operator("wm.open_mainfile", text="Open file", icon='FILE_FOLDER')
-		pie.operator("wm.read_homefile", text="New", icon='FILE_NEW')
+		# pie.operator("wm.read_homefile", text="New", icon='FILE_NEW')
+		pie.operator("wm.append", text = "Append", icon='APPEND_BLEND')
 		pie.separator()
 		pie.menu("TOPBAR_MT_file_open_recent")
 

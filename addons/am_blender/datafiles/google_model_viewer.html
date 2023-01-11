@@ -29,13 +29,11 @@
 </head>
 
 <body>
-    <!-- Import the component -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <!-- Use it like any other HTML element -->
     <div class="container">
-        <model-viewer src="{FILE.GLB}" ar ar-scale="fixed" ar-modes="webxr scene-viewer quick-look"
-            camera-controls alt="A 3D model of an astronaut" ios-src="{FILE.USDZ}">
+        <model-viewer src="{FILE.GLB}" ar ar-scale="fixed" ar-modes="webxr scene-viewer quick-look" camera-controls
+            alt="A 3D model of an astronaut" ios-src="{FILE.USDZ}">
         </model-viewer>
     </div>
 </body>

@@ -93,7 +93,9 @@ class Export:
                 return
 
             dir = ensure_dir(os.path.join(os.path.dirname(
-                bpy.data.filepath), 'google_model_viewer', filename))
+                bpy.data.filepath), 'google_model_viewer', filename, filename))
+
+            log.info(f'Exporting to Google Model Viewer: {dir}')
 
             Export.export(context, FileFormat.GLB, dir)
             Export.export(context, FileFormat.USDZ, dir)
