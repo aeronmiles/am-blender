@@ -71,7 +71,7 @@ class Data:
             scaled = Size.from_name(img.filepath_raw)
             if scaled:
                 filepath = replace(
-                    img.filepath, scaled.compat.filename_suffixes(), "")
+                    img.filepath, scaled.compat.filename_suffixes(), ".")
                 ops.shader.node.load_image(node, filepath)
 
     # TODO: sort out texture referencing and naming system
@@ -93,13 +93,13 @@ class Data:
             filepath = img.filepath_raw
             if scaled:
                 filepath = replace(
-                    img.filepath_raw, scaled.compat.filename_suffixes(), "")
+                    img.filepath_raw, scaled.compat.filename_suffixes(), ".")
                 img = bpy.data.images.load(filepath, check_existing=True)
 
             filepath = os.path.splitext(filepath)[0]
 
             img_path = filepath + scale.filename_suffix() + \
-                f".{img.file_format}".lower()
+                f"{img.file_format}".lower()
 
             if ops.shader.node.load_image(node, img_path):
                 continue
