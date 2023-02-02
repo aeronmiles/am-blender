@@ -16,6 +16,7 @@ class Data:
     def set_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str, value):
         for obj in as_iterable(objs):
             if name in obj:
+                log.info(f'ops.data.set_custom_property(objs={objs}, name={name}, value={value}) :: Overwriting custom property "{name}" on object "{obj.name}" with value "{value}"')
                 obj[name] = value
 
     @staticmethod

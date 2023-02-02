@@ -29,6 +29,7 @@ class AM_MT_CustomPropPie(Menu):
         box.operator("amblender.cp_add_gl_blend_multiply")
         box.operator("amblender.cp_add_gl_vertex_color_metallic_roughness")
         box.operator("amblender.cp_add_gl_lightmap")
+        box.operator("amblender.cp_add_gl_alpha_index")
 
         # R
         box = pie.split().column()
@@ -39,6 +40,7 @@ class AM_MT_CustomPropPie(Menu):
         box.operator("amblender.cp_remove_gl_blend_multiply")
         box.operator("amblender.cp_remove_gl_vertex_color_metallic_roughness")
         box.operator("amblender.cp_remove_gl_lightmap")
+        box.operator("amblender.cp_remove_gl_alpha_index")
 
 
 def register():

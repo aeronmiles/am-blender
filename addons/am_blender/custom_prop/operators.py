@@ -35,6 +35,40 @@ class AM_CP_Remove_GL_SeaparateCullingPass(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_CP_Add_GL_AlphaIndex(bpy.types.Operator):
+    bl_idname = 'amblender.cp_add_gl_alpha_index'
+    bl_label = 'Add ::  gl_alpha_index'
+    bl_description = 'Add Custom Property ::  gl_alpha_index'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not ops.data.with_custom_property(context.selected_objects, 'gl_alpha_index')
+
+    def execute(self, context):
+        ops.data.set_custom_property(
+            context.selected_objects, 'gl_alpha_index', -10)
+
+        return {'FINISHED'}
+
+
+class AM_CP_Remove_GL_AlphaIndex(bpy.types.Operator):
+    bl_idname = 'amblender.cp_remove_gl_alpha_index'
+    bl_label = 'Remove ::  gl_alpha_index'
+    bl_description = 'Remove Custom Property ::  gl_alpha_index'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and ops.data.with_custom_property(context.selected_objects, 'gl_alpha_index')
+
+    def execute(self, context):
+        ops.data.remove_custom_property(
+            context.selected_objects, 'gl_alpha_index')
+
+        return {'FINISHED'}
+
+
 class AM_CP_Add_GL_DepthPrePass(bpy.types.Operator):
     bl_idname = 'amblender.cp_add_gl_depth_pre_pass'
     bl_label = 'Add ::  gl_depth_pre_pass'
@@ -201,18 +235,18 @@ class AM_CP_Remove_GL_VertexColorMetallicRougness(bpy.types.Operator):
 
 class AM_CP_Add_GL_Lightmap(bpy.types.Operator):
     bl_idname = 'amblender.cp_add_gl_lightmap'
-    bl_label = 'Add ::  gl_lightmap = {name}_lightmap'
-    bl_description = 'Add Custom Property ::  gl_lightmap = {name}_lightmap'
+    bl_label = 'Add ::  gl_lightmap = ""'
+    bl_description = 'Add Custom Property ::  gl_lightmap = ""'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
-    def poll(cls, context):
-        return context.selected_objects
+    def poll(cls, context):        
+        return context.selected_objects and not ops.data.with_custom_property(context.selected_objects, 'gl_lightmap')
 
     def execute(self, context):
-        raise Exception("Not implemented yet")
-        # ops.data.set_custom_property(
-        #     context.selected_objects, 'gl_lightmap', obj.name + "_lightmap")
+        # raise Exception("Not implemented yet")
+        ops.data.set_custom_property(
+            context.selected_objects, 'gl_lightmap', 1)
 
         return {'FINISHED'}
 
@@ -236,6 +270,8 @@ class AM_CP_Remove_GL_Lightmap(bpy.types.Operator):
 
 classes = (AM_CP_Add_GL_SeaparateCullingPass,
            AM_CP_Remove_GL_SeaparateCullingPass,
+           AM_CP_Add_GL_AlphaIndex,
+           AM_CP_Remove_GL_AlphaIndex,
            AM_CP_Add_GL_Translucency, AM_CP_Remove_GL_Translucency, AM_CP_Add_GL_BlendMultiply, AM_CP_Remove_GL_BlendMultiply, AM_CP_Add_GL_VertexColorMetallicRougness, AM_CP_Remove_GL_VertexColorMetallicRougness,
            AM_CP_Add_GL_Lightmap,
            AM_CP_Remove_GL_Lightmap)

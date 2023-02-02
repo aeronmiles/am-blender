@@ -22,6 +22,8 @@ class AM_MT_ConvertPie(Menu):
         pie = layout.menu_pie()
         pie.operator("amblender.convert_to_empty_mesh")
         pie.operator("amblender.deselect_non_mesh_objects")
+        pie.operator("amblender.parent_in_place")
+        pie.operator("amblender.reset_parent_transform")
 
 
 def register():

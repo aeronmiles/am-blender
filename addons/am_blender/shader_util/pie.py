@@ -38,6 +38,7 @@ class AM_MT_ShaderUtilPie(Menu):
         box.operator("amblender.su_disable_backface_culling")
         box.operator("amblender.su_disconnect_normal_map")
         box.operator("amblender.su_disconnect_gltf_occlusion_map")
+        pie.operator("amblender.select_eevee_material_output_nodes")
 
 
 def register():

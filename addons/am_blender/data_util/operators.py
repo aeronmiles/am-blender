@@ -340,6 +340,20 @@ class AM_DU_Clear_CustomSplitNormals(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_DU_Clear_DeleteAllCustomProperties(bpy.types.Operator):
+    bl_idname = "property.delete_all_custom_properties"
+    bl_label = "Delete ALL Custom Properties from ALL Objects"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        for attr in dir(bpy.data):
+            if "bpy_prop_collection" in str(type(getattr(bpy.data, attr))):
+                for obj in getattr(bpy.data, attr):
+                    for custom_prop_name in list(obj.keys()):
+                        del obj[custom_prop_name]
+        return {"FINISHED"}
+
+
 classes = (AM_DU_UnpackImages,
            AM_DU_Reset_Scaled_Images,
            AM_DU_Set_Diffuse_Image_Scale_2048,
@@ -355,7 +369,8 @@ classes = (AM_DU_UnpackImages,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_512,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_256,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_128,
-           AM_DU_Set_RoughMetallicOcc_Image_Scale_64)
+           AM_DU_Set_RoughMetallicOcc_Image_Scale_64,
+           AM_DU_Clear_DeleteAllCustomProperties)
 
 
 def register():

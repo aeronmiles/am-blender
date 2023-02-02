@@ -10,6 +10,7 @@ from .find import find
 from .nav import nav
 from .shader import shader
 from .transform import transform
+from .select import select
 
 
 class Ops:
@@ -21,6 +22,7 @@ class Ops:
     nav = nav
     shader = shader
     transform = transform
+    select = select
 
 # Class to provide ops as extension methods
 #     def __init__(self, objs: typing.Union['Object', typing.Iterable['Object']]) -> None:

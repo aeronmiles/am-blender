@@ -161,6 +161,28 @@ class AM_SU_Rename_Textures(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_Export_To_Select_EeveeMaterialOutputNodes(bpy.types.Operator):
+    bl_idname = 'amblender.select_eevee_material_output_nodes'
+    bl_label = 'Select Eevee Material Output Nodes'
+    bl_description = 'Select Eevee Material Output Nodes'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return True
+
+    def execute(self, context):
+        for mat in bpy.data.materials:
+            mat.use_nodes = True
+            for node in mat.node_tree.nodes:
+                if node.type == 'OUTPUT_MATERIAL':
+                    if node.target == 'EEVEE':
+                        # node.select = True
+                        mat.node_tree.nodes.active = node
+
+        return {'FINISHED'}
+
+
 classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Disconnect_GLTF_OcclusionMap,
            AM_SU_Enable_Backface_Culling,
@@ -169,7 +191,8 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Blend_Mode_AlphaBlend,
            AM_SU_Set_Material_LOD0,
            AM_SU_Set_Material_LOD1,
-           AM_SU_Rename_Textures
+           AM_SU_Rename_Textures,
+           AM_Export_To_Select_EeveeMaterialOutputNodes
            )
 
 

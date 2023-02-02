@@ -6,6 +6,7 @@ import functools as ft
 import itertools as it
 from .log import log
 import bpy
+import mathutils
 from bpy.types import *
 from bpy.types import (Menu,)
 
