@@ -98,14 +98,18 @@ class Data:
                 filepath = replace(
                     img.filepath_raw, scaled.compat.filename_suffixes(), ".")
                 img = bpy.data.images.load(filepath, check_existing=True)
+            
+            log.info(f'ops.data.scale_images_to_maxsize() :: Rescaling image "{img.filepath_raw}" to {scale.name}')
 
             filepath = os.path.splitext(filepath)[0]
 
             img_path = filepath + scale.filename_suffix() + \
                 f"{img.file_format}".lower()
 
-            if ops.shader.node.load_image(node, img_path):
-                continue
+            log.info(f'ops.data.scale_images_to_maxsize() :: Loading image "{img_path}"')
+
+            # if ops.shader.node.load_image(node, img_path):
+            #     continue
 
             # load image fail -> rescale existing texture
             f = scale.value / max(img.size[0], img.size[1])

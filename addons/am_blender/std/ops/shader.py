@@ -12,9 +12,14 @@ class Node:
             proj = node.projection
             extension = node.extension
 
-            log.warning(f"TODO: test this throws an exception if the image is not found, otherwise returning True is not correct")
+            log.warning(f"TODO: Fix this, previous image references are breaking the process. Don't reload for now.")
             # TODO: test this throws an exception if the image is not found, otherwise returning True is not correct
             image = bpy.data.images.load(img_filepath, check_existing=True)
+
+            # do
+            if not image.filepath_raw:
+                return False
+            
             image.colorspace_settings.name = node.image.colorspace_settings.name
             image.alpha_mode = node.image.alpha_mode
 
