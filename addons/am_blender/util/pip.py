@@ -7,8 +7,9 @@
 import typing
 import bpy
 import subprocess
+import os
 import sys
-from ..std import log
+import site
 
 PYPATH = sys.executable  # bpy.app.binary_path_python
 
@@ -19,9 +20,6 @@ class Pip:
 
     @staticmethod
     def _ensure_user_site_package():
-        import os
-        import site
-        import sys
         site_package = site.getusersitepackages()
         if not os.path.exists(site_package):
             site_package = bpy.utils.user_resource('SCRIPTS', create=True)
@@ -53,16 +51,13 @@ class Pip:
         res = False
         status = ""
         for line in self._popen(cmd):
-            if "ERROR:" in line:
+            if "error" in line.lower():
                 status = line.strip()
-                log.error(f'Pip._run() :: {line}')
-            if "Error:" in line:
-                status = line.strip()
-                log.error(f'Pip._run() :: {line}')
-            if "Successfully" in line:
+                print(f'Pip._run() :: Error :: {line}')
+            if "successfully" in line.lower():
                 status = line.strip()
                 res = True
-                log.info(f'Pip._run() :: {line}')
+                print(f'Pip._run() :: Success :: {line}')
 
         return res, status
 
@@ -72,9 +67,10 @@ class Pip:
             import pip
         except ImportError:
             pip_not_found = True
-            log.warning(f'Pip._ensurepip() :: pip not found')
+            print(f'Pip._ensurepip() :: Error :: pip not found')
         if pip_not_found:
-            log.info(f'Pip._ensurepip() :: trying to install pip with {PYPATH} -m --default-pip')
+            print(
+                f'Pip._ensurepip() :: trying to install pip with {PYPATH} -m --default-pip')
             self._run([PYPATH, "-m", "ensurepip", "--default-pip"])
 
     @staticmethod
@@ -114,7 +110,7 @@ class Pip:
             installed = Pip()._cmd("install", options, module)
             exec(f'import {module}')
         except Exception as e:
-            log.error(f'{module} install failed! : {e}')
+            print(f'{module} install failed! : {e}')
 
         return installed
 
@@ -132,6 +128,5 @@ class Pip:
         """
         :return: python version object
         """
-        import sys
         # version.major, version.minor, version.micro
         return sys.version_info

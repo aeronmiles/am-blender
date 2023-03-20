@@ -89,6 +89,8 @@ class Data:
             if not img:
                 continue
 
+            # img.file_format = 'PNG'
+
             # try load image
             scaled = Size.from_name(img.filepath_raw)
             filepath = img.filepath_raw

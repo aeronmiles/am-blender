@@ -10,7 +10,7 @@ from .std.meta import meta
 bl_info = {
     "name": "AM Blender",
     "author": "Aeron Miles",
-    "version": (1, 0, 1),
+    "version": (1, 0, 2),
     "blender": (2, 90, 0),
     "location": "See keymap",
     "description": "Blender tools, scripts & presets.",

@@ -1,0 +1,48 @@
+Eppendorf:
+ - Q&A Testing
+    - Q&A bug testing
+    - Navigation such as pinch to zoom needs testing fixing on mobile devices
+ - Finalise assets
+    - Phase 2 - Products
+        - Animations
+        - Create Hotspots
+            - Get Hotspots from Eppendorf
+        - Create Camera positions
+        - ThermoMixerC
+            - Create Accesories
+                - PCR 384
+                - SmartBlock 1.5ml
+                - SmartBlock 12ml
+            - Fix DWP trays
+        - Amend rotors 5430 / 5427
+            - S_24_11_AT - material
+            - F-35-6-30 - material
+            - A-2-MTP
+                - Grey metallic material on base still needs correcting.
+                - All tubes need poly count increase tubes should have 8 sides as described below in “Twin_Tec_PCR_Plate_96_Skirted_150_ml_Optimisation_Required”
+        - Export all products for signoff
+        - For all transparent items add relevant custom gl properties
+    - Phase 2 - Lab
+        - Materials
+        - Lighting
+        - Baking
+        - Add Trays & tubes
+        - Nice to have
+            - Improve external city imagery
+
+    - BabylonJS / Typescript updates
+        - Setup transparency & translucency per material
+        - Setup for lightmaps
+        - Shadow planes
+    
+
+- Add High / Low model & material versions for phase 1 products
+
+- 
+
+
+- 11-01-23
+    DC
+        DeepWell Plates
+        Twintec Plates
+        

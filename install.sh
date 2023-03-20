@@ -48,8 +48,16 @@ fi
 if [ -d "$USER_PATH/scripts/addons/reload_addons" ]; then
     rm -r "$USER_PATH/scripts/addons/reload_addons"
 fi
+# remove legacy folder
+if [ -d "$USER_PATH/scripts/addons/reload-addons" ]; then
+    rm -r "$USER_PATH/scripts/addons/reload-addons"
+fi
 ### remove previous am_blender
 if [ -d "$USER_PATH/scripts/addons/am_blender" ]; then
     rm -r "$USER_PATH/scripts/addons/am_blender"
+fi
+# remove legacy folder
+if [ -d "$USER_PATH/scripts/addons/am-blender" ]; then
+    rm -r "$USER_PATH/scripts/addons/am-blender"
 fi
 cp -r ./addons "$USER_PATH/scripts"

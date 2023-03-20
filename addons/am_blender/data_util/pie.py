@@ -12,7 +12,7 @@ bl_info = {
     "category": "Pie Menu"
 }
 
-
+# TODO: Add shader editor select images context resizing
 class AM_MT_DataUtilPie(Menu):
     bl_label = "Data Utils"
 

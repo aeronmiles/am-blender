@@ -1,0 +1,12 @@
+[workspace]
+
+exclude = [
+]
+
+members = [
+    "am_blender.rs",
+]
+
+default-members = [
+    "am_blender.rs",
+]

@@ -42,7 +42,7 @@ MESH EDIT
 =========
 'w' - modelling pie
 
-AM-Blender
+AM-Blenderc
 ----------------
 'ctrl + alt + shift + w' - workspace
 'ctrl + alt + shift + p' - custom properties
@@ -63,7 +63,7 @@ AM-Blender
 'Shift Middle Mouse' Pan View
 'Ctrl Shift Middle Mouse' Zoom t    o Selected
 
-++ T R A N S F O R M S ++
+++ T R A N S F O R M S ++w
 'Space'  Move 
 	While in Move Mode:
     'Z' Z axis lock
@@ -115,7 +115,6 @@ AM-Blender
 'Ctrl Shift B'  Bridge Smooth
 'Ctrl R' S Cut
 'Shift G' Slide / Push
-'E'  Extrude to Cursor
 'X'  Delete
 'Ctrl X' Dissolve / Erase
 'K'  Knife
