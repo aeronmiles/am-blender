@@ -1,7 +1,6 @@
 import bpy
 import os
 import addon_utils
-from loguru import logger as log
 
 bl_info = {
     "name": "Reload Addons",
@@ -23,7 +22,7 @@ def reload_addons():
         if check and not check[1] or 'reload_addons' in dir:
             continue
 
-        log.info(f"Reloading {dir}")
+        print(f"Reloading {dir}")
         # If it is, disable the addon
         bpy.ops.preferences.addon_disable(module=dir)
         # # Re-enable the addon, which will trigger a reload
