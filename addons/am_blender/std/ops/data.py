@@ -98,6 +98,8 @@ class Data:
                 filepath = replace(
                     img.filepath_raw, scaled.compat.filename_suffixes(), ".")
                 img = bpy.data.images.load(filepath, check_existing=True)
+            
+            log.info(f'ops.data.scale_images_to_maxsize() :: Rescaling image "{img.filepath_raw}" to {scale.name}')
 
             filepath = os.path.splitext(filepath)[0]
 
