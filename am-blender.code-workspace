@@ -4,35 +4,34 @@
 			"path": "."
 		},
 		{
-			"path": "C:/Users/Aeron-R9/AppData/Roaming/Blender Foundation/Blender/3.4"
+			"path": "C:/Users/Aeron.Miles/AppData/Roaming/Blender Foundation/Blender/3.4"
 		},
 		{
 			"path": "C:/Program Files/Blender Foundation/Blender 3.4/"
 		},
 		{
-			"path": "C:/Dev/blender/.reference/fake_bpy"
+			"path": "C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4"
 		},
 		{
-			"path": "C:/Dev/blender/blender"
+			"path": "C:/Users/Aeron.Miles/Dev/github/blender/blender"
 		},
 	],
 	"settings": {
 		"python.autoComplete.extraPaths": [
-			"C:/Dev/Blender/.reference/fake_bpy",
-			"C:/Dev/blender/blender/release/scripts/addons",
-			"C:/Dev/blender/blender/release/scripts/modules",
-			"C:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
-			// User packages
-			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
-
+			"C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4",
+			"C:/Users/Aeron.Miles/Dev/github/blender/blender/release/scripts/addons",
+			"C:/Users/Aeron.Miles/Dev/github/blender/release/scripts/modules",
+			"C:/Users/Aeron.Miles/Dev/github/blender/am-blender/addons-extern/BlenderUSDZ",
+			// User packages see packages.py
+			"C:/Users/Aeron.Miles/AppData/Roaming/Python/Python310/site-packages"
 		],
 		"python.analysis.extraPaths": [
-			"C:/Dev/Blender/.reference/fake_bpy",
-			"C:/Dev/blender/blender/release/scripts/addons",
-			"C:/Dev/blender/blender/release/scripts/modules",
-			"C:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
-			// User packages
-			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
+			"C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4",
+			"C:/Users/Aeron.Miles/blender/blender/release/scripts/addons",
+			"C:/Users/Aeron.Miles/blender/blender/release/scripts/modules",
+			"C:/Users/Aeron.Miles/blender/am-blender/addons-extern/BlenderUSDZ",
+			// User packages see packages.py
+			"C:/Users/Aeron.Miles/AppData/Roaming/Python/Python310/site-packages"
 		],
 		"files.associations": {
 			"*.html": "html",
