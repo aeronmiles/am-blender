@@ -42,7 +42,7 @@ MESH EDIT
 =========
 'w' - modelling pie
 
-AM-Blenderc
+AM-Blender
 ----------------
 'ctrl + alt + shift + w' - workspace
 'ctrl + alt + shift + p' - custom properties
@@ -74,6 +74,7 @@ AM-Blenderc
     'Double R' Rotate Trackball
 'S'  Scale
 	Axis locks are same as Move Mode
+'Shift S' Align / Snap - Selection / Cursor
 
 ++ P I E   M E N U S++
 'V'  Views Pie

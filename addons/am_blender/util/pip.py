@@ -14,6 +14,7 @@ import site
 PYPATH = sys.executable  # bpy.app.binary_path_python
 
 
+# TODO: add install location options e.g. site-packages, ./local etc.
 class Pip:
     def __init__(self):
         self._ensurepip()
