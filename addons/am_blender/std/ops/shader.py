@@ -262,7 +262,7 @@ class Shader:
 
                 ext = os.path.splitext(os.path.basename(fp_old))[1]
                 fp_new = os.path.join(os.path.dirname(
-                    fp_old), f'{mat.name}_{img_name}_{input_name}{ext}'.replace(" ", ""))
+                    fp_old), f'{mat.name}_{input_name}{ext}'.replace(" ", ""))
 
                 if not os.path.exists(fp_new):
                     os.rename(fp_old, fp_new)
@@ -270,6 +270,19 @@ class Shader:
                 node.image.filepath_raw = bpy.path.relpath(fp_new)
                 node.image.name = os.path.basename(fp_new)
                 Node.load_image(node, node.image.filepath_raw)
+
+    @staticmethod
+    @log.catch
+    def set_duplicate_materials_to_base_material(objs: Union[Iterable['Object'], 'Object']):
+        _objs = as_iterable(objs)
+        for obj in _objs:
+            n = len(obj.material_slots)
+            for i in range(n):
+                if ".00" in obj.material_slots[i].name:
+                    mat = bpy.data.materials.get(obj.material_slots[i].name.split(".")[0])
+                    if mat:
+                        obj.material_slots[i].material = mat
+                
 
 
 shader = Shader()

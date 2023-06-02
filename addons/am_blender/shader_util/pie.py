@@ -26,19 +26,20 @@ class AM_MT_ShaderUtilPie(Menu):
         row.scale_y = 1.5
         box.operator("amblender.su_enabled_backface_culling")
         box.operator("amblender.su_set_opaque")
-        box.operator("amblender.su_set_alpha_blend")
         box.operator("amblender.su_set_material_lod0")
         box.operator("amblender.su_set_material_lod1")
         box.operator("amblender.su_rename_textures")
+        box.operator("amblender.su_set_duplicate_materials_to_base_material")
 
         # R
         box = pie.split().column()
         row = box.row(align=True)
         row.scale_y = 1.5
         box.operator("amblender.su_disable_backface_culling")
+        box.operator("amblender.su_set_alpha_blend")
         box.operator("amblender.su_disconnect_normal_map")
         box.operator("amblender.su_disconnect_gltf_occlusion_map")
-        pie.operator("amblender.select_eevee_material_output_nodes")
+        box.operator("amblender.select_eevee_material_output_nodes")
 
 
 def register():

@@ -8,6 +8,7 @@ from .log import log
 import bpy
 import mathutils
 from bpy.types import *
+from bpy.types import (Menu)
 from bpy.props import *
 
 # std modules last

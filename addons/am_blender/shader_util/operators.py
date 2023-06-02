@@ -144,6 +144,22 @@ class AM_SU_Set_Material_LOD1(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_SU_Set_Duplicate_Materials_To_Base_Material(bpy.types.Operator):
+    bl_idname = 'amblender.su_set_duplicate_materials_to_base_material'
+    bl_label = 'Set Duplicate Materials To Base Material'
+    bl_description = 'Set Duplicate Materials To Base Material'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return len(context.selected_objects) > 0
+
+    def execute(self, context):
+        ops.shader.set_duplicate_materials_to_base_material(context.selected_objects)
+
+        return {'FINISHED'}
+
+
 class AM_SU_Rename_Textures(bpy.types.Operator):
     bl_idname = 'amblender.su_rename_textures'
     bl_label = 'Rename Textures After Mat Names'
@@ -191,6 +207,7 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Blend_Mode_AlphaBlend,
            AM_SU_Set_Material_LOD0,
            AM_SU_Set_Material_LOD1,
+           AM_SU_Set_Duplicate_Materials_To_Base_Material,
            AM_SU_Rename_Textures,
            AM_Export_To_Select_EeveeMaterialOutputNodes
            )
