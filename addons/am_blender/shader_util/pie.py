@@ -28,6 +28,7 @@ class AM_MT_ShaderUtilPie(Menu):
         box.operator("amblender.su_set_opaque")
         box.operator("amblender.su_set_material_lod0")
         box.operator("amblender.su_set_material_lod1")
+        box.operator("amblender.su_rename_uvmaps")
         box.operator("amblender.su_rename_textures")
         box.operator("amblender.su_set_duplicate_materials_to_base_material")
 

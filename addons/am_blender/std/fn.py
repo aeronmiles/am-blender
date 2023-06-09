@@ -7,6 +7,9 @@ def as_iterable(obj) -> 'Iterable':
         return obj
     else:
         return (obj,)
+    
+def of_type(obj, type) -> 'Iterable':
+    return (o for o in obj if o.type == type)
 
 
 def ensure_dir(path: str) -> str:

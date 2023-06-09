@@ -182,26 +182,25 @@ class AM_CP_Add_GL_VertexColorMetallicRougness(bpy.types.Operator):
         return context.selected_objects and not ops.data.with_custom_property(context.selected_objects, 'gl_vertex_color') and not ops.data.with_custom_property(context.selected_objects, 'gl_metallic_roughness') 
 
     def execute(self, context):
-        objs = context.selected_objects
+        objs = of_type(context.selected_objects, 'MESH')
         for obj in objs:
-            if obj.type == 'MESH':
-                colors = obj.data.color_attributes
-                # context.view_layer.objects.active = obj
-                # index = colors.active_color_index
+            colors = obj.data.color_attributes
+            # context.view_layer.objects.active = obj
+            # index = colors.active_color_index
 
-                if colors.find("gl_color") == -1:
-                    colors.new(name="gl_color",
-                               type="FLOAT_COLOR", domain="POINT")
-                    obj['gl_vertex_color'] = colors.find('gl_color')
+            if colors.find("gl_color") == -1:
+                colors.new(name="gl_color",
+                            type="FLOAT_COLOR", domain="POINT")
+                obj['gl_vertex_color'] = colors.find('gl_color')
 
-                if colors.find("gl_metallic_roughness") == -1:
-                    colors.new(name="gl_metallic_roughness",
-                               type="FLOAT_COLOR", domain="POINT")
-                    ops.data.set_custom_property(
-                        obj, 'gl_vertex_metallic_roughness', colors.find('gl_metallic_roughness'))
+            if colors.find("gl_metallic_roughness") == -1:
+                colors.new(name="gl_metallic_roughness",
+                            type="FLOAT_COLOR", domain="POINT")
+                ops.data.set_custom_property(
+                    obj, 'gl_vertex_metallic_roughness', colors.find('gl_metallic_roughness'))
 
-                # bpy.ops.geometry.color_attribute_render_set(name="gl_color")
-                # colors.active_color_index = index
+            # bpy.ops.geometry.color_attribute_render_set(name="gl_color")
+            # colors.active_color_index = index
 
         # context.view_layer.objects.active = active
         return {'FINISHED'}

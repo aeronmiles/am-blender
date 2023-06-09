@@ -160,6 +160,22 @@ class AM_SU_Set_Duplicate_Materials_To_Base_Material(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_SU_Rename_UVMaps(bpy.types.Operator):
+    bl_idname = 'amblender.su_rename_uvmaps'
+    bl_label = 'Rename UV Maps -> uv1, uv2, ...'
+    bl_description = 'Rename UV Maps -> uv1, uv2, ...'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects
+
+    def execute(self, context):
+        ops.shader.rename_uvmaps(context.selected_objects)
+
+        return {'FINISHED'}
+
+
 class AM_SU_Rename_Textures(bpy.types.Operator):
     bl_idname = 'amblender.su_rename_textures'
     bl_label = 'Rename Textures After Mat Names'
@@ -208,6 +224,7 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Material_LOD0,
            AM_SU_Set_Material_LOD1,
            AM_SU_Set_Duplicate_Materials_To_Base_Material,
+           AM_SU_Rename_UVMaps,
            AM_SU_Rename_Textures,
            AM_Export_To_Select_EeveeMaterialOutputNodes
            )

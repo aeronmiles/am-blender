@@ -39,6 +39,11 @@ if [ -d "$USER_PATH/scripts/addons/io_scene_usdz" ]; then
 fi
 cp -r ./addons-extern/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
 
+if [ -d "$USER_PATH/scripts/addons/mira_tools" ]; then
+    rm -r "$USER_PATH/scripts/addons/mira_tools"
+fi
+cp -r ./addons-extern/mifthtools/blender/addons/2.8/mira_tools "$USER_PATH/scripts/addons"
+
 # Install Intern addons
 # remove previous heavypoly
 if [ -d "$USER_PATH/scripts/addons/heavypoly" ]; then

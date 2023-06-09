@@ -55,9 +55,10 @@ class Node:
             try:
                 mat.use_nodes = True
             except Exception as e:
-                pass
+                return set()
                 # log.error(
                 #     f'ops.shader.node.of_type(objs={objs}, _type={_type}) :: Failed to set material.use_nodes = True "{mat.name}" to use nodes Exception: {e}')
+        
             nodes.extend((n for n in mat.node_tree.nodes if isinstance(
                 n, _type)))
 
@@ -236,6 +237,14 @@ class Shader:
             objs, 'Metallic', 'RoughMetalAO', bpy.types.ShaderNodeBsdfPrincipled)
         Shader._rename_material_textures(
             objs, 'Occlusion', 'RoughMetalAO', bpy.types.ShaderNodeGroup)
+
+    @staticmethod
+    @log.catch
+    def rename_uvmaps(objs: Union[Iterable['Object'], 'Object']):
+        _objs = of_type(as_iterable(objs), 'MESH')
+        for obj in _objs:
+            for i, uvmap in enumerate(obj.data.uv_layers):
+                uvmap.name = f"uv{i+1}"
 
     # TODO: sort out texture referencing and naming system
     @staticmethod
