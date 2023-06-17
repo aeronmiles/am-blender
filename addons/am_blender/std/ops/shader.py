@@ -1,5 +1,6 @@
 import re
 from ...std import *
+from ...std import ops
 
 
 class Node:
@@ -279,6 +280,62 @@ class Shader:
                 node.image.filepath_raw = bpy.path.relpath(fp_new)
                 node.image.name = os.path.basename(fp_new)
                 Node.load_image(node, node.image.filepath_raw)
+
+    @staticmethod
+    @log.catch
+    def remove_unassigned_materials(objs: Union[Iterable['Object'], 'Object']):
+        _objs = of_type(as_iterable(objs), 'MESH')
+        bpy.ops.object.mode_set(mode='OBJECT')
+        
+        for obj in _objs:
+            mat_slots = {}
+            for p in obj.data.polygons:
+                mat_slots[p.material_index] = 1
+
+            mat_slots = mat_slots.keys()
+
+            for i in reversed(range(len(obj.material_slots))):
+                if i not in mat_slots:
+                    obj.select_set(True)
+                    obj.active_material_index = i
+                    bpy.ops.object.material_slot_remove()
+        
+        ops.select.all(objs)
+
+
+    @staticmethod
+    @log.catch
+    def add_lightmap_uv2s(objs: Union[Iterable['Object'], 'Object']):
+        _objs = of_type(as_iterable(objs), 'MESH')
+        bpy.ops.object.mode_set(mode='OBJECT')
+
+        for obj in _objs:
+            ops.select.all(objs, False)
+
+            # iterate obj uv layers and check uf uv2 exists, create if not
+            hasUV2 = False
+            for uv in obj.data.uv_layers:
+                if uv.name == "uv2":
+                    hasUV2 = True
+                    break
+
+            if not hasUV2:
+                obj.data.uv_layers.new(name="uv2")
+
+            # get uv2Index
+            obj.data.uv_layers['uv2'].active = True
+            
+            # select obj
+            obj.select_set(True)
+
+            # smart project uv2
+            bpy.ops.object.mode_set(mode='EDIT')
+            bpy.ops.mesh.select_all(action='SELECT')
+            bpy.ops.uv.smart_project(island_margin=0.005)
+            
+        # restore selection
+        ops.select.all(objs)
+
 
     @staticmethod
     @log.catch

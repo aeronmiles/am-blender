@@ -193,6 +193,39 @@ class AM_SU_Rename_Textures(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_SU_Add_Lightmap_UV2s(bpy.types.Operator):
+    bl_idname = 'amblender.su_add_lightmap_uv2s'
+    bl_label = 'Add Lightmap UV2s'
+    bl_description = 'Add Lightmap UV2s'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects
+
+    def execute(self, context):
+        ops.shader.add_lightmap_uv2s(context.selected_objects)
+
+        return {'FINISHED'}
+
+
+class AM_Remove_Unassigned_Materials(bpy.types.Operator):
+    bl_idname = 'amblender.su_remove_unassigned_materials'
+    bl_label = 'Remove Unassigned Materials'
+    bl_description = 'Remove Unassigned Materials'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects
+
+    def execute(self, context):
+        ops.shader.remove_unassigned_materials(context.selected_objects)
+
+        return {'FINISHED'}
+    
+
+
 class AM_Export_To_Select_EeveeMaterialOutputNodes(bpy.types.Operator):
     bl_idname = 'amblender.select_eevee_material_output_nodes'
     bl_label = 'Select Eevee Material Output Nodes'
@@ -225,6 +258,8 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Material_LOD1,
            AM_SU_Set_Duplicate_Materials_To_Base_Material,
            AM_SU_Rename_UVMaps,
+           AM_SU_Add_Lightmap_UV2s,
+           AM_Remove_Unassigned_Materials,
            AM_SU_Rename_Textures,
            AM_Export_To_Select_EeveeMaterialOutputNodes
            )

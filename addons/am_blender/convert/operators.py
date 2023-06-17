@@ -63,12 +63,14 @@ class AM_ParentInPlace(bpy.types.Operator):
         objs = context.selected_objects
         bpy.ops.object.mode_set(mode='OBJECT')
 
+        activeObj = context.active_object
+
         bpy.ops.object.empty_add()
         empty = context.active_object
-        empty.name = os.path.splitext(objs[0].name)[0] + 's'
-        empty.parent = objs[0].parent
-        ops.copy.transform(objs[0].parent, empty)
-        ops.copy.collections(objs[0].parent, empty)
+        empty.name = os.path.splitext(activeObj.name)[0] + 's'
+        empty.parent = activeObj.parent
+        ops.copy.transform(activeObj.parent, empty)
+        ops.copy.collections(activeObj.parent, empty)
 
         objs.append(empty)
         ops.select.all(objs)
@@ -103,8 +105,44 @@ class AM_ResetParentTransform(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_InstanceActiveToOthers(bpy.types.Operator):
+    bl_idname = 'amblender.duplicate_active_to_others'
+    bl_label = 'Instance Active To Others'
+    bl_description = 'Instance Active To Others'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and context.object.mode == 'OBJECT'
+
+    def execute(self, context):
+        ops.copy.duplicate_to_others(context.active_object, context.selected_objects, True)
+            
+        return {'FINISHED'}
+
+
+class AM_PivotsToActive(bpy.types.Operator):
+    bl_idname = 'amblender.pivots_to_active'
+    bl_label = 'Pivots To Active'
+    bl_description = 'Pivots To Active'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and context.object.mode == 'OBJECT'
+
+    def execute(self, context):
+        ops.copy.pivot(context.active_object, context.selected_objects)
+            
+        return {'FINISHED'}
+
+
 classes = (AM_Convert_To_Empty_Mesh,
-           AM_Deselect_Non_Mesh_Objects, AM_ParentInPlace,AM_ResetParentTransform)
+           AM_Deselect_Non_Mesh_Objects, 
+           AM_ParentInPlace,
+           AM_ResetParentTransform,
+           AM_InstanceActiveToOthers,
+           AM_PivotsToActive)
 
 
 def register():

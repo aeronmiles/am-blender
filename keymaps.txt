@@ -102,6 +102,7 @@ Z  ::  Shading Pie
 Ctrl + B  ::  Boolean Pie
 Shift X  ::  Mirror Pie
 Shift V  ::  Materials Popup
+Shift Q  :: Materials Popup
 Ctrl + Alt + Space  ::  Rotate 90 and Flatten Pie
 Ctrl + Shift + D  ::  Specials Pie
 Ctrl + Alt + Shift + Space  ::  Areas Pie

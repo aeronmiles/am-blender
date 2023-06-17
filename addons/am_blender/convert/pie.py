@@ -24,6 +24,8 @@ class AM_MT_ConvertPie(Menu):
         pie.operator("amblender.deselect_non_mesh_objects")
         pie.operator("amblender.parent_in_place")
         pie.operator("amblender.reset_parent_transform")
+        pie.operator("amblender.duplicate_active_to_others")
+        pie.operator("amblender.pivots_to_active")
 
 
 def register():
