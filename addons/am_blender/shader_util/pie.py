@@ -32,6 +32,7 @@ class AM_MT_ShaderUtilPie(Menu):
         box.operator("amblender.su_add_lightmap_uv2s")
         box.operator("amblender.su_rename_textures")
         box.operator("amblender.su_remove_unassigned_materials")
+        box.operator("amblender.su_remove_unused_scene_materials")
         box.operator("amblender.su_set_duplicate_materials_to_base_material")
 
         # R

@@ -226,6 +226,22 @@ class AM_Remove_Unassigned_Materials(bpy.types.Operator):
     
 
 
+class AM_SU_Remove_Unused_Scene_Materials(bpy.types.Operator):
+    bl_idname = 'amblender.su_remove_unused_scene_materials'
+    bl_label = 'Remove Unused Scene Materials'
+    bl_description = 'Remove Unused Scene Materials'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return True
+
+    def execute(self, context):
+        ops.shader.remove_unused_scene_materials()
+
+        return {'FINISHED'}
+
+
 class AM_Export_To_Select_EeveeMaterialOutputNodes(bpy.types.Operator):
     bl_idname = 'amblender.select_eevee_material_output_nodes'
     bl_label = 'Select Eevee Material Output Nodes'
@@ -260,6 +276,7 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Rename_UVMaps,
            AM_SU_Add_Lightmap_UV2s,
            AM_Remove_Unassigned_Materials,
+           AM_SU_Remove_Unused_Scene_Materials,
            AM_SU_Rename_Textures,
            AM_Export_To_Select_EeveeMaterialOutputNodes
            )

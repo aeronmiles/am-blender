@@ -302,6 +302,23 @@ class Shader:
         
         ops.select.all(objs)
 
+    @staticmethod
+    @log.catch
+    def remove_unused_scene_materials():
+        mats = bpy.data.materials
+        mats_to_delete = []
+        for material in mats:
+            d = True
+            for o in bpy.data.objects:
+                for m in o.material_slots:
+                    if material.name in m.name:
+                        d = False
+            if d:
+                mats_to_delete.append(material)
+            
+        for m in mats_to_delete:
+            bpy.data.materials.remove(m)
+
 
     @staticmethod
     @log.catch

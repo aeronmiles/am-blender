@@ -8,5 +8,4 @@ class Select:
         for obj in as_iterable(objs):
             obj.select_set(select)
 
-
 select = Select()
