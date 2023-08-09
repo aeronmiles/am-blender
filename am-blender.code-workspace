@@ -4,34 +4,34 @@
 			"path": "."
 		},
 		{
-			"path": "C:/Users/Aeron.Miles/AppData/Roaming/Blender Foundation/Blender/3.5"
+			"path": "C:/Users/Aeron-R9/AppData/Roaming/Blender Foundation/Blender/3.6"
 		},
 		{
-			"path": "C:/Program Files/Blender Foundation/Blender 3.5/"
+			"path": "C:/Program Files/Blender Foundation/Blender 3.6/"
 		},
 		{
-			"path": "C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4"
+			"path": "E:/Dev/blender/.reference/fake_bpy"
 		},
 		{
-			"path": "C:/Users/Aeron.Miles/Dev/github/blender/blender"
+			"path": "E:/Dev/blender/blender/blender"
 		},
 	],
 	"settings": {
 		"python.autoComplete.extraPaths": [
-			"C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4",
-			"C:/Users/Aeron.Miles/Dev/github/blender/blender/release/scripts/addons",
-			"C:/Users/Aeron.Miles/Dev/github/blender/release/scripts/modules",
-			"C:/Users/Aeron.Miles/Dev/github/blender/am-blender/addons-extern/BlenderUSDZ",
+			"E:/Dev/blender/.reference/fake_bpy",
+			"E:/Dev/blender/blender/blender/release/scripts/addons",
+			"E:/Dev/blender/blender/blender/release/scripts/modules",
+			"E:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
 			// User packages see packages.py
-			"C:/Users/Aeron.Miles/AppData/Roaming/Python/Python310/site-packages"
+			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
 		],
 		"python.analysis.extraPaths": [
-			"C:/Users/Aeron.Miles/Dev/github/blender/references/fake_bpy_modules_3.4",
-			"C:/Users/Aeron.Miles/blender/blender/release/scripts/addons",
-			"C:/Users/Aeron.Miles/blender/blender/release/scripts/modules",
-			"C:/Users/Aeron.Miles/blender/am-blender/addons-extern/BlenderUSDZ",
+			"E:/Dev/blender/.reference/fake_bpy",
+			"E:/Dev/blender/blender/blender/release/scripts/addons",
+			"E:/Dev/blender/blender/blender/release/scripts/modules",
+			"E:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
 			// User packages see packages.py
-			"C:/Users/Aeron.Miles/AppData/Roaming/Python/Python310/site-packages"
+			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
 		],
 		"files.associations": {
 			"*.html": "html",

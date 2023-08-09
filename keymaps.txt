@@ -67,7 +67,7 @@ ctrl + alt + shift + x  ::  properties
 ctrl + alt + shift + c  ::  convert
 ctrl + alt + shift + z  ::  shader util
 ctrl + alt + shift + x  ::  object properties
-ctrl + alt + shift + d  ::  data util
+ctrl + alt + shift + e  ::  data util
 ctrl + alt + shift + s  ::  import / export
 
 ----------------
