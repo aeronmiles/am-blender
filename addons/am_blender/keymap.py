@@ -19,7 +19,7 @@ def keymaps():
         "wm.call_menu_pie", "X", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_ObjectPropertiesPie"
 
     km.keymap_items.new(
-        "wm.call_menu_pie", "E", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_DataUtilPie"
+        "wm.call_menu_pie", "D", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_DataUtilPie"
 
     km.keymap_items.new(
         "wm.call_menu_pie", "S", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_ImportExportPie"

@@ -162,8 +162,8 @@ class AM_SU_Set_Duplicate_Materials_To_Base_Material(bpy.types.Operator):
 
 class AM_SU_Rename_UVMaps(bpy.types.Operator):
     bl_idname = 'amblender.su_rename_uvmaps'
-    bl_label = 'Rename UV Maps -> uv1, uv2, ...'
-    bl_description = 'Rename UV Maps -> uv1, uv2, ...'
+    bl_label = 'Rename UV Maps -> UVMap, UVMap2, ...'
+    bl_description = 'Rename UV Maps -> UVMap, UVMap2, ...'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
@@ -193,10 +193,10 @@ class AM_SU_Rename_Textures(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class AM_SU_Add_Lightmap_UV2s(bpy.types.Operator):
-    bl_idname = 'amblender.su_add_lightmap_uv2s'
-    bl_label = 'Add Lightmap UV2s'
-    bl_description = 'Add Lightmap UV2s'
+class AM_SU_Add_Lightmap_UVs(bpy.types.Operator):
+    bl_idname = 'amblender.su_add_lightmap_uvs'
+    bl_label = 'Add Lightmap UVs'
+    bl_description = 'Add Lightmap UVs'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
@@ -204,7 +204,7 @@ class AM_SU_Add_Lightmap_UV2s(bpy.types.Operator):
         return context.selected_objects
 
     def execute(self, context):
-        ops.shader.add_lightmap_uv2s(context.selected_objects)
+        ops.shader.add_lightmap_uvs(context.selected_objects)
 
         return {'FINISHED'}
 
@@ -274,7 +274,7 @@ classes = (AM_SU_Disconnect_NormalMap,
            AM_SU_Set_Material_LOD1,
            AM_SU_Set_Duplicate_Materials_To_Base_Material,
            AM_SU_Rename_UVMaps,
-           AM_SU_Add_Lightmap_UV2s,
+           AM_SU_Add_Lightmap_UVs,
            AM_Remove_Unassigned_Materials,
            AM_SU_Remove_Unused_Scene_Materials,
            AM_SU_Rename_Textures,

@@ -37,7 +37,7 @@ fi
 if [ -d "$USER_PATH/scripts/addons/io_scene_usdz" ]; then
     rm -r "$USER_PATH/scripts/addons/io_scene_usdz"
 fi
-cp -r ./addons/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
+cp -r ./addons-extern/BlenderUSDZ/io_scene_usdz "$USER_PATH/scripts/addons"
 
 # Install Intern addons
 # remove previous heavypoly

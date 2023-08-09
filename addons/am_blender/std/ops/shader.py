@@ -245,7 +245,10 @@ class Shader:
         _objs = of_type(as_iterable(objs), 'MESH')
         for obj in _objs:
             for i, uvmap in enumerate(obj.data.uv_layers):
-                uvmap.name = f"uv{i+1}"
+                if i == 0:
+                    uvmap.name = "UVMap"
+                else:
+                    uvmap.name = f"UVMap{i+1}"
 
     # TODO: sort out texture referencing and naming system
     @staticmethod
@@ -322,30 +325,30 @@ class Shader:
 
     @staticmethod
     @log.catch
-    def add_lightmap_uv2s(objs: Union[Iterable['Object'], 'Object']):
+    def add_lightmap_uvs(objs: Union[Iterable['Object'], 'Object']):
         _objs = of_type(as_iterable(objs), 'MESH')
         bpy.ops.object.mode_set(mode='OBJECT')
 
         for obj in _objs:
             ops.select.all(objs, False)
 
-            # iterate obj uv layers and check uf uv2 exists, create if not
-            hasUV2 = False
+            # iterate obj uv layers and check uf lightmapUV exists, create if not
+            haslightmapUV = False
             for uv in obj.data.uv_layers:
-                if uv.name == "uv2":
-                    hasUV2 = True
+                if uv.name == "lightmapUV":
+                    haslightmapUV = True
                     break
 
-            if not hasUV2:
-                obj.data.uv_layers.new(name="uv2")
+            if not haslightmapUV:
+                obj.data.uv_layers.new(name="lightmapUV")
 
-            # get uv2Index
-            obj.data.uv_layers['uv2'].active = True
+            # get lightmapUVIndex
+            obj.data.uv_layers['lightmapUV'].active = True
             
             # select obj
             obj.select_set(True)
 
-            # smart project uv2
+            # smart project lightmapUV
             bpy.ops.object.mode_set(mode='EDIT')
             bpy.ops.mesh.select_all(action='SELECT')
             bpy.ops.uv.smart_project(island_margin=0.005)
