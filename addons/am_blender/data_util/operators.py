@@ -1,10 +1,10 @@
 from ..std import *
 
 
-class AM_DU_UnpackImages(bpy.types.Operator):
-    bl_idname = 'amblender.du_unpack_images'
-    bl_label = 'Unpack Images'
-    bl_description = 'Unpack Images'
+class AM_DU_Unpack_All_Images(bpy.types.Operator):
+    bl_idname = 'amblender.du_unpack_all_images'
+    bl_label = 'Unpack All Images'
+    bl_description = 'Unpack All Images'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     @classmethod
@@ -15,6 +15,21 @@ class AM_DU_UnpackImages(bpy.types.Operator):
         ops.data.unpack_images()
 
         return {'FINISHED'}
+
+
+class AM_DU_Unpack_Connected_Images(bpy.types.Operator):
+    bl_idname = "amblender.du_unpack_connected_images"
+    bl_label = "Unpack Connected Images"
+    bl_options = {"REGISTER", "UNDO"}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects
+
+    def execute(self, context):
+        ops.data.unpack_connected_images(context.selected_objects)
+
+        return {"FINISHED"}
 
 
 class AM_DU_Set_Diffuse_Image_Scale_2048(bpy.types.Operator):
@@ -340,8 +355,8 @@ class AM_DU_Clear_CustomSplitNormals(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class AM_DU_Clear_DeleteAllCustomProperties(bpy.types.Operator):
-    bl_idname = "property.delete_all_custom_properties"
+class AM_DU_Clear_Delete_All_Custom_Properties(bpy.types.Operator):
+    bl_idname = "amblender.du_delete_all_custom_properties"
     bl_label = "Delete ALL Custom Properties from ALL Objects"
     bl_options = {"REGISTER", "UNDO"}
 
@@ -354,7 +369,8 @@ class AM_DU_Clear_DeleteAllCustomProperties(bpy.types.Operator):
         return {"FINISHED"}
 
 
-classes = (AM_DU_UnpackImages,
+classes = (AM_DU_Unpack_All_Images,
+           AM_DU_Unpack_Connected_Images,
            AM_DU_Reset_Scaled_Images,
            AM_DU_Set_Diffuse_Image_Scale_2048,
            AM_DU_Set_Diffuse_Image_Scale_1024,
@@ -370,7 +386,7 @@ classes = (AM_DU_UnpackImages,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_256,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_128,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_64,
-           AM_DU_Clear_DeleteAllCustomProperties)
+           AM_DU_Clear_Delete_All_Custom_Properties)
 
 
 def register():

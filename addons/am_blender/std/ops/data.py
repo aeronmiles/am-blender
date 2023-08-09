@@ -56,6 +56,22 @@ class Data:
                 pf.save()
             img.unpack()
 
+    @staticmethod
+    @log.catch
+    def unpack_connected_images(objs: Union[Iterable['Object'], 'Object']):
+        # iterate all image texture nodes in all scene materials, filter all images that are connected to a ShaderNode type node
+        bpy.data.use_autopack = False
+
+        _objs = as_iterable(objs)
+        imgNodes = ops.shader.node.of_type(_objs, bpy.types.ShaderNodeTexImage)
+        for imgNode in imgNodes:
+            ds = ops.shader.node.downstream_nodes(imgNode)
+            for d in ds:
+                if isinstance(d, bpy.types.ShaderNodeOutputMaterial):
+                    if imgNode.image.packed_file:
+                        imgNode.image.unpack()
+        
+
     # TODO: sort out texture referencing and naming system
     @staticmethod
     @log.catch

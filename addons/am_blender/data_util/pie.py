@@ -45,7 +45,9 @@ class AM_MT_DataUtilPie(Menu):
         row = box.row(align=True)
         row.scale_y = 1.5
         box.operator("amblender.du_unpack_images")
+        box.operator("amblender.du_unpack_connected_images")
         box.operator("amblender.du_reset_scaled_images")
+        
 
 
 def register():
