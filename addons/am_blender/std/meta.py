@@ -7,6 +7,7 @@ class Cfg(object):
         self.log_to_txt = True
         self.install_packages = True
         self.unpack_tex_dir = "textures"
+        self.archive_dir = "archive"
         # this should be used with caution, with large scenes, interaction can be slowed
         self._use_internal_ids = False
 

@@ -42,3 +42,21 @@ class SpaceType(Enum):
     FILE_BROWSER = 'FILE_BROWSER'
     SPREADSHEET = 'SPREADSHEET'
     PREFERENCES = 'PREFERENCES'
+
+
+class PropertiesTab(Enum):
+    TOOL = 'TOOL'
+    RENDER = "RENDER"
+    OUTPUT = "OUTPUT"
+    VIEW_LAYER = "VIEW_LAYER"
+    SCENE = "SCENE"
+    WORLD = "WORLD"
+    COLLECTION = "COLLECTION"
+    OBJECT = "OBJECT"
+    MODIFIER = "MODIFIER"
+    PARTICLES = "PARTICLES"
+    PHYSICS = "PHYSICS"
+    CONSTRAINT = "CONSTRAINT"
+    DATA = "DATA"  # This corresponds to the mesh tab
+    MATERIAL = "MATERIAL"
+    TEXTURE = "TEXTURE"

@@ -13,7 +13,7 @@ class Node:
             proj = node.projection
             extension = node.extension
 
-            log.warning(f"TODO: Fix this, previous image references are breaking the process. Don't reload for now.")
+            log.warning(f"@TODO: Fix this, previous image references are breaking the process. Don't reload for now.")
             # TODO: test this throws an exception if the image is not found, otherwise returning True is not correct
             image = bpy.data.images.load(img_filepath, check_existing=True)
 

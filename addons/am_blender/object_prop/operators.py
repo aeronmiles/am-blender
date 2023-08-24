@@ -403,15 +403,27 @@ class AM_OP_Selectable_False(bpy.types.Operator):
             obj.hide_select = True
 
         return {'FINISHED'}
-
-
-classes = (AM_OP_VisibleCamera_True, AM_OP_VisibleCamera_False, AM_OP_VisibleDiffuse_True, AM_OP_VisibleDiffuse_False, AM_OP_VisibleGlossy_True, AM_OP_VisibleGlossy_False,
-           AM_OP_VisibleTransmission_True, AM_OP_VisibleTransmission_False,
-           AM_OP_VisibleVolumeScatter_True, AM_OP_VisibleVolumeScatter_False,
-           AM_OP_VisibleShadow_True, AM_OP_VisibleShadow_False, 
-           AM_OP_VisibleRaysAll_True, AM_OP_VisibleRaysAll_False,
-           AM_OP_VisibleViewport_True, AM_OP_VisibleViewport_False,
-           AM_OP_VisibleRender_True, AM_OP_VisibleRender_False, AM_OP_Selectable_True, AM_OP_Selectable_False)
+    
+classes = (AM_OP_VisibleCamera_True,
+            AM_OP_VisibleCamera_False,
+            AM_OP_VisibleDiffuse_True,
+            AM_OP_VisibleDiffuse_False,
+            AM_OP_VisibleGlossy_True,
+            AM_OP_VisibleGlossy_False,
+            AM_OP_VisibleTransmission_True,
+            AM_OP_VisibleTransmission_False,
+            AM_OP_VisibleVolumeScatter_True,
+            AM_OP_VisibleVolumeScatter_False,
+            AM_OP_VisibleShadow_True,
+            AM_OP_VisibleShadow_False,
+            AM_OP_VisibleRaysAll_True,
+            AM_OP_VisibleRaysAll_False,
+            AM_OP_VisibleViewport_True,
+            AM_OP_VisibleViewport_False,
+            AM_OP_VisibleRender_True,
+            AM_OP_VisibleRender_False,
+            AM_OP_Selectable_True,
+            AM_OP_Selectable_False)
 
 
 def register():

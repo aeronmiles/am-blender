@@ -7,6 +7,7 @@ from .bcopy import copy
 from .data import data
 from .import_export import io
 from .find import find
+from .modifier import modifier
 from .nav import nav
 from .shader import shader
 from .transform import transform
@@ -19,6 +20,7 @@ class Ops:
     data = data
     find = find
     io = io
+    modifier = modifier
     nav = nav
     shader = shader
     transform = transform

@@ -111,8 +111,180 @@ class AM_Nav_Workspace_Scripting(bpy.types.Operator):
         return {'FINISHED'}
 
 
-classes = (AM_Nav_Workspace_Modeling, AM_Nav_Workspace_UV_Editing, AM_Nav_Workspace_Layout, AM_Nav_Workspace_Sculpting, AM_Nav_Workspace_Texture_Paint, AM_Nav_Workspace_Shading, AM_Nav_Workspace_Rendering, AM_Nav_Workspace_Geometry_Nodes, AM_Nav_Workspace_Scripting,
-           AM_Nav_Workspace_Assets)
+class AM_Nav_Properties_Tab_Tool(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_tool'
+    bl_label = 'Properties Tab Tool'
+    bl_description = 'Load Properties Tab Tool'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.TOOL)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Render(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_render'
+    bl_label = 'Properties Tab Render'
+    bl_description = 'Load Properties Tab Render'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.RENDER)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_Output(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_output'
+    bl_label = 'Properties Tab Output'
+    bl_description = 'Load Properties Tab Output'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.OUTPUT)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_View_Layer(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_view_layer'
+    bl_label = 'Properties Tab View Layer'
+    bl_description = 'Load Properties Tab View Layer'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.VIEW_LAYER)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Scene(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_scene'
+    bl_label = 'Properties Tab Scene'
+    bl_description = 'Load Properties Tab Scene'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.SCENE)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_World(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_world'
+    bl_label = 'Properties Tab World'
+    bl_description = 'Load Properties Tab World'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.WORLD)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_Collection(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_collection'
+    bl_label = 'Properties Tab Collection'
+    bl_description = 'Load Properties Tab Collection'
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.COLLECTION)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_Object(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_object'
+    bl_label = 'Properties Tab Object'
+    bl_description = 'Load Properties Tab Object'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.OBJECT)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Modifier(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_modifier'
+    bl_label = 'Properties Tab Modifier'
+    bl_description = 'Load Properties Tab Modifier'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.MODIFIER)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Particles(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_particles'
+    bl_label = 'Properties Tab Particles'
+    bl_description = 'Load Properties Tab Particles'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.PARTICLES)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Physics(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_physics'
+    bl_label = 'Properties Tab Physics'
+    bl_description = 'Load Properties Tab Physics'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.PHYSICS)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_Constraint(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_constraint'
+    bl_label = 'Properties Tab Constraint'
+    bl_description = 'Load Properties Tab Constraint'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.CONSTRAINT)
+        return {'FINISHED'}
+    
+class AM_Nav_Properties_Tab_Data(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_data'
+    bl_label = 'Properties Tab Data'
+    bl_description = 'Load Properties Tab Data'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.DATA)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Material(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_material'
+    bl_label = 'Properties Tab Material'
+    bl_description = 'Load Properties Tab Material'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.MATERIAL)
+        return {'FINISHED'}
+
+class AM_Nav_Properties_Tab_Texture(bpy.types.Operator):
+    bl_idname = 'amblender.nav_properties_tab_texture'
+    bl_label = 'Properties Tab Texture'
+    bl_description = 'Load Properties Tab Texture'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    def execute(self, context):
+        ops.nav.properties_tab(PropertiesTab.TEXTURE)
+        return {'FINISHED'}
+
+classes = (AM_Nav_Workspace_Modeling, 
+           AM_Nav_Workspace_UV_Editing, 
+           AM_Nav_Workspace_Layout,
+           AM_Nav_Workspace_Sculpting,
+           AM_Nav_Workspace_Texture_Paint,
+           AM_Nav_Workspace_Shading,
+           AM_Nav_Workspace_Rendering,
+           AM_Nav_Workspace_Geometry_Nodes,
+           AM_Nav_Workspace_Scripting,
+           AM_Nav_Workspace_Assets,
+           AM_Nav_Properties_Tab_Tool,
+           AM_Nav_Properties_Tab_Render,
+           AM_Nav_Properties_Tab_Output,
+           AM_Nav_Properties_Tab_View_Layer,
+           AM_Nav_Properties_Tab_Scene,
+           AM_Nav_Properties_Tab_World,
+           AM_Nav_Properties_Tab_Collection,
+           AM_Nav_Properties_Tab_Object,
+           AM_Nav_Properties_Tab_Modifier,
+           AM_Nav_Properties_Tab_Particles,
+           AM_Nav_Properties_Tab_Physics,
+           AM_Nav_Properties_Tab_Constraint,
+           AM_Nav_Properties_Tab_Data,
+           AM_Nav_Properties_Tab_Material,
+           AM_Nav_Properties_Tab_Texture)
 
 
 def register():

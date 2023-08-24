@@ -21,6 +21,21 @@ class Nav:
 
     @staticmethod
     @log.catch
+    def properties_tab(tab: 'PropertiesTab'):
+        # Iterate through all windows
+        for window in bpy.context.window_manager.windows:
+            # Iterate through all screens in the window
+            for screen in window.screen.areas:
+                if screen.type == 'PROPERTIES':
+                    # Iterate through the spaces in the area (usually there's just one)
+                    for space in screen.spaces:
+                        if space.type == 'PROPERTIES':
+                            # Set the context to the Mesh tab
+                            space.context = tab.value
+
+
+    @staticmethod
+    @log.catch
     def outliner_toggle_hierarchy(context: 'Context', expanded: bool):
         state = 2
         if expanded:

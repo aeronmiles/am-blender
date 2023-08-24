@@ -10,26 +10,26 @@
 			"path": "C:/Program Files/Blender Foundation/Blender 3.6/"
 		},
 		{
-			"path": "E:/Dev/blender/.reference/fake_bpy"
+			"path": "E:/AM/Dev/blender/.reference/fake_bpy"
 		},
 		{
-			"path": "E:/Dev/blender/blender/blender"
+			"path": "E:/AM/Dev/blender/blender/blender"
 		},
 	],
 	"settings": {
 		"python.autoComplete.extraPaths": [
-			"E:/Dev/blender/.reference/fake_bpy",
-			"E:/Dev/blender/blender/blender/release/scripts/addons",
-			"E:/Dev/blender/blender/blender/release/scripts/modules",
-			"E:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
+			"E:/AM/Dev/blender/.reference/fake_bpy",
+			"E:/AM/Dev/blender/blender/blender/release/scripts/addons",
+			"E:/AM/Dev/blender/blender/blender/release/scripts/modules",
+			"E:/AM/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
 			// User packages see packages.py
 			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
 		],
 		"python.analysis.extraPaths": [
-			"E:/Dev/blender/.reference/fake_bpy",
-			"E:/Dev/blender/blender/blender/release/scripts/addons",
-			"E:/Dev/blender/blender/blender/release/scripts/modules",
-			"E:/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
+			"E:/AM/Dev/blender/.reference/fake_bpy",
+			"E:/AM/Dev/blender/blender/blender/release/scripts/addons",
+			"E:/AM/Dev/blender/blender/blender/release/scripts/modules",
+			"E:/AM/Dev/blender/am-blender/addons-extern/BlenderUSDZ",
 			// User packages see packages.py
 			"C:/Users/Aeron-R9/AppData/Roaming/Python/Python310/site-packages"
 		],

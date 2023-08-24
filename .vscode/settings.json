@@ -1,3 +1,3 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/cpp"
+    "cmake.sourceDirectory": "E:/AM/Dev/blender/am-blender/.reference/AutoRemesher-Blender/ThirdParties/eigen/bench/btl/libs/tensors"
 }
