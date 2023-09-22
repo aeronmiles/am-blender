@@ -129,7 +129,6 @@ class AM_DU_Archive_All_Unconnected_Images(bpy.types.Operator):
         return {"FINISHED"}
 
 
-
 class AM_DU_Set_Diffuse_Image_Scale_4096(bpy.types.Operator):
     bl_idname = 'amblender.du_set_diffuse_image_scale_4096'
     bl_label = 'Scale Diffuse Maps :: 4096'
@@ -238,6 +237,44 @@ class AM_DU_Set_Diffuse_Image_Scale_256(bpy.types.Operator):
         nodes = ops.shader.node.connected_to_input(
             nodes, 'Base Color', bpy.types.ShaderNodeBsdfPrincipled)
         ops.data.scale_images_to_maxsize(nodes, Size.P2_256)
+
+        return {'FINISHED'}
+
+class AM_DU_Set_Diffuse_Image_Scale_128(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_diffuse_image_scale_128'
+    bl_label = 'Scale Diffuse Maps :: 128'
+    bl_description = 'Scale Diffuse Maps :: 128'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Base Color', bpy.types.ShaderNodeBsdfPrincipled)
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_128)
+
+        return {'FINISHED'}
+    
+class AM_DU_Set_Diffuse_Image_Scale_64(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_diffuse_image_scale_64'
+    bl_label = 'Scale Diffuse Maps :: 64'
+    bl_description = 'Scale Diffuse Maps :: 64'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Base Color', bpy.types.ShaderNodeBsdfPrincipled)
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_64)
 
         return {'FINISHED'}
 
@@ -354,6 +391,46 @@ class AM_DU_Set_Normal_Image_Scale_256(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_DU_Set_Normal_Image_Scale_128(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_normal_image_scale_128'
+    bl_label = 'Scale Normal Maps :: 128'
+    bl_description = 'Scale Normal Maps :: 128'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Normal', bpy.types.ShaderNodeBsdfPrincipled)
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_128)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Normal_Image_Scale_64(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_normal_image_scale_64'
+    bl_label = 'Scale Normal Maps :: 64'
+    bl_description = 'Scale Normal Maps :: 64'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Normal', bpy.types.ShaderNodeBsdfPrincipled)
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_64)
+
+        return {'FINISHED'}
+    
+    
 class AM_DU_Set_RoughMetallicOcc_Image_Scale_4096(bpy.types.Operator):
     bl_idname = 'amblender.du_set_rough_metallic_occ_image_scale_4096'
     bl_label = 'Scale Roughness Metallic Occlusion Maps :: 4096'
@@ -494,6 +571,146 @@ class AM_DU_Set_RoughMetallicOcc_Image_Scale_64(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class AM_DU_Set_Emission_Image_Scale_4096(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_4096'
+    bl_label = 'Scale Emission Maps :: 4096'
+    bl_description = 'Scale Emission Maps :: 4096'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_4096)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_2048(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_2048'
+    bl_label = 'Scale Emission Maps :: 2048'
+    bl_description = 'Scale Emission Maps :: 2048'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_2048)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_1024(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_1024'
+    bl_label = 'Scale Emission Maps :: 1024'
+    bl_description = 'Scale Emission Maps :: 1024'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_1024)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_512(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_512'
+    bl_label = 'Scale Emission Maps :: 512'
+    bl_description = 'Scale Emission Maps :: 512'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_512)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_256(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_256'
+    bl_label = 'Scale Emission Maps :: 256'
+    bl_description = 'Scale Emission Maps :: 256'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_256)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_128(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_128'
+    bl_label = 'Scale Emission Maps :: 128'
+    bl_description = 'Scale Emission Maps :: 128'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_128)
+
+        return {'FINISHED'}
+
+
+class AM_DU_Set_Emission_Image_Scale_64(bpy.types.Operator):
+    bl_idname = 'amblender.du_set_emission_image_scale_64'
+    bl_label = 'Scale Emission Maps :: 64'
+    bl_description = 'Scale Emission Maps :: 64'
+    bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and not bpy.data.use_autopack
+
+    def execute(self, context):
+        nodes = ops.shader.node.of_type(
+            context.selected_objects, bpy.types.ShaderNodeTexImage)
+        nodes = ops.shader.node.connected_to_input(
+            nodes, 'Emission')
+        ops.data.scale_images_to_maxsize(nodes, Size.P2_64)
+
+        return {'FINISHED'}
+
+
 class AM_DU_Reset_Scaled_Images(bpy.types.Operator):
     bl_idname = 'amblender.du_reset_scaled_images'
     bl_label = 'Reset Map Scales'
@@ -553,11 +770,15 @@ classes = (AM_DU_Unpack_Images,
            AM_DU_Set_Diffuse_Image_Scale_1024,
            AM_DU_Set_Diffuse_Image_Scale_512,
            AM_DU_Set_Diffuse_Image_Scale_256,
+           AM_DU_Set_Diffuse_Image_Scale_128,
+           AM_DU_Set_Diffuse_Image_Scale_64,
            AM_DU_Set_Normal_Image_Scale_4096,
            AM_DU_Set_Normal_Image_Scale_2048,
            AM_DU_Set_Normal_Image_Scale_1024,
            AM_DU_Set_Normal_Image_Scale_512,
            AM_DU_Set_Normal_Image_Scale_256,
+           AM_DU_Set_Normal_Image_Scale_128,
+           AM_DU_Set_Normal_Image_Scale_64,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_4096,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_2048,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_1024,
@@ -565,6 +786,13 @@ classes = (AM_DU_Unpack_Images,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_256,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_128,
            AM_DU_Set_RoughMetallicOcc_Image_Scale_64,
+           AM_DU_Set_Emission_Image_Scale_4096,
+           AM_DU_Set_Emission_Image_Scale_2048,
+           AM_DU_Set_Emission_Image_Scale_1024,
+           AM_DU_Set_Emission_Image_Scale_512,
+           AM_DU_Set_Emission_Image_Scale_256,
+           AM_DU_Set_Emission_Image_Scale_128,
+           AM_DU_Set_Emission_Image_Scale_64,
            AM_DU_Clear_Delete_All_Custom_Properties)
 
 
