@@ -290,6 +290,7 @@ class Shader:
         _objs = of_type(as_iterable(objs), 'MESH')
         bpy.ops.object.mode_set(mode='OBJECT')
         
+        print(" @TODO: fix for multi-objects")
         for obj in _objs:
             mat_slots = {}
             for p in obj.data.polygons:

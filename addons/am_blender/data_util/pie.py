@@ -53,8 +53,9 @@ class AM_MT_DataUtilPie(Menu):
         box.operator("amblender.du_pack_all_images")
         box.operator("amblender.du_unpack_connected_images")
         box.operator("amblender.du_unpack_all_connected_images")
-        box.operator("amblender.du_archive_unconnected_images")
-        box.operator("amblender.du_archive_all_unconnected_images")
+        # @TODO : implement texture archiving
+        # box.operator("amblender.du_archive_unconnected_images")
+        # box.operator("amblender.du_archive_all_unconnected_images")
         box.operator("amblender.du_reset_scaled_images")
         
 

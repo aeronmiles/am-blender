@@ -113,8 +113,8 @@ class AM_Nav_Workspace_Scripting(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Tool(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_tool'
-    bl_label = 'Properties Tab Tool'
-    bl_description = 'Load Properties Tab Tool'
+    bl_label = 'Tool'
+    bl_description = 'Load Tool'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -123,8 +123,8 @@ class AM_Nav_Properties_Tab_Tool(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Render(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_render'
-    bl_label = 'Properties Tab Render'
-    bl_description = 'Load Properties Tab Render'
+    bl_label = 'Render'
+    bl_description = 'Load Render'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -133,8 +133,8 @@ class AM_Nav_Properties_Tab_Render(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_Output(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_output'
-    bl_label = 'Properties Tab Output'
-    bl_description = 'Load Properties Tab Output'
+    bl_label = 'Output'
+    bl_description = 'Load Output'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -143,8 +143,8 @@ class AM_Nav_Properties_Tab_Output(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_View_Layer(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_view_layer'
-    bl_label = 'Properties Tab View Layer'
-    bl_description = 'Load Properties Tab View Layer'
+    bl_label = 'View Layer'
+    bl_description = 'Load View Layer'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -153,8 +153,8 @@ class AM_Nav_Properties_Tab_View_Layer(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Scene(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_scene'
-    bl_label = 'Properties Tab Scene'
-    bl_description = 'Load Properties Tab Scene'
+    bl_label = 'Scene'
+    bl_description = 'Load Scene'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -163,8 +163,8 @@ class AM_Nav_Properties_Tab_Scene(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_World(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_world'
-    bl_label = 'Properties Tab World'
-    bl_description = 'Load Properties Tab World'
+    bl_label = 'World'
+    bl_description = 'Load World'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -173,8 +173,8 @@ class AM_Nav_Properties_Tab_World(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_Collection(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_collection'
-    bl_label = 'Properties Tab Collection'
-    bl_description = 'Load Properties Tab Collection'
+    bl_label = 'Collection'
+    bl_description = 'Load Collection'
 
     def execute(self, context):
         ops.nav.properties_tab(PropertiesTab.COLLECTION)
@@ -182,8 +182,8 @@ class AM_Nav_Properties_Tab_Collection(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_Object(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_object'
-    bl_label = 'Properties Tab Object'
-    bl_description = 'Load Properties Tab Object'
+    bl_label = 'Object'
+    bl_description = 'Load Object'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -192,8 +192,8 @@ class AM_Nav_Properties_Tab_Object(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Modifier(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_modifier'
-    bl_label = 'Properties Tab Modifier'
-    bl_description = 'Load Properties Tab Modifier'
+    bl_label = 'Modifier'
+    bl_description = 'Load Modifier'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -202,8 +202,8 @@ class AM_Nav_Properties_Tab_Modifier(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Particles(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_particles'
-    bl_label = 'Properties Tab Particles'
-    bl_description = 'Load Properties Tab Particles'
+    bl_label = 'Particles'
+    bl_description = 'Load Particles'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -212,8 +212,8 @@ class AM_Nav_Properties_Tab_Particles(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Physics(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_physics'
-    bl_label = 'Properties Tab Physics'
-    bl_description = 'Load Properties Tab Physics'
+    bl_label = 'Physics'
+    bl_description = 'Load Physics'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -222,8 +222,8 @@ class AM_Nav_Properties_Tab_Physics(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_Constraint(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_constraint'
-    bl_label = 'Properties Tab Constraint'
-    bl_description = 'Load Properties Tab Constraint'
+    bl_label = 'Constraint'
+    bl_description = 'Load Constraint'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -232,8 +232,8 @@ class AM_Nav_Properties_Tab_Constraint(bpy.types.Operator):
     
 class AM_Nav_Properties_Tab_Data(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_data'
-    bl_label = 'Properties Tab Data'
-    bl_description = 'Load Properties Tab Data'
+    bl_label = 'Data'
+    bl_description = 'Load Data'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -242,8 +242,8 @@ class AM_Nav_Properties_Tab_Data(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Material(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_material'
-    bl_label = 'Properties Tab Material'
-    bl_description = 'Load Properties Tab Material'
+    bl_label = 'Material'
+    bl_description = 'Load Material'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
@@ -252,8 +252,8 @@ class AM_Nav_Properties_Tab_Material(bpy.types.Operator):
 
 class AM_Nav_Properties_Tab_Texture(bpy.types.Operator):
     bl_idname = 'amblender.nav_properties_tab_texture'
-    bl_label = 'Properties Tab Texture'
-    bl_description = 'Load Properties Tab Texture'
+    bl_label = 'Texture'
+    bl_description = 'Load Texture'
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):

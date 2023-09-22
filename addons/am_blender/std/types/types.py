@@ -1,6 +1,5 @@
 from typing import (Union, List)
 from enum import Enum
-from bpy.types import Image
 
 
 class FileFormat(Enum):
@@ -14,6 +13,7 @@ class FileFormat(Enum):
 
 
 class Size(Enum):
+    P2_8192 = 8192
     P2_4096 = 4096
     P2_2048 = 2048
     P2_1024 = 1024
@@ -24,7 +24,8 @@ class Size(Enum):
     P2_32 = 32
 
     def filename_suffix(self) -> str:
-        # return multiple strings for backwards compatibility
+        if self.value == 8192:
+            return "_8192."
         if self.value == 4096:
             return "_4096."
         if self.value == 2048:
@@ -48,13 +49,15 @@ class Size(Enum):
     def from_name(filepath: str) -> Union['Size', None]:
         # check multiple strings for backwards compatibility
         fp = filepath.lower()
-        if any(s in fp for s in Compat.Size(4096).filename_suffixes()):
+        if Size(8192).filename_suffix() in fp:
+            return Size.P2_8192
+        if Size(4096).filename_suffix() in fp:
             return Size.P2_4096
-        if any(s in fp for s in Compat.Size(2048).filename_suffixes()):
+        if Size(2048).filename_suffix() in fp:
             return Size.P2_2048
-        if any(s in fp for s in Compat.Size(1024).filename_suffixes()):
+        if Size(1024).filename_suffix() in fp:
             return Size.P2_1024
-        if any(s in fp for s in Compat.Size(512).filename_suffixes()):
+        if Size(512).filename_suffix() in fp:
             return Size.P2_512
         if "_256." in fp:
             return Size.P2_256
@@ -69,6 +72,8 @@ class Size(Enum):
 
     @staticmethod
     def from_size(size: int) -> Union['Size', None]:
+        if size == 8192:
+            return Size.P2_8192
         if size == 4096:
             return Size.P2_4096
         if size == 2048:
@@ -87,34 +92,3 @@ class Size(Enum):
             return Size.P2_32
 
         return None
-
-    @property
-    def compat(self) -> 'Compat.Size':
-        return Compat.Size(self.value)
-
-
-class Compat:
-    class Size:
-        def __init__(self, value: int):
-            self.value = value
-
-        def filename_suffixes(self) -> List[str]:
-            # return multiple strings for backwards compatibility
-            if self.value == 4096:
-                return ["_4096.", "_4k."]
-            if self.value == 2048:
-                return ["_2048.", "_2k."]
-            if self.value == 1024:
-                return ["_1024.", "_1k."]
-            if self.value == 512:
-                return ["_512.", "_0.5k."]
-            if self.value == 256:
-                return ["_256."]
-            if self.value == 128:
-                return ["_128."]
-            if self.value == 64:
-                return ["_64."]
-            if self.value == 32:
-                return ["_32."]
-
-            return []
