@@ -1,4 +1,6 @@
 from ...std import *
+from ...std import ops
+from mathutils import Vector
 
 class Build:
     @staticmethod
@@ -10,39 +12,87 @@ class Build:
         obj = bpy.data.objects.new('Empty.Mesh', mesh)
         obj.name = name
         return obj
-
+    
     @staticmethod
     @log.catch
-    def collider(objs: Union[Iterable['Object'], 'Object']):
+    def collider_sphere(objs: Union[Iterable['Mesh'], 'Mesh']):
+        objs = as_iterable(objs)
+        collider_objs = []  # To keep track of newly created collider objects
+        # Deselect all objects to start freshA
+        bpy.ops.object.select_all(action='DESELECT')
+
+        for obj in objs:
+            xform = obj.matrix_world.copy()
+            bounds_center = sum((Vector(b) for b in obj.bound_box), Vector()) / 8
+            world_center = xform @ bounds_center
+            radius = max(map(lambda v: (xform @ v.co - world_center).length, obj.data.vertices)) 
+            radius += 0.02
+            bpy.ops.object.empty_add(type='SPHERE', radius=radius, align='WORLD', location=world_center, scale=(1, 1, 1))
+            collider = bpy.context.active_object
+            collider.parent = obj
+            collider.location = world_center
+            collider.name = obj.name + "_collider_sphere"
+            collider_objs.append(collider)
+
+        ops.data.set_custom_property(collider_objs, 'collider_sphere', 1.0)
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_x', 'TRANSFORMS', 'scale[0]', 'SCALE_X')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_y', 'TRANSFORMS', 'scale[1]', 'SCALE_Y')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_z', 'TRANSFORMS', 'scale[2]', 'SCALE_Z')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'size', 'SINGLE_PROP', 'empty_display_size')
+        ops.data.add_driver_expression(collider_objs,'collider_sphere', '(scale_x + scale_y + scale_z) / 3 * size')
+
+        # Select all new collider models
+        bpy.ops.object.select_all(action='DESELECT')
+        for collider_obj in collider_objs:
+            collider_obj.select_set(True)
+        
+    @staticmethod
+    @log.catch
+    def collider_mesh(objs: Union[Iterable['Mesh'], 'Mesh']):
         objs = as_iterable(objs)
 
-        # Check if the "collision" material exists, if not create it
-        collision_material = bpy.data.materials.get("collision")
-        if not collision_material:
-            collision_material = bpy.data.materials.new(name="collision")
-            collision_material.diffuse_color = (1.0, 0.0, 0.0, 0.3)  # Red with alpha of 0.3
-            collision_material.use_nodes = True
-            collision_material.blend_method = 'BLEND'  # Set alpha blend mode
-            collision_material.show_backface_culling = True  # Enable backface culling
+        # Check if the "collider" material exists, if not create it
+        collider_material = bpy.data.materials.get("collider")
+        if not collider_material:
+            collider_material = bpy.data.materials.new(name="collider")
+            collider_material.use_nodes = True
+            collider_material.blend_method = 'BLEND'  # Set alpha blend mode
+            collider_material.use_backface_culling = True  # Enable backface culling
 
             # Ensure Principled BSDF shader is used and set its Alpha value
-            if collision_material.node_tree:
-                node_tree = collision_material.node_tree
+            if collider_material.node_tree:
+                node_tree = collider_material.node_tree
                 principled_node = node_tree.nodes.get('Principled BSDF')
                 if principled_node:
-                    principled_node.inputs["Alpha"].default_value = 0.3
+                    principled_node.inputs["Base Color"].default_value = (1.0, 0.0, 0.0, 1.0)
+                    principled_node.inputs["Alpha"].default_value = 0.2
 
         # Deselect all objects to start fresh
         bpy.ops.object.select_all(action='DESELECT')
 
-        collision_objs = []  # To keep track of newly created collision objects
+        collider_objs = []  # To keep track of newly created collider objects
 
         for obj in objs:
             # Duplicate the object
             obj.select_set(True)
+            name = obj.name
             bpy.ops.object.duplicate()
+            xform = bpy.context.object.matrix_world.copy()
+            bpy.context.object.parent = obj
+            bpy.context.object.matrix_world = xform
+            # append collider mesh name
+            bpy.context.object.name = name + "_collider_mesh"
+            # disable rendering
+            bpy.context.object.hide_render = True
+            # apply all modifiers
+            bpy.ops.object.convert(target='MESH')
+            # add decimate modifier
+            bpy.ops.object.modifier_add(type='DECIMATE')
+            # set decimate ratio
+            bpy.context.object.modifiers["Decimate"].ratio = 0.2
             duplicated_obj = bpy.context.active_object
-            collision_objs.append(duplicated_obj)  # Add to the list
+            collider_objs.append(duplicated_obj)  # Add to the list
+            ops.data.set_custom_property(duplicated_obj, 'collider_mesh', 1)
 
             # Convert the duplicated object to a convex hull
             bpy.ops.object.mode_set(mode='EDIT')
@@ -50,13 +100,14 @@ class Build:
             bpy.ops.mesh.convex_hull()
             bpy.ops.object.mode_set(mode='OBJECT')
 
-            # Assign the collision material
+            # Assign the collider material
             duplicated_obj.data.materials.clear()
-            duplicated_obj.data.materials.append(collision_material)
+            duplicated_obj.data.materials.append(collider_material)
 
-        # Select all new collision models
-        for collision_obj in collision_objs:
-            collision_obj.select_set(True)
+        # Select all new collider models
+        bpy.ops.object.select_all(action='DESELECT')
+        for collider_obj in collider_objs:
+            collider_obj.select_set(True)
 
 
 build = Build()

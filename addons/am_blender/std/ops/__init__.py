@@ -1,6 +1,7 @@
 from .build import build
 from .bcopy import copy
 from .data import data
+from .geo import geo
 from .import_export import io
 from .find import find
 from .modifier import modifier
@@ -15,6 +16,7 @@ class Ops:
     build = build
     copy = copy
     data = data
+    geo = geo
     find = find
     io = io
     modifier = modifier
