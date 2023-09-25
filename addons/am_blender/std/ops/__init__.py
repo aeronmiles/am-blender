@@ -1,7 +1,3 @@
-# import typing
-# from ...std.fn import as_iterable
-# from bpy.types import (Object)
-
 from .build import build
 from .bcopy import copy
 from .data import data
@@ -12,6 +8,7 @@ from .nav import nav
 from .shader import shader
 from .transform import transform
 from .select import select
+from .ui import ui
 
 
 class Ops:
@@ -25,14 +22,6 @@ class Ops:
     shader = shader
     transform = transform
     select = select
-
-# Class to provide ops as extension methods
-#     def __init__(self, objs: typing.Union['Object', typing.Iterable['Object']]) -> None:
-#         self._objs = as_iterable(objs)
-
-
-# def ops(objs: typing.Union['Object', typing.Iterable['Object']]) -> Ops:
-#     return Ops(objs)
-
+    ui = ui
 
 ops = Ops()

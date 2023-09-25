@@ -1,6 +1,17 @@
 KEYMAP REFERENCE
 ----------------
 
+AM-Blender
+----------------
+ctrl + alt + shift + w  ::  workspace
+ctrl + alt + shift + p  ::  custom properties
+ctrl + alt + shift + x  ::  properties
+ctrl + alt + shift + c  ::  convert
+ctrl + alt + shift + z  ::  shader util
+ctrl + alt + shift + x  ::  object properties
+ctrl + alt + shift + d  ::  data util
+ctrl + alt + shift + s  ::  import / export
+
 GLOBAL
 ======
 ctrl + alt + x  ::  Origins Pie
@@ -58,17 +69,6 @@ ctrl + shift + q  ::  viewport shading pie
 MESH EDIT
 =========
 w  ::  modelling pie
-
-AM-Blender
-----------------
-ctrl + alt + shift + w  ::  workspace
-ctrl + alt + shift + p  ::  custom properties
-ctrl + alt + shift + x  ::  properties
-ctrl + alt + shift + c  ::  convert
-ctrl + alt + shift + z  ::  shader util
-ctrl + alt + shift + x  ::  object properties
-ctrl + alt + shift + d  ::  data util
-ctrl + alt + shift + s  ::  import / export
 
 ----------------
 

@@ -23,12 +23,12 @@ class Data:
     @staticmethod
     @log.catch
     def with_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str) -> set['Object']:
-        objs = []
+        _objs = []
         for obj in as_iterable(objs):
             if name in obj:
-                objs.append(obj)
+                _objs.append(obj)
 
-        return set(objs)
+        return set(_objs)
 
     @staticmethod
     @log.catch
