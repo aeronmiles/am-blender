@@ -36,6 +36,8 @@ def keymaps():
     km.keymap_items.new(
         "wm.call_menu_pie", "A", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_ModifiersPie"
 
+    km.keymap_items.new(
+        "wm.call_menu_pie", "\\", "PRESS", ctrl=True, alt=True, shift=True).properties.name = "AM_MT_ViewPie"
 
 def register():
     keymaps()

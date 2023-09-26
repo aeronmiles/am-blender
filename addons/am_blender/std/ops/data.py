@@ -29,16 +29,16 @@ class Data:
 
     @staticmethod
     @log.catch
-    def add_driver_var(objs: Union[Iterable['Object'], 'Object'], property_path: str, var_name: str, var_type: str, data_path: str = None, target_type: str = None):
+    def add_driver_var(objs: Union[Iterable['Object'], 'Object'], property_path: str, var_name: str, var_type: DriverVarType, data_path: str = None, target_type: str = None):
         """Add variables to a driver based on provided details.
         
         Parameters:
         - objs: The objects to add the driver to.
-        - property_path: The property path to add the driver to.
+        - property_path: The property path to add the driver to.    
         - var_name: The name of the variable to add.
         - var_type: The type of variable to add.
         - data_path: The data path to use for the variable.
-        - target_type: The transform type to use for the variable base on var_type.
+        - target_type: The target type to use for the variable for the following var_types: ('TRANSFORMS', ).
         """
         objs = as_iterable(objs)
         for obj in objs:
@@ -57,13 +57,14 @@ class Data:
             
             var = driver.variables.new()
             var.name = var_name
-            var.type = var_type
+            var.type = var_type.value
             
             if data_path:
                 var.targets[0].data_path = data_path
             
             var.targets[0].id = obj
-            if var_type == 'TRANSFORMS' and target_type:
+            # @TODO: add target types for 
+            if var_type.value == 'TRANSFORMS' and target_type:
                 var.targets[0].transform_type = target_type
 
 
@@ -147,6 +148,30 @@ class Data:
 
     @staticmethod
     @log.catch
+    def get_custom_property_value(objs: Union[Iterable['Object'], 'Object'], name: str) -> Union[any, list[any]]:
+        """
+        Get the value of a custom property on the object.
+        
+        Parameters:
+        - objs: The objects to get the custom property from.
+        - name: The name of the custom property to get.
+        
+        Returns:
+        - The value of the custom property.
+        """
+        objs = as_iterable(objs)
+        if len(objs) == 1:
+            return objs[0].get(name)
+        
+        props = []
+        for obj in objs:
+            if name in obj:
+                props.append(obj[name])
+        
+        return props
+
+    @staticmethod
+    @log.catch
     def set_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str, value):
         """
         Set a custom property on the object.
@@ -163,7 +188,7 @@ class Data:
 
     @staticmethod
     @log.catch
-    def with_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str) -> set['Object']:
+    def with_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str) -> list['Object']:
         """
         Get all objects that have the given custom property.
         
@@ -174,12 +199,13 @@ class Data:
         Returns:
         - A set of objects that have the custom property.
         """
+        objs = as_iterable(objs)
         _objs = []
-        for obj in as_iterable(objs):
+        for obj in objs:
             if name in obj:
                 _objs.append(obj)
 
-        return set(_objs)
+        return _objs
 
     @staticmethod
     @log.catch

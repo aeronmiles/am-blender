@@ -6,16 +6,22 @@ class Build:
     @staticmethod
     @log.catch
     def empty_mesh(name: str = "EmptyMesh") -> 'Object':
-        mesh = bpy.data.meshes.new('Empty.Mesh')
+        mesh = bpy.data.meshes.new('EmptyMesh')
         mesh.from_pydata([], [], [])
         mesh.update()
-        obj = bpy.data.objects.new('Empty.Mesh', mesh)
+        obj = bpy.data.objects.new('EmptyMesh', mesh)
         obj.name = name
         return obj
     
     @staticmethod
     @log.catch
     def collider_sphere(objs: Union[Iterable['Mesh'], 'Mesh']):
+        """
+        Create a collider sphere for each object in the list. The collider sphere is parented to the object and is scaled to fit the object's bounding box.
+
+        Parameters:
+        - objs: The objects to check for the custom property.
+        """
         objs = as_iterable(objs)
         collider_objs = []  # To keep track of newly created collider objects
         # Deselect all objects to start freshA
@@ -33,11 +39,12 @@ class Build:
             collider.location = world_center
             collider.name = obj.name + "_collider_sphere"
             collider_objs.append(collider)
+            collider.users_collection = 'Colliders'
 
         ops.data.set_custom_property(collider_objs, 'collider_sphere', 1.0)
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_x', 'TRANSFORMS', 'scale[0]', 'SCALE_X')
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_y', 'TRANSFORMS', 'scale[1]', 'SCALE_Y')
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_z', 'TRANSFORMS', 'scale[2]', 'SCALE_Z')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_x', DriverVarType.TRANSFORMS, 'scale[0]', 'SCALE_X')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_y', DriverVarType.TRANSFORMS, 'scale[1]', 'SCALE_Y')
+        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_z', DriverVarType.TRANSFORMS, 'scale[2]', 'SCALE_Z')
         ops.data.add_driver_var(collider_objs,'collider_sphere', 'size', 'SINGLE_PROP', 'empty_display_size')
         ops.data.add_driver_expression(collider_objs,'collider_sphere', '(scale_x + scale_y + scale_z) / 3 * size')
 
@@ -49,6 +56,12 @@ class Build:
     @staticmethod
     @log.catch
     def collider_mesh(objs: Union[Iterable['Mesh'], 'Mesh']):
+        """
+        Create a collider mesh for each object in the list. The collider mesh is parented to the object and is scaled to fit the object's bounding box.
+        
+        Parameters:
+        - objs: The objects to check for the custom property.
+        """
         objs = as_iterable(objs)
 
         # Check if the "collider" material exists, if not create it
@@ -77,22 +90,23 @@ class Build:
             obj.select_set(True)
             name = obj.name
             bpy.ops.object.duplicate()
-            xform = bpy.context.object.matrix_world.copy()
-            bpy.context.object.parent = obj
-            bpy.context.object.matrix_world = xform
+            collider = bpy.context.active_object
+            collider.users_collection = 'Colliders'
+            xform = collider.matrix_world.copy()
+            collider.parent = obj
+            collider.matrix_world = xform
             # append collider mesh name
-            bpy.context.object.name = name + "_collider_mesh"
+            collider.name = name + "_collider_mesh"
             # disable rendering
-            bpy.context.object.hide_render = True
+            collider.hide_render = True
             # apply all modifiers
             bpy.ops.object.convert(target='MESH')
             # add decimate modifier
             bpy.ops.object.modifier_add(type='DECIMATE')
             # set decimate ratio
-            bpy.context.object.modifiers["Decimate"].ratio = 0.2
-            duplicated_obj = bpy.context.active_object
-            collider_objs.append(duplicated_obj)  # Add to the list
-            ops.data.set_custom_property(duplicated_obj, 'collider_mesh', 1)
+            collider.modifiers["Decimate"].ratio = 0.2
+            collider_objs.append(collider)  # Add to the list
+            ops.data.set_custom_property(collider, 'collider_mesh', 1)
 
             # Convert the duplicated object to a convex hull
             bpy.ops.object.mode_set(mode='EDIT')
@@ -101,8 +115,8 @@ class Build:
             bpy.ops.object.mode_set(mode='OBJECT')
 
             # Assign the collider material
-            duplicated_obj.data.materials.clear()
-            duplicated_obj.data.materials.append(collider_material)
+            collider.data.materials.clear()
+            collider.data.materials.append(collider_material)
 
         # Select all new collider models
         bpy.ops.object.select_all(action='DESELECT')

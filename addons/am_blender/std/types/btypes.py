@@ -1,6 +1,35 @@
 from enum import Enum
 
 
+class DriverVarType(Enum):
+    SINGLE_PROP = "SINGLE_PROP"
+    TRANSFORMS = "TRANSFORMS"
+    ROTATION_DIFF = "ROTATION_DIFF"
+    LOC_DIFF = "LOC_DIFF"
+    CONTEXT_PROP = "CONTEXT_PROP"
+
+
+class DriverVarTransformsTarget(Enum):
+    LOC_X = "LOC_X"
+    LOC_Y = "LOC_Y"
+    LOC_Z = "LOC_Z"
+    ROT_X = "ROT_X"
+    ROT_Y = "ROT_Y"
+    ROT_Z = "ROT_Z"
+    SCALE_X = "SCALE_X"
+    SCALE_Y = "SCALE_Y"
+    SCALE_Z = "SCALE_Z"
+
+
+class DriverVarTransformsDataPath(Enum):
+    LOCATION = "location"
+    ROTATION_EULER = "rotation_euler"
+    ROTATION_QUATERNION = "rotation_quaternion"
+    SCALE = "scale"
+    DIMENSIONS = "dimensions"
+    BOUND_BOX = "bound_box"
+
+
 class BlendMode(Enum):
     OPAQUE = "OPAQUE"
     CLIP = "CLIP"

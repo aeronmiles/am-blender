@@ -13,7 +13,7 @@ bl_info = {
     "category": "Pie Menu"
 }
 
-
+ 
 class AM_MT_CustomPropPie(Menu):
     bl_label = "Custom Properties"
 
@@ -24,12 +24,19 @@ class AM_MT_CustomPropPie(Menu):
         box = pie.split().column()
         row = box.row(align=True)
         row.scale_y = 1.5
+        box.operator("amblender.cp_set_layer")
+        box.operator("amblender.cp_add_tags")
+        box.separator()
+        box.operator("amblender.cp_add_gl_vertex_color_metallic_roughness")
+        box.separator()
         box.operator("amblender.cp_add_gl_separate_culling_pass")
         box.operator("amblender.cp_add_gl_translucency")
         box.operator("amblender.cp_add_gl_blend_multiply")
-        box.operator("amblender.cp_add_gl_vertex_color_metallic_roughness")
-        box.operator("amblender.cp_add_gl_lightmap")
         box.operator("amblender.cp_add_gl_alpha_index")
+        box.separator()
+        box.operator("amblender.cp_add_gl_lightmap")
+        box.operator("amblender.cp_add_gl_cast_shadows")
+        box.operator("amblender.cp_add_gl_render_layer")
         box.separator()
         box.operator("amblender.cp_add_collider_sphere")
         box.operator("amblender.cp_add_collider_mesh")
@@ -38,12 +45,19 @@ class AM_MT_CustomPropPie(Menu):
         box = pie.split().column()
         row = box.row(align=True)
         row.scale_y = 1.5
+        box.operator("amblender.cp_remove_layer")
+        box.operator("amblender.cp_remove_tags")
+        box.separator()
+        box.operator("amblender.cp_remove_gl_vertex_color_metallic_roughness")
+        box.separator()
         box.operator("amblender.cp_remove_gl_separate_culling_pass")
         box.operator("amblender.cp_remove_gl_translucency")
         box.operator("amblender.cp_remove_gl_blend_multiply")
-        box.operator("amblender.cp_remove_gl_vertex_color_metallic_roughness")
-        box.operator("amblender.cp_remove_gl_lightmap")
         box.operator("amblender.cp_remove_gl_alpha_index")
+        box.separator()
+        box.operator("amblender.cp_remove_gl_lightmap")
+        box.operator("amblender.cp_remove_gl_cast_shadows")
+        box.operator("amblender.cp_remove_gl_render_layer")
         box.separator()
         box.operator("amblender.cp_remove_collider_sphere")
         box.operator("amblender.cp_remove_collider_mesh")
