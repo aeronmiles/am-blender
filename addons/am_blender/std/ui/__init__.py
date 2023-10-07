@@ -1,5 +1,6 @@
 from typing import Union
-from . import (classes, nav)
+from . import classes
+from .nav import nav
 from ..log import log
 from ..types import SpaceType, PropertyType
 import bpy
