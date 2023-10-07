@@ -1,20 +1,27 @@
 import os
 import sys
-from typing import (Union, Iterable, List, Dict, Tuple, Callable, Any, Optional, TypeVar, Type, Generic)
-from enum import Enum
 import functools as ft
 import itertools as it
 from .log import log
 import bpy
 import mathutils
-from bpy.types import *
-from bpy.types import (Menu)
-from bpy.props import *
 
 # std modules last
 from .types import *
 from .fn import *
 from .dec import dec
-from .ui import ui
 from .meta import meta
+from .ui import ui
 from .ops import ops
+
+
+modules = (ui,)
+
+
+def register():
+    for m in modules:
+        m.register()
+
+def unregister():
+    for m in modules:
+        m.unregister()

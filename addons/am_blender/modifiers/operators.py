@@ -10,7 +10,7 @@ class AM_OP_Modifiers_Disable(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.selected_objects and any(mod.show_render or mod.show_viewport for obj in context.selected_objects for mod in obj.modifiers)
+        return context.selected_objects and any(mod.show_render or mod.show_viewport for obj in context.selected_objects for m in obj.modifiers)
 
     def execute(self, context):
         ops.modifier.show_render(context.selected_objects, False)
@@ -27,7 +27,7 @@ class AM_OP_Modifiers_Enable(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.selected_objects and not any(mod.show_render or mod.show_viewport for obj in context.selected_objects for mod in obj.modifiers)
+        return context.selected_objects and not any(m.show_render or m.show_viewport for obj in context.selected_objects for m in obj.modifiers)
 
     
     def execute(self, context):

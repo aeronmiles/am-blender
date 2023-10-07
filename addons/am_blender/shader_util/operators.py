@@ -225,7 +225,6 @@ class AM_Remove_Unassigned_Materials(bpy.types.Operator):
         return {'FINISHED'}
     
 
-
 class AM_SU_Remove_Unused_Scene_Materials(bpy.types.Operator):
     bl_idname = 'amblender.su_remove_unused_scene_materials'
     bl_label = 'Remove Unused Scene Materials'

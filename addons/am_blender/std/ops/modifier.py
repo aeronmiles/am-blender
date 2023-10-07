@@ -1,4 +1,7 @@
-from ...std import *
+from ..fn import *
+from ..types import *
+from .. import *
+from . import *
 
 
 class Modifier:
@@ -10,8 +13,8 @@ class Modifier:
             if not obj.modifiers:
                 continue
 
-            for mod in obj.modifiers:
-                mod.show_render = enabled
+            for m in obj.modifiers:
+                m.show_render = enabled
     
     @staticmethod
     @log.catch
@@ -21,7 +24,7 @@ class Modifier:
             if not obj.modifiers:
                 continue
 
-            for mod in obj.modifiers:
-                mod.show_viewport = enabled
+            for m in obj.modifiers:
+                m.show_viewport = enabled
 
 modifier = Modifier()

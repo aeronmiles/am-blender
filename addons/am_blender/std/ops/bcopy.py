@@ -1,4 +1,7 @@
-from ...std import *
+from ..fn import *
+from ..types import *
+from .. import *
+from . import *
 
 
 class Copy:

@@ -1,6 +1,6 @@
 from . import packages
 from . import (convert, build, custom_prop, data_util, modifiers, nav, import_export,
-               shader_util, object_prop, properties, keymap, util, view)
+               shader_util, object_prop, properties, keymap, util, view, std)
 from bpy.app.handlers import persistent
 import bpy
 from .std.meta import meta
@@ -21,7 +21,7 @@ bl_info = {
 
 
 modules = (convert, build, custom_prop, data_util, import_export, shader_util, object_prop,
-           util, modifiers, nav, properties,view,
+           util, modifiers, nav, properties,view, std,
            # ensure keymap is last
            keymap)
 
@@ -33,15 +33,15 @@ def load_post_handler(arg):
 
 
 def register():
-    for mod in modules:
-        mod.register()
+    for m in modules:
+        m.register()
 
     bpy.app.handlers.load_post.append(load_post_handler)
 
 
 def unregister():
-    for mod in reversed(modules):
-        mod.unregister()
+    for m in reversed(modules):
+        m.unregister()
 
     bpy.app.handlers.load_post.remove(load_post_handler)
 

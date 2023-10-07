@@ -1,4 +1,6 @@
-from .. import *
+from typing import Callable
+import bpy
+from ..log import log
 
 
 class Recall:

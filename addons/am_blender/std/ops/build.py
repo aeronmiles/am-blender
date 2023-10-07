@@ -1,6 +1,7 @@
-from ...std import *
-from ...std import ops
-from mathutils import Vector
+from ..fn import *
+from ..types import *
+from .. import *
+from . import *
 
 class Build:
     @staticmethod
@@ -39,14 +40,17 @@ class Build:
             collider.location = world_center
             collider.name = obj.name + "_collider_sphere"
             collider_objs.append(collider)
+            if not bpy.data.collections.get('Colliders'):
+                bpy.data.collections.new('Colliders')
+
             collider.users_collection = 'Colliders'
 
-        ops.data.set_custom_property(collider_objs, 'collider_sphere', 1.0)
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_x', DriverVarType.TRANSFORMS, 'scale[0]', 'SCALE_X')
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_y', DriverVarType.TRANSFORMS, 'scale[1]', 'SCALE_Y')
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'scale_z', DriverVarType.TRANSFORMS, 'scale[2]', 'SCALE_Z')
-        ops.data.add_driver_var(collider_objs,'collider_sphere', 'size', 'SINGLE_PROP', 'empty_display_size')
-        ops.data.add_driver_expression(collider_objs,'collider_sphere', '(scale_x + scale_y + scale_z) / 3 * size')
+        data.set_custom_property(collider_objs, 'collider_sphere', 1.0)
+        data.add_driver_var(collider_objs,'collider_sphere', 'scale_x', DriverVarType.TRANSFORMS, 'scale[0]', 'SCALE_X')
+        data.add_driver_var(collider_objs,'collider_sphere', 'scale_y', DriverVarType.TRANSFORMS, 'scale[1]', 'SCALE_Y')
+        data.add_driver_var(collider_objs,'collider_sphere', 'scale_z', DriverVarType.TRANSFORMS, 'scale[2]', 'SCALE_Z')
+        data.add_driver_var(collider_objs,'collider_sphere', 'size', 'SINGLE_PROP', 'empty_display_size')
+        data.add_driver_expression(collider_objs,'collider_sphere', '(scale_x + scale_y + scale_z) / 3 * size')
 
         # Select all new collider models
         bpy.ops.object.select_all(action='DESELECT')
@@ -106,7 +110,7 @@ class Build:
             # set decimate ratio
             collider.modifiers["Decimate"].ratio = 0.2
             collider_objs.append(collider)  # Add to the list
-            ops.data.set_custom_property(collider, 'collider_mesh', 1)
+            data.set_custom_property(collider, 'collider_mesh', 1)
 
             # Convert the duplicated object to a convex hull
             bpy.ops.object.mode_set(mode='EDIT')

@@ -1,6 +1,9 @@
+import bpy
 import shutil
-from ...std import *
-from ...std import ops
+from ..fn import *
+from ..types import *
+from .. import *
+from . import (shader,)
 
 bpy.ops.outliner.show_hierarchy
 
@@ -66,7 +69,6 @@ class Data:
             # @TODO: add target types for 
             if var_type.value == 'TRANSFORMS' and target_type:
                 var.targets[0].transform_type = target_type
-
 
     @staticmethod
     @log.catch
@@ -186,6 +188,8 @@ class Data:
                 log.info(f'ops.data.set_custom_property(objs={objs}, name={name}, value={value}) :: Overwriting custom property "{name}" on object "{obj.name}" with value "{value}"')
             obj[name] = value
 
+        ui.redraw(SpaceType.PROPERTIES)
+
     @staticmethod
     @log.catch
     def with_custom_property(objs: Union[Iterable['Object'], 'Object'], name: str) -> list['Object']:
@@ -224,6 +228,48 @@ class Data:
                 except Exception as e:
                     log.error(
                         f'ops.data.remove_custom_property(objs={objs}, name={name}) :: Failed to remove custom property from object "{obj.name}" Exception: {e}')
+        
+        ui.redraw(SpaceType.PROPERTIES)
+
+    @staticmethod
+    def sanitize_tags(tags: Union[str, Iterable[str]]) -> List[str]:
+        tags = as_iterable(tags)
+        return [t_split.strip() for t in tags for t_split in t.split(',')]
+    
+    @staticmethod
+    def get_tags(obj: 'Object', key: str) -> List[str]:
+        return [tag.strip() for tag in (Data.get_custom_property_value(obj, key) or "").split(',')]
+
+    @staticmethod
+    @log.catch
+    def add_tags(objs: Union[Iterable['Object'], 'Object'], key, tags: Union[str, Iterable[str]]):
+        objs = as_iterable(objs)
+        for obj in objs:
+            combined_tags = ','.join(set(Data.get_tags(obj, key) + Data.sanitize_tags(tags)))
+            Data.set_custom_property(obj, key, combined_tags.strip(','))
+        
+        ui.redraw(SpaceType.PROPERTIES)
+
+    @staticmethod
+    @log.catch
+    def remove_tags(objs: Union[Iterable['Object'], 'Object'], key, tags: Union[str, Iterable[str]]):
+        objs = as_iterable(objs)
+        for obj in objs:
+            combined_tags = ','.join(set(Data.get_tags(obj, key)) - set(Data.sanitize_tags(tags)))
+            Data.set_custom_property(obj, key, combined_tags.strip(','))
+        
+        ui.redraw(SpaceType.PROPERTIES)
+
+    @staticmethod
+    @log.catch
+    def with_tag(objs: Union[Iterable['Object'], 'Object'], key, tag) -> list['Object']:
+        objs = as_iterable(objs)
+        _objs = []
+        for obj in objs:
+            if tag in (Data.get_custom_property_value(obj, key) or ""):
+                _objs.append(obj)
+
+        return _objs
         
     @staticmethod
     @log.catch
@@ -282,9 +328,9 @@ class Data:
         bpy.data.use_autopack = False
 
         _objs = as_iterable(objs)
-        imgNodes = ops.shader.node.of_type(_objs, bpy.types.ShaderNodeTexImage)
+        imgNodes = shader.node.of_type(_objs, bpy.types.ShaderNodeTexImage)
         for imgNode in imgNodes:
-            ds = ops.shader.node.downstream_nodes(imgNode)
+            ds = shader.node.downstream_nodes(imgNode)
             for d in ds:
                 if isinstance(d, bpy.types.ShaderNodeOutputMaterial):
                     Data.unpack(imgNode.image)
@@ -300,7 +346,7 @@ class Data:
         - objs: The objects to reset scaled images for.
         """
         bpy.ops.object.mode_set(mode='OBJECT')
-        nodes: set['ShaderNodeTexImage'] = ops.shader.node.of_type(
+        nodes: set['ShaderNodeTexImage'] = shader.node.of_type(
             objs, bpy.types.ShaderNodeTexImage)
 
         for node in nodes:
@@ -311,7 +357,7 @@ class Data:
             scaled = Size.from_name(img.filepath_raw)
             if scaled:
                 filepath = img.filepath_raw.replace(scaled.filename_suffix(), ".")
-                ops.shader.node.load_image(node, filepath)
+                shader.node.load_image(node, filepath)
 
     # TODO: sort out texture referencing and naming system
     @staticmethod
@@ -358,9 +404,10 @@ class Data:
             img.name = os.path.basename(bpy.path.abspath(img_path))
 
             img.save()
-            ops.shader.node.load_image(node, img.filepath_raw)
+            shader.node.load_image(node, img.filepath_raw)
     
-    
+
+
     # @TODO : implement texture archiving
     # @staticmethod
     # @log.catch
@@ -379,7 +426,7 @@ class Data:
 
 
     #     # get all image names from all scene materials
-    #     imageNodes = ops.shader.node.of_type(bpy.data.materials, bpy.types.ShaderNodeTexImage)
+    #     imageNodes = shader.node.of_type(bpy.data.materials, bpy.types.ShaderNodeTexImage)
     #     imagesInScene = []
     #     for imgNode in imageNodes:
     #         if imgNode.image:

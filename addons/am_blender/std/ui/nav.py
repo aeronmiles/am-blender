@@ -1,5 +1,8 @@
-from ...std import *
-
+import bpy
+from ..log import log
+from ..types import SpaceType, WorkSpaceId, PropertiesTab
+from bpy.types import Context
+from ..dec import dec
 
 class Nav:
     @staticmethod

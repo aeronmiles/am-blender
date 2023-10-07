@@ -8,7 +8,7 @@ class AM_Nav_Workspace_Modeling(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Modeling)
+        ops.ui.nav.workspace(WorkSpaceId.Modeling)
         return {'FINISHED'}
 
 
@@ -19,7 +19,7 @@ class AM_Nav_Workspace_UV_Editing(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.UVEditing)
+        ops.ui.nav.workspace(WorkSpaceId.UVEditing)
         return {'FINISHED'}
 
 
@@ -30,7 +30,7 @@ class AM_Nav_Workspace_Layout(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Layout)
+        ops.ui.nav.workspace(WorkSpaceId.Layout)
         return {'FINISHED'}
 
 
@@ -41,7 +41,7 @@ class AM_Nav_Workspace_Sculpting(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Sculpting)
+        ops.ui.nav.workspace(WorkSpaceId.Sculpting)
         return {'FINISHED'}
 
 
@@ -52,7 +52,7 @@ class AM_Nav_Workspace_Texture_Paint(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.TexturePaint)
+        ops.ui.nav.workspace(WorkSpaceId.TexturePaint)
         return {'FINISHED'}
 
 
@@ -63,7 +63,7 @@ class AM_Nav_Workspace_Shading(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Shading)
+        ops.ui.nav.workspace(WorkSpaceId.Shading)
         return {'FINISHED'}
 
 
@@ -74,7 +74,7 @@ class AM_Nav_Workspace_Rendering(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Rendering)
+        ops.ui.nav.workspace(WorkSpaceId.Rendering)
         return {'FINISHED'}
 
 
@@ -85,7 +85,7 @@ class AM_Nav_Workspace_Assets(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Assets)
+        ops.ui.nav.workspace(WorkSpaceId.Assets)
         return {'FINISHED'}
 
 
@@ -96,7 +96,7 @@ class AM_Nav_Workspace_Geometry_Nodes(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.GeometryNodes)
+        ops.ui.nav.workspace(WorkSpaceId.GeometryNodes)
         return {'FINISHED'}
 
 
@@ -107,7 +107,7 @@ class AM_Nav_Workspace_Scripting(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.workspace(WorkSpaceId.Scripting)
+        ops.ui.nav.workspace(WorkSpaceId.Scripting)
         return {'FINISHED'}
 
 
@@ -118,7 +118,7 @@ class AM_Nav_Properties_Tab_Tool(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.TOOL)
+        ops.ui.nav.properties_tab(PropertiesTab.TOOL)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Render(bpy.types.Operator):
@@ -128,7 +128,7 @@ class AM_Nav_Properties_Tab_Render(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.RENDER)
+        ops.ui.nav.properties_tab(PropertiesTab.RENDER)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_Output(bpy.types.Operator):
@@ -138,7 +138,7 @@ class AM_Nav_Properties_Tab_Output(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.OUTPUT)
+        ops.ui.nav.properties_tab(PropertiesTab.OUTPUT)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_View_Layer(bpy.types.Operator):
@@ -148,7 +148,7 @@ class AM_Nav_Properties_Tab_View_Layer(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.VIEW_LAYER)
+        ops.ui.nav.properties_tab(PropertiesTab.VIEW_LAYER)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Scene(bpy.types.Operator):
@@ -158,7 +158,7 @@ class AM_Nav_Properties_Tab_Scene(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.SCENE)
+        ops.ui.nav.properties_tab(PropertiesTab.SCENE)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_World(bpy.types.Operator):
@@ -168,7 +168,7 @@ class AM_Nav_Properties_Tab_World(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.WORLD)
+        ops.ui.nav.properties_tab(PropertiesTab.WORLD)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_Collection(bpy.types.Operator):
@@ -177,7 +177,7 @@ class AM_Nav_Properties_Tab_Collection(bpy.types.Operator):
     bl_description = 'Load Collection'
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.COLLECTION)
+        ops.ui.nav.properties_tab(PropertiesTab.COLLECTION)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_Object(bpy.types.Operator):
@@ -187,7 +187,7 @@ class AM_Nav_Properties_Tab_Object(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.OBJECT)
+        ops.ui.nav.properties_tab(PropertiesTab.OBJECT)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Modifier(bpy.types.Operator):
@@ -197,7 +197,7 @@ class AM_Nav_Properties_Tab_Modifier(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.MODIFIER)
+        ops.ui.nav.properties_tab(PropertiesTab.MODIFIER)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Particles(bpy.types.Operator):
@@ -207,7 +207,7 @@ class AM_Nav_Properties_Tab_Particles(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.PARTICLES)
+        ops.ui.nav.properties_tab(PropertiesTab.PARTICLES)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Physics(bpy.types.Operator):
@@ -217,7 +217,7 @@ class AM_Nav_Properties_Tab_Physics(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.PHYSICS)
+        ops.ui.nav.properties_tab(PropertiesTab.PHYSICS)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_Constraint(bpy.types.Operator):
@@ -227,7 +227,7 @@ class AM_Nav_Properties_Tab_Constraint(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.CONSTRAINT)
+        ops.ui.nav.properties_tab(PropertiesTab.CONSTRAINT)
         return {'FINISHED'}
     
 class AM_Nav_Properties_Tab_Data(bpy.types.Operator):
@@ -237,7 +237,7 @@ class AM_Nav_Properties_Tab_Data(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.DATA)
+        ops.ui.nav.properties_tab(PropertiesTab.DATA)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Material(bpy.types.Operator):
@@ -247,7 +247,7 @@ class AM_Nav_Properties_Tab_Material(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.MATERIAL)
+        ops.ui.nav.properties_tab(PropertiesTab.MATERIAL)
         return {'FINISHED'}
 
 class AM_Nav_Properties_Tab_Texture(bpy.types.Operator):
@@ -257,7 +257,7 @@ class AM_Nav_Properties_Tab_Texture(bpy.types.Operator):
     bl_options = {'REGISTER', 'INTERNAL', 'UNDO'}
 
     def execute(self, context):
-        ops.nav.properties_tab(PropertiesTab.TEXTURE)
+        ops.ui.nav.properties_tab(PropertiesTab.TEXTURE)
         return {'FINISHED'}
 
 classes = (AM_Nav_Workspace_Modeling, 

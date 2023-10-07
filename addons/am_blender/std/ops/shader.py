@@ -1,7 +1,8 @@
+from ..fn import *
+from ..types import *
+from .. import *
+from . import *
 import re
-from ...std import *
-from ...std import ops
-
 
 class Node:
     @staticmethod
@@ -304,7 +305,7 @@ class Shader:
                     obj.active_material_index = i
                     bpy.ops.object.material_slot_remove()
         
-        ops.select.all(objs)
+        select.all(objs)
 
     @staticmethod
     @log.catch
@@ -331,7 +332,7 @@ class Shader:
         bpy.ops.object.mode_set(mode='OBJECT')
 
         for obj in _objs:
-            ops.select.all(objs, False)
+            select.all(objs, False)
 
             # iterate obj uv layers and check uf lightmapUV exists, create if not
             haslightmapUV = False
@@ -355,7 +356,7 @@ class Shader:
             bpy.ops.uv.smart_project(island_margin=0.005)
             
         # restore selection
-        ops.select.all(objs)
+        select.all(objs)
 
 
     @staticmethod

@@ -1,8 +1,6 @@
 from enum import Enum
 from loguru._logger import (Logger, Core)
 from loguru import logger
-from ..std.ui import ui
-
 
 class LogLevel(Enum):
     TRACE = 5
