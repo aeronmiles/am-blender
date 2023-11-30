@@ -6,6 +6,7 @@ read -p "Enter Blender version e.g. 3.3 > " VER
 case "$(uname -sr)" in
 Darwin*)
     # macOS
+    read -p "Enter your username > " USER
     USER_PATH="/Users/${USER}/Library/Application Support/Blender/${VER}"
     ;;
 Linux*Microsoft*)
@@ -28,7 +29,7 @@ CYGWIN* | MINGW* | MINGW32* | MSYS*)
 esac
 
 if [ ! -d "$USER_PATH" ]; then
-    echo "Blender version ${VER} doesn't exist, exiting."
+    echo "User Path: ${USER_PATH} doesn't exist, exiting."
     exit 1
 fi
 
