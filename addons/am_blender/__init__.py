@@ -1,5 +1,5 @@
 from . import packages
-from . import (convert, build, custom_prop, data_util, modifiers, nav, import_export,
+from . import (convert, custom_prop, data_util, modifiers, nav, import_export,
                shader_util, object_prop, properties, keymap, util, view, std)
 from bpy.app.handlers import persistent
 import bpy
@@ -20,7 +20,7 @@ bl_info = {
 }
 
 
-modules = (convert, build, custom_prop, data_util, import_export, shader_util, object_prop,
+modules = (convert, custom_prop, data_util, import_export, shader_util, object_prop,
            util, modifiers, nav, properties,view, std,
            # ensure keymap is last
            keymap)
