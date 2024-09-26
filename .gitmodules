@@ -1,3 +1,6 @@
 [submodule "addons-extern/BlenderUSDZ"]
 	path = addons-extern/BlenderUSDZ
 	url = https://github.com/robmcrosby/BlenderUSDZ.git
+[submodule ".reference/fake-bpy-module"]
+	path = .reference/fake-bpy-module
+	url = https://github.com/nutti/fake-bpy-module.git

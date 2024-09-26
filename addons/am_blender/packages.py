@@ -1,5 +1,5 @@
 from .util import Pip
-Pip().ensure_packages(("loguru", "jsonpickle"))
+Pip().ensure_packages(("loguru", "jsonpickle", "toolz"))
 
 # import os
 # import sys
