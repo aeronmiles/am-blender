@@ -69,7 +69,7 @@ class AM_ParentInPlace(bpy.types.Operator):
         empty = context.active_object
         empty.name = os.path.splitext(activeObj.name)[0] + 's'
         empty.parent = activeObj.parent
-        ops.copy.transform(activeObj.parent, empty)
+        ops.copy.transform(activeObj, empty)
         ops.copy.collections(activeObj.parent, empty)
 
         objs.append(empty)
