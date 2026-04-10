@@ -5,7 +5,6 @@ bl_info = {
     "blender": (2, 80, 0),
     }
 import bpy
-import bgl
 import blf
 import bmesh
 import time

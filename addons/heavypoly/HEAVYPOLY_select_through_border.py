@@ -12,7 +12,6 @@ bl_info = {
 	}
 
 import bpy
-import bgl
 from mathutils import Vector
 from bpy.props import IntProperty, BoolProperty
 
